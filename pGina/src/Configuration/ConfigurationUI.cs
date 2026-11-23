@@ -1072,7 +1072,21 @@ namespace pGina.Configuration
 
         private void simMethodChanged(object sender, EventArgs e)
         {
-            btnLaunchCredUI.Enabled = (sender == m_radioCredUI);
+            btnLaunchCredUI.Enabled = m_radioCredUI.Checked;
+            // the service test never runs the gateway stage
+            m_simIncludeGatewayCB.Enabled = m_radioEmulate.Checked;
+            if (!m_simIncludeGatewayCB.Enabled)
+                m_simIncludeGatewayCB.Checked = false;
+        }
+
+        private void m_simIncludeGatewayCB_CheckedChanged(object sender, EventArgs e)
+        {
+            if (m_simIncludeGatewayCB.Checked &&
+                MessageBox.Show("The gateway stage runs for real: plugins such as Local Machine can create or change local accounts and groups on this computer.\n\nRun the gateway stage in the simulation?",
+                    "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != System.Windows.Forms.DialogResult.Yes)
+            {
+                m_simIncludeGatewayCB.Checked = false;
+            }
         }
 
         private void authenticateBtnUp_Click(object sender, EventArgs e)
@@ -1223,7 +1237,7 @@ namespace pGina.Configuration
         {
             if (m_radioUseService.Checked)
             {
-                if (MessageBox.Show("Individual plugin results and results for each stage are unavailable when using the pGina service.  Continue?",
+                if (MessageBox.Show("The pGina service runs authentication and authorization with its saved configuration (pending changes are not used). Individual plugin results and results for each stage are unavailable.  Continue?",
                                 "Warning", MessageBoxButtons.YesNo) != System.Windows.Forms.DialogResult.Yes)
                     return;
 
@@ -1273,6 +1287,7 @@ namespace pGina.Configuration
                                 {
                                     Username = m_username.Text,
                                     Password = m_password.Text,
+                                    Reason = LoginRequestMessage.LoginReason.Test,
                                 };
                                 return requestMsg.ToDict();
                             case MessageType.LoginResponse:
@@ -1318,8 +1333,9 @@ namespace pGina.Configuration
 
             this.simPluginResultsListView.Items.Clear();
 
-            // Execute the login process
-            BooleanResult finalResult = sessionDriver.PerformLoginProcess();
+            // Execute the login process, the gateway stage only when asked for
+            bool includeGateway = m_simIncludeGatewayCB.Checked;
+            BooleanResult finalResult = sessionDriver.PerformLoginProcess(includeGateway);
 
             // Get the authentication results
             PluginActivityInformation actInfo = sessionDriver.SessionProperties.GetTrackedSingle<PluginActivityInformation>();
@@ -1375,9 +1391,12 @@ namespace pGina.Configuration
             this.simPluginResultsListView.AutoResizeColumn(3, ColumnHeaderAutoResizeStyle.ColumnContent);
 
             // Update stage results
+            // a stage that did not run keeps the gray bar
             SetStageStatus(this.simAuthResultPB, authed);
-            SetStageStatus(this.simAuthzResultPB, authzed);
-            SetStageStatus(this.simGatewayResultPB, gatewayed);
+            if (authed)
+                SetStageStatus(this.simAuthzResultPB, authzed);
+            if (includeGateway && authed && authzed)
+                SetStageStatus(this.simGatewayResultPB, gatewayed);
 
             m_usernameResult.Text = sessionDriver.UserInformation.Username;
             m_domainResult.Text = sessionDriver.UserInformation.Domain;

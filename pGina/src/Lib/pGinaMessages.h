@@ -171,6 +171,7 @@ namespace pGina
 				Login = 0,
 				Unlock,
 				CredUI,
+				Test,	// configuration tool login test, same value as LoginReason.Test in Core
 			};
 
 			LoginRequestMessage()
