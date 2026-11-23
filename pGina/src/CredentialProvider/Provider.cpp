@@ -29,6 +29,7 @@
 #include <Macros.h>
 
 #include "Provider.h"
+#include "Localization.h"
 #include "Dll.h"
 
 #pragma warning(push)
@@ -418,7 +419,7 @@ namespace pGina
 			// But now we have to fixup the label, which is a ptr, we'll use SHStrDupW which does CoTask alloc
 			if(pcpfd->pszLabel)
 			{
-				if(!SUCCEEDED(SHStrDupW(fields.fields[index].fieldDescriptor.pszLabel, &pcpfd->pszLabel)))
+				if(!SUCCEEDED(SHStrDupW(pGina::Localization::T(fields.fields[index].fieldDescriptor.pszLabel), &pcpfd->pszLabel)))
 				{
 					// Dup failed, free up what we've got so far, then get out
 					CoTaskMemFree(pcpfd);

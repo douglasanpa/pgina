@@ -46,6 +46,7 @@
 #include "ServiceStateHelper.h"
 #include "ProviderGuid.h"
 #include "resource.h"
+#include "Localization.h"
 
 #include <wincred.h>
 
@@ -293,7 +294,7 @@ namespace pGina
 				if ( !pGina::Helpers::IsUserLocalAdmin(username) && !pGina::Service::StateHelper::GetState() )
 				{
 					pDEBUG(L"Credential::Connect: pGina service is unavailable");
-					m_loginResult.Message(L"Your login request failed, because the pGina service is not running!\nOnly useres from the local administrator group are able to login.\n\nPlease contact your system administrator.\nReboot the machine to fix this issue.");
+					m_loginResult.Message(pGina::Localization::T(L"Your login request failed, because the pGina service is not running!\nOnly useres from the local administrator group are able to login.\n\nPlease contact your system administrator.\nReboot the machine to fix this issue."));
 					SetStringValue(m_fields->usernameFieldIdx, (PCWSTR)L"");
 					SetStringValue(m_fields->passwordFieldIdx, (PCWSTR)L"");
 
@@ -314,12 +315,12 @@ namespace pGina
 				if ( !pGina::Service::StateHelper::GetState() )
 				{
 					pDEBUG(L"Credential::Connect: pGina service is unavailable");
-					m_loginResult.Message(L"Your password change request failed, because the pGina service is not running!\n\nPlease contact your system administrator.\nReboot the machine to fix this issue.");
+					m_loginResult.Message(pGina::Localization::T(L"Your password change request failed, because the pGina service is not running!\n\nPlease contact your system administrator.\nReboot the machine to fix this issue."));
 
 					return S_OK;
 				}
 
-				title = L"Processing password change for ";
+				title = pGina::Localization::T(L"Processing password change for ");
 				title.append(username);
 				hdialog = CreateWindowEx(WS_EX_TOPMOST, L"Static", title.c_str(), WS_DLGFRAME, (int)(GetSystemMetrics(SM_CXFULLSCREEN)/2)-137, (int)GetSystemMetrics(SM_CYFULLSCREEN)/2, 275, 15, ::GetForegroundWindow(), NULL, GetMyInstance(), NULL);
 				if(hdialog != NULL)
@@ -341,7 +342,7 @@ namespace pGina
 				// return a failure.
 				if( (newPassword == NULL || newPasswordConfirm == NULL) || wcscmp(newPassword, newPasswordConfirm ) != 0 )
 				{
-					m_loginResult.Message(L"New passwords do not match");
+					m_loginResult.Message(pGina::Localization::T(L"New passwords do not match"));
 					if (hdialog != NULL)
 					{
 						DestroyWindow(hdialog);
@@ -423,7 +424,7 @@ namespace pGina
 					else
 					{
 						pDEBUG(L"Your old password does not match");
-						m_loginResult.Message(L"Your old password does not match");
+						m_loginResult.Message(pGina::Localization::T(L"Your old password does not match"));
 						if (hdialog != NULL)
 						{
 							DestroyWindow(hdialog);
@@ -446,7 +447,7 @@ namespace pGina
 				{
 					if(loginResult.Message().empty())
 					{
-						loginResult.Message(L"Failed to change password, no message from plugins.");
+						loginResult.Message(pGina::Localization::T(L"Failed to change password, no message from plugins."));
 						pDEBUG(L"Failed to change password, no message from plugins.");
 					}
 					pDEBUG(L"pGina::Transactions::User::ProcessChangePasswordForUser failed: %s", loginResult.Message().c_str());
@@ -467,7 +468,7 @@ namespace pGina
 				if(loginResult.Message().length() > 0)
 					m_loginResult.Message(loginResult.Message());
 				else
-					m_loginResult.Message(L"pGina: Your password was successfully changed");
+					m_loginResult.Message(pGina::Localization::T(L"pGina: Your password was successfully changed"));
 
 				pDEBUG(L"change password success");
 
@@ -482,7 +483,7 @@ namespace pGina
 
 			if (m_usageScenario == CPUS_CREDUI)
 			{
-				title = L"Processing UAC for ";
+				title = pGina::Localization::T(L"Processing UAC for ");
 				title.append(username);
 				hdialog = CreateWindowEx(WS_EX_TOPMOST, L"Static", title.c_str(), WS_DLGFRAME, (int)(GetSystemMetrics(SM_CXFULLSCREEN)/2)-137, (int)GetSystemMetrics(SM_CYFULLSCREEN)/2, 275, 15, ::GetForegroundWindow(), NULL, GetMyInstance(), NULL);
 				if(hdialog != NULL)
@@ -496,13 +497,13 @@ namespace pGina
 			}
 			else
 			{
-				title = L"Processing logon for ";
+				title = pGina::Localization::T(L"Processing logon for ");
 				title.append(username);
 				hThread_dialog = CreateThread(NULL, 0, Credential::Thread_dialog, (LPVOID) title.c_str(), 0, NULL);
 
 				if( pqcws )
 				{
-					pqcws->SetStatusMessage(L"You will be logged in.\nPlease wait ...");
+					pqcws->SetStatusMessage(pGina::Localization::T(L"You will be logged in.\nPlease wait ..."));
 				}
 			}
 
@@ -517,7 +518,7 @@ namespace pGina
 				}
 				else
 				{
-					m_loginResult.Message(L"Plugins did not provide a specific error message");
+					m_loginResult.Message(pGina::Localization::T(L"Plugins did not provide a specific error message"));
 				}
 				
 				if (hThread_dialog != NULL)
@@ -555,7 +556,7 @@ namespace pGina
 				if(m_loginResult.Message().length() > 0)
 					SHStrDupW(m_loginResult.Message().c_str(), ppwszOptionalStatusText);
 				else
-					SHStrDupW(L"pGina: Your password was successfully changed", ppwszOptionalStatusText);
+					SHStrDupW(pGina::Localization::T(L"pGina: Your password was successfully changed"), ppwszOptionalStatusText);
 
 				*pcpgsr = CPGSR_NO_CREDENTIAL_FINISHED;
 				*pcpsiOptionalStatusIcon = CPSI_SUCCESS;
@@ -579,7 +580,7 @@ namespace pGina
 				}
 				else
 				{
-					SHStrDupW(L"Process login failed, but a specific error message was not provided", ppwszOptionalStatusText);
+					SHStrDupW(pGina::Localization::T(L"Process login failed, but a specific error message was not provided"), ppwszOptionalStatusText);
 				}
 
 				if (hThread_dialog != NULL)
@@ -711,7 +712,7 @@ namespace pGina
 					if(hdialog != NULL)
 					{
 						DestroyWindow(hdialog);
-						MessageBox(::GetForegroundWindow(), m_loginResult.Message().c_str(), L"Error during login", MB_OK);
+						MessageBox(::GetForegroundWindow(), m_loginResult.Message().c_str(), pGina::Localization::T(L"Error during login"), MB_OK);
 					}
 					else
 					{
@@ -846,7 +847,7 @@ namespace pGina
 
 			if (m_usageScenario == CPUS_LOGON && !pGina::Service::StateHelper::GetState())
 			{
-				HANDLE hThread_dialog = CreateThread(NULL, 0, Credential::Thread_dialog, (LPVOID) L"waiting for the pGina service ...", 0, NULL);
+				HANDLE hThread_dialog = CreateThread(NULL, 0, Credential::Thread_dialog, (LPVOID) pGina::Localization::T(L"waiting for the pGina service ..."), 0, NULL);
 				for (int x = 0; x < 60; x++)
 				{
 					if (pGina::Service::StateHelper::GetState()) break;
@@ -871,7 +872,7 @@ namespace pGina
 				m_fields->fields[x].wstr = NULL;
 				if(fields.fields[x].wstr && !IsFieldDynamic(x))
 				{
-					SHStrDup(fields.fields[x].wstr, &m_fields->fields[x].wstr);
+					SHStrDup(pGina::Localization::T(fields.fields[x].wstr), &m_fields->fields[x].wstr);
 				}
 
 				if(IsFieldDynamic(x))

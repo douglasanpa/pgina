@@ -26,6 +26,7 @@
 */
 
 #include "ServiceStateHelper.h"
+#include "Localization.h"
 
 namespace pGina
 {
@@ -57,11 +58,11 @@ namespace pGina
 		{
 			if(s_serviceStateThread.IsServiceRunning())
 			{
-				return L"Service Status: Connected";
+				return pGina::Localization::T(L"Service Status: Connected");
 			}
 			else
 			{
-				return L"Service Status: Disconnected";
+				return pGina::Localization::T(L"Service Status: Disconnected");
 			}
 		}
 
