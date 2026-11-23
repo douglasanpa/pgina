@@ -491,7 +491,7 @@
             this.macros_label.Name = "macros_label";
             this.macros_label.Size = new System.Drawing.Size(572, 26);
             this.macros_label.TabIndex = 1;
-            this.macros_label.Text = "Macros: %u = Username, %o = OriginalUsername, %p = Password, %b = oldPassword, %s = " +
+            this.macros_label.Text = "Macros: %u = Username, %o = OriginalUsername, %p = Password, %P = OriginalPassword, %b = oldPassword, %s = " +
                 "SID, %e = PasswordEXP,\r\n %i = SessionID, %Ae = Authentication plugins, %Ao = Authorization plugins, %Gw = Gateway plugins";
             //
             // Configuration

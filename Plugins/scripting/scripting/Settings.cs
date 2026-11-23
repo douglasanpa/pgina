@@ -25,6 +25,9 @@ namespace pGina.Plugin.scripting
             m_settings.SetDefault("notification_sys", new string[] { @"True	True	False	cmd.exe /c echo %USERNAME% %u %p %s %e %i %Ae %Ao %Gw logon %p >>%PUBLIC%\sys.txt", @"False	True	False	cmd.exe /c echo %USERNAME% %u %p %s %e %i %Ae %Ao %Gw logon>>%PUBLIC%\sys.txt", @"True	False	True	cmd.exe /c echo %USERNAME% %u %p %s %e %i %Ae %Ao %Gw logoff %p>>%PUBLIC%\sys.txt", @"False	False	True	cmd.exe /c echo %USERNAME% %u %p %s %e %i %Ae %Ao %Gw logoff>>%PUBLIC%\sys.txt" });
             m_settings.SetDefault("notification_usr", new string[] { @"True	False	True	cmd.exe /c echo %USERNAME% %u %p %s %e %i %Ae %Ao %Gw logoff %p >>%PUBLIC%\usr.txt", @"False	False	True	cmd.exe /c echo %USERNAME% %u %p %s %e %i %Ae %Ao %Gw logoff>>%PUBLIC%\usr.txt", @"True	True	False	cmd.exe /c echo %USERNAME% %u %p %s %e %i %Ae %Ao %Gw logon %p >>%PUBLIC%\usr.txt", @"False	True	False	cmd.exe /c echo %USERNAME% %u %p %s %e %i %Ae %Ao %Gw logon>>%PUBLIC%\usr.txt" });
 
+            // run notification scripts for local accounts that are a redirect target (ex: SingleUser plugin) too
+            m_settings.SetDefault("notification_redirected", false);
+
             // change password
             m_settings.SetDefault("changepwd_sys", new string[] { });
             m_settings.SetDefault("changepwd_usr", new string[] { });

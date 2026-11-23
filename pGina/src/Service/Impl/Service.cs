@@ -415,6 +415,20 @@ namespace pGina.Service.Impl
                     {
                         if (!userinfo4.comment.Contains("pGina created"))
                         {
+                            string[] denyDirectLocalLogin = Settings.Get.DenyDirectLocalLogin;
+                            if (denyDirectLocalLogin.Any(s => s.Equals(sessionDriver.UserInformation.Username, StringComparison.CurrentCultureIgnoreCase)))
+                            {
+                                m_logger.InfoFormat("Direct login of local user {0} is denied by DenyDirectLocalLogin", sessionDriver.UserInformation.Username);
+                                return new LoginResponseMessage()
+                                {
+                                    Result = false,
+                                    Message = "Unknown username or bad password",
+                                    Username = sessionDriver.UserInformation.Username,
+                                    Domain = sessionDriver.UserInformation.Domain,
+                                    Password = sessionDriver.UserInformation.Password
+                                };
+                            }
+
                             result.Success = Abstractions.WindowsApi.pInvokes.ValidateUser(sessionDriver.UserInformation.Username, sessionDriver.UserInformation.Domain, sessionDriver.UserInformation.Password);
                             if (result.Success)
                             {

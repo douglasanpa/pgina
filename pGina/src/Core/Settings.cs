@@ -78,6 +78,9 @@ namespace pGina.Core
                 (int) (Core.PluginLoader.State.AuthenticateEnabled | Core.PluginLoader.State.GatewayEnabled));
 
             s_settings.SetDefault("UseOriginalUsernameInUnlockScenario", false);
+
+            // local accounts that can't be used directly at the logon screen (only as a redirect target, ex: SingleUser plugin)
+            s_settings.SetDefault("DenyDirectLocalLogin", new string[] { });
         }
     }
 }

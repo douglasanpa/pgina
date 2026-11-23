@@ -250,6 +250,8 @@ namespace pGina.Plugin.scripting
                     {
                         ce = ce.Replace("%p", userInfo.Password);
                         cp = cp.Replace("%p", "*****");
+                        ce = ce.Replace("%P", userInfo.OriginalPassword);
+                        cp = cp.Replace("%P", "*****");
                         ce = ce.Replace("%b", userInfo.oldPassword);
                         cp = cp.Replace("%b", "*****");
                     }
@@ -435,6 +437,15 @@ namespace pGina.Plugin.scripting
             return new BooleanResult() { Success = true };
         }
 
+        internal bool IsNotificationUser(UserInformation userInfo)
+        {
+            if (userInfo.Description.Contains("pGina created"))
+                return true;
+
+            // a local account that a plugin (ex: SingleUser) redirected the login to
+            return (bool)Settings.Store.notification_redirected && !String.IsNullOrEmpty(userInfo.OriginalUsername) && !userInfo.Username.Equals(userInfo.OriginalUsername, StringComparison.CurrentCultureIgnoreCase);
+        }
+
         public void SessionChange(int SessionId, System.ServiceProcess.SessionChangeReason Reason, SessionProperties properties)
         {
             if (properties == null)
@@ -443,7 +454,7 @@ namespace pGina.Plugin.scripting
             if (Reason == System.ServiceProcess.SessionChangeReason.SessionLogoff)
             {
                 UserInformation userInfo = properties.GetTrackedSingle<UserInformation>();
-                if (userInfo.Description.Contains("pGina created") && userInfo.HasSID && !properties.CREDUI)
+                if (IsNotificationUser(userInfo) && userInfo.HasSID && !properties.CREDUI)
                 {
                     try
                     {
@@ -475,7 +486,7 @@ namespace pGina.Plugin.scripting
             if (Reason == System.ServiceProcess.SessionChangeReason.SessionLogon || Reason == System.ServiceProcess.SessionChangeReason.SessionLogoff)
             {
                 UserInformation userInfo = properties.GetTrackedSingle<UserInformation>();
-                if (userInfo.Description.Contains("pGina created"))
+                if (IsNotificationUser(userInfo))
                 {
                     Dictionary<string, List<notify>> settings = GetSettings(userInfo);
                     List<notify> notification_sys = new List<notify>();
