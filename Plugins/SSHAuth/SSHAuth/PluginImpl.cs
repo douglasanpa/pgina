@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Diagnostics;
-using System.Runtime.InteropServices;
 
 using log4net;
+using Renci.SshNet;
+using Renci.SshNet.Common;
 using pGina.Shared.Interfaces;
 using pGina.Shared.Types;
 
@@ -62,33 +63,39 @@ namespace pGina.Plugin.SSHAuth
             myDialog.ShowDialog();
         }
 
-        [DllImport("SSHAuthNative.dll", EntryPoint = "ssh_connect_and_pw_auth", CallingConvention = CallingConvention.Cdecl, SetLastError = true)]
-        public static extern int ssh_connect_and_pw_authx86(string host, string port, string user, string password, StringBuilder errmsg, int errlen);
-
-        [DllImport("SSHAuthNativex64.dll", EntryPoint = "ssh_connect_and_pw_auth", CallingConvention = CallingConvention.Cdecl, SetLastError = true)]
-        public static extern int ssh_connect_and_pw_authx64(string host, string port, string user, string password, StringBuilder errmsg, int errlen);
-
-        public static int ssh_connect_and_pw_auth(string host, string port, string user, string password, StringBuilder errmsg, int errlen)
-        {
-            return IntPtr.Size == 8 /* 64bit */ ? ssh_connect_and_pw_authx64(host, port, user, password, errmsg, errlen) : ssh_connect_and_pw_authx86(host, port, user, password, errmsg, errlen);
-        }
-
         public BooleanResult AuthenticateUser(SessionProperties properties)
         {
             UserInformation userInfo = properties.GetTrackedSingle<UserInformation>();
             string sshHost = Settings.Store.Host;
             string sshPort = Settings.Store.Port;
-            StringBuilder errsb = new StringBuilder(1024);  // For return error message from native auth function
-            int rc;
+            int port;
 
-            rc = ssh_connect_and_pw_auth(sshHost, sshPort, userInfo.Username, userInfo.Password, errsb, errsb.Capacity);
-            if (rc == 0)
+            if (!int.TryParse(sshPort, out port) || port < 1 || port > 65535)
             {
-                // Successful authentication
+                return new BooleanResult() { Success = false, Message = String.Format("Invalid SSH port: {0}", sshPort) };
+            }
+
+            // Same check as the old native helper: open a session and try password authentication.
+            // The server host key is not verified.
+            try
+            {
+                using (SshClient client = new SshClient(sshHost, port, userInfo.Username, userInfo.Password))
+                {
+                    client.ConnectionInfo.Timeout = TimeSpan.FromSeconds(10);
+                    client.Connect();
+                    client.Disconnect();
+                }
                 return new BooleanResult() { Success = true };
             }
-            // Authentication failure
-            return new BooleanResult() { Success = false, Message = errsb.ToString() };
+            catch (SshAuthenticationException e)
+            {
+                return new BooleanResult() { Success = false, Message = String.Format("SSH authentication failed for user {0} ({1})", userInfo.Username, e.Message) };
+            }
+            catch (Exception e)
+            {
+                m_logger.ErrorFormat("SSH connection to {0}:{1} failed: {2}", sshHost, port, e);
+                return new BooleanResult() { Success = false, Message = String.Format("SSH connection to {0}:{1} failed ({2})", sshHost, port, e.Message) };
+            }
         }
     }
 }
