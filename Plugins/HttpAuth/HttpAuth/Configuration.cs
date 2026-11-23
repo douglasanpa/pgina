@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using pGina.Shared.Localization;
 
 namespace pGina.Plugin.HttpAuth
 {
@@ -14,6 +15,7 @@ namespace pGina.Plugin.HttpAuth
         public Configuration()
         {
             InitializeComponent();
+            FormStyle.Apply(this);
             SettingsToUi();
         }
 
@@ -30,14 +32,14 @@ namespace pGina.Plugin.HttpAuth
             toolTip1.ReshowDelay = 0;
             toolTip1.ShowAlways = true;
 
-            toolTip1.SetToolTip(this.Loginserver_textBox, "The Authentication server address");
+            toolTip1.SetToolTip(this.Loginserver_textBox, Language.T("The Authentication server address"));
         }
 
         public bool UiToSettings()
         {
             if (String.IsNullOrEmpty(Loginserver_textBox.Text))
             {
-                MessageBox.Show(this, "Loginserver is empty", "Loginserver", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, Language.T("Loginserver is empty"), Language.T("Loginserver"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 

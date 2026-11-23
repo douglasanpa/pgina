@@ -1,0 +1,109 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: pGina\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Save"
+msgstr "Salvar"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Server(s):"
+msgstr "Servidor:"
+
+msgid "Authentication Port:"
+msgstr "Porta de autenticação:"
+
+msgid "Shared Secret:"
+msgstr "Segredo:"
+
+msgid "Show secret"
+msgstr "Mostrar segredo"
+
+msgid "Timeout: "
+msgstr "Timeout: "
+
+msgid "seconds"
+msgstr "segundos"
+
+msgid "Accounting Port:"
+msgstr "Porta de accounting:"
+
+msgid "Retry:"
+msgstr "Repetir:"
+
+msgid "times"
+msgstr "vezes"
+
+msgid "IP Address Suggestion:"
+msgstr "Sugestão de IP:"
+
+msgid "Use modified username for accounting"
+msgstr "Usar o usuário modificado no accounting"
+
+msgid "Authentication Options"
+msgstr "Opções de autenticação"
+
+msgid "Enable Session Timeout"
+msgstr "Ativar tempo limite da sessão"
+
+msgid "WISPr Session Terminate Time"
+msgstr "Fim da sessão WISPr"
+
+msgid "Called-Station-ID: "
+msgstr "Called-Station-ID: "
+
+msgid "NAS Identifier: "
+msgstr "NAS Identifier: "
+
+msgid "Send Host IP Address During Authentication (NAS-IP-Address)"
+msgstr "Enviar o IP do computador na autenticação (NAS-IP-Address)"
+
+msgid "Accounting Options"
+msgstr "Opções de accounting"
+
+msgid "Perform accounting for non-RADIUS users"
+msgstr "Fazer accounting de usuários não RADIUS"
+
+msgid "Send update every"
+msgstr "Atualizar a cada"
+
+msgid "Send Interim Updates"
+msgstr "Enviar atualizações intermediárias"
+
+msgid "(regex supported)"
+msgstr "(aceita regex)"
+
+msgid "Server Settings"
+msgstr "Servidor"
+
+msgid "Enable Authentication (Authentication)"
+msgstr "Ativar autenticação (Autenticação)"
+
+msgid "Enable Accounting (Notification)"
+msgstr "Ativar accounting (Notificação)"
+
+msgid "RADIUS Features"
+msgstr "Recursos RADIUS"
+
+msgid "Help"
+msgstr "Ajuda"
+
+msgid "RADIUS Plugin Configuration"
+msgstr "Configuração do plugin RADIUS"
+
+msgid "Port and Timeout values must be numbers greater than 0."
+msgstr "Porta e tempo limite precisam ser números maiores que 0."
+
+msgid "Send NAS IP Address or Send NAS Identifier must be checked under Authentication Options"
+msgstr "Marque Enviar NAS-IP-Address ou NAS Identifier nas opções de autenticação"
+
+msgid "NAS Identifier can not be blank if the option is enabled."
+msgstr "Informe o NAS Identifier quando a opção estiver ativa."
+
+msgid "Called-Station-ID can not be blank if the option is enabled."
+msgstr "Informe o Called-Station-ID quando a opção estiver ativa."

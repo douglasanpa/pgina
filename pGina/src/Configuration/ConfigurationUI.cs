@@ -49,6 +49,7 @@ using Abstractions.Pipes;
 
 using log4net;
 using pGina.Shared.Types;
+using pGina.Shared.Localization;
 
 namespace pGina.Configuration
 {
@@ -109,11 +110,14 @@ namespace pGina.Configuration
             }
             catch (DuplicatePluginDetectedException e)
             {
-                MessageBox.Show(string.Format("Unable to load full plugin list: {0}", e.Message), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show(Language.Format("Unable to load full plugin list: {0}", e.Message), Language.T("Error"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
 
             InitSimulationTab();
             LoadGeneralSettings();
+
+            // after the Init* methods, so the grid and list columns they add are translated too
+            FormStyle.Apply(this);
         }
 
         private void Form_Load(object sender, EventArgs e)
@@ -124,13 +128,13 @@ namespace pGina.Configuration
             toolTip1.ReshowDelay = 0;
             toolTip1.ShowAlways = true;
 
-            toolTip1.SetToolTip(this.notify_smtp, "space seperated FQDN list of your smtp servers\nsmtp.domain.local:25");
-            toolTip1.SetToolTip(this.notify_email, "space seperated FQDN list of email addresses\nadmin@domain.local");
-            toolTip1.SetToolTip(this.notify_user, "smtp username");
-            toolTip1.SetToolTip(this.notify_pass, "smtp password");
-            toolTip1.SetToolTip(this.notify_cred, "prefer Login credentials instead of smtp username and password");
-            toolTip1.SetToolTip(this.notify_ssl, "use encrypted smtp connection");
-            toolTip1.SetToolTip(this.ntpservers, "list of NTP servers");
+            toolTip1.SetToolTip(this.notify_smtp, Language.T("space separated FQDN list of your smtp servers\nsmtp.domain.local:25"));
+            toolTip1.SetToolTip(this.notify_email, Language.T("space separated FQDN list of email addresses\nadmin@domain.local"));
+            toolTip1.SetToolTip(this.notify_user, Language.T("smtp username"));
+            toolTip1.SetToolTip(this.notify_pass, Language.T("smtp password"));
+            toolTip1.SetToolTip(this.notify_cred, Language.T("prefer Login credentials instead of smtp username and password"));
+            toolTip1.SetToolTip(this.notify_ssl, Language.T("use encrypted smtp connection"));
+            toolTip1.SetToolTip(this.ntpservers, Language.T("list of NTP servers"));
         }
 
         private void VerifyRegistryAccess()
@@ -149,8 +153,8 @@ namespace pGina.Configuration
             }
             catch (System.UnauthorizedAccessException)
             {
-                MessageBox.Show("Unable to access registry, good bye.",
-                    "Registry access error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(Language.T("Unable to access registry, good bye."),
+                    Language.T("Registry access error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Environment.Exit(1);
             }
         }
@@ -180,7 +184,7 @@ namespace pGina.Configuration
             {
                 Name = CPF_CP_NAME_COLUMN,
                 DataPropertyName = CPF_CP_NAME_COLUMN,
-                HeaderText = "Credential Provider",
+                HeaderText = Language.T("Credential Provider"),
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
                 ReadOnly = true
             });
@@ -188,35 +192,35 @@ namespace pGina.Configuration
             {
                 Name = CPF_CP_LOGON_COLUMN,
                 DataPropertyName = CPF_CP_LOGON_COLUMN,
-                HeaderText = "Logon",
+                HeaderText = Language.T("Logon"),
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
             });
             dgvCredProvFilter.Columns.Add(new DataGridViewCheckBoxColumn()
             {
                 Name = CPF_CP_UNLOCK_COLUMN,
                 DataPropertyName = CPF_CP_UNLOCK_COLUMN,
-                HeaderText = "Unlock",
+                HeaderText = Language.T("Unlock"),
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
             });
             dgvCredProvFilter.Columns.Add(new DataGridViewCheckBoxColumn()
             {
                 Name = CPF_CP_CHANGE_PASS_COLUMN,
                 DataPropertyName = CPF_CP_CHANGE_PASS_COLUMN,
-                HeaderText = "Change Password",
+                HeaderText = Language.T("Change Password"),
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
             });
             dgvCredProvFilter.Columns.Add(new DataGridViewCheckBoxColumn()
             {
                 Name = CPF_CP_CREDUI_COLUMN,
                 DataPropertyName = CPF_CP_CREDUI_COLUMN,
-                HeaderText = "Cred UI",
+                HeaderText = Language.T("Cred UI"),
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
             });
             dgvCredProvFilter.Columns.Add(new DataGridViewTextBoxColumn()
             {
                 Name = CPF_CP_UUID_COLUMN,
                 DataPropertyName = CPF_CP_UUID_COLUMN,
-                HeaderText = "UUID",
+                HeaderText = Language.T("UUID"),
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
             });
 
@@ -259,6 +263,23 @@ namespace pGina.Configuration
             m_tileImageTxt.Text = Settings.Get.GetSetting("TileImage", null);
             LoadTileImagePreview();
 
+            // Language: automatic (Windows display language) or one of the supported ones
+            m_languageCB.Items.Add(Language.T("Automatic (Windows language)"));
+            foreach (string lang in Language.Supported)
+                m_languageCB.Items.Add(Language.NativeName(lang));
+            m_languageCB.SelectedIndex = Array.IndexOf(Language.Supported, Language.Configured) + 1;
+
+            // Lock screen background
+            try
+            {
+                m_lockScreenTxt.Text = LockScreen.Current;
+            }
+            catch (Exception ex)
+            {
+                m_logger.ErrorFormat("Unable to read the lock screen settings: {0}", ex);
+            }
+            LoadLockScreenPreview();
+
             // Load MOTD settings
             this.enableMotdCB.Checked = Settings.Get.EnableMotd;
             this.motdTB.Text = Settings.Get.GetSetting("Motd");
@@ -295,7 +316,7 @@ namespace pGina.Configuration
             }
             else
             {
-                this.serviceStatusTB.Text = "Not Installed";
+                this.serviceStatusTB.Text = Language.T("Not Installed");
                 this.serviceStopBtn.Enabled = false;
                 this.serviceStartBtn.Enabled = false;
             }
@@ -330,39 +351,38 @@ namespace pGina.Configuration
 
             if (manager.Registered())
             {
-                this.cpRegisteredTB.Text = "Yes";
+                this.cpRegisteredTB.Text = Language.T("Yes");
                 this.cpRegisteredTB.ForeColor = Color.Green;
-                this.cpRegisterBtn.Text = "Unregister";
+                this.cpRegisterBtn.Text = Language.T("Unregister");
                 this.cpEnableDisableBtn.Enabled = true;
 
                 if (manager.Enabled())
                 {
-                    this.cpEnabledTB.Text = "Yes";
+                    this.cpEnabledTB.Text = Language.T("Yes");
                     this.cpEnabledTB.ForeColor = Color.Green;
-                    this.cpEnableDisableBtn.Text = "Disable";
+                    this.cpEnableDisableBtn.Text = Language.T("Disable");
                 }
                 else
                 {
-                    this.cpEnabledTB.Text = "No";
+                    this.cpEnabledTB.Text = Language.T("No");
                     this.cpEnabledTB.ForeColor = Color.Red;
-                    this.cpEnableDisableBtn.Text = "Enable";
+                    this.cpEnableDisableBtn.Text = Language.T("Enable");
                 }
 
                 if (Abstractions.Windows.OsInfo.Is64Bit() && Abstractions.Windows.OsInfo.IsVistaOrLater() && !manager.Registered6432())
                 {
-                    MessageBox.Show("Warning: The 32-bit CredentialProvider is not registered.  32-bit apps that " +
-                        "make use of the CredentialProvider may not function correctly.");
+                    MessageBox.Show(Language.T("Warning: The 32-bit CredentialProvider is not registered.  32-bit apps that make use of the CredentialProvider may not function correctly."));
                 }
             }
             else
             {
-                this.cpRegisteredTB.Text = "No";
+                this.cpRegisteredTB.Text = Language.T("No");
                 this.cpRegisteredTB.ForeColor = Color.Red;
-                this.cpRegisterBtn.Text = "Register";
-                this.cpEnabledTB.Text = "No";
+                this.cpRegisterBtn.Text = Language.T("Register");
+                this.cpEnabledTB.Text = Language.T("No");
                 this.cpEnabledTB.ForeColor = Color.Red;
                 this.cpEnableDisableBtn.Enabled = false;
-                this.cpEnableDisableBtn.Text = "Enable";
+                this.cpEnableDisableBtn.Text = Language.T("Enable");
             }
         }
 
@@ -377,28 +397,28 @@ namespace pGina.Configuration
                     this.serviceStatusTB.ForeColor = Color.Green;
                     this.serviceStopBtn.Enabled = true;
                     this.serviceStartBtn.Enabled = false;
-                    statusStr = "Running";
+                    statusStr = Language.T("Running");
                     break;
                 case ServiceControllerStatus.ContinuePending:
-                    statusStr = "Continue pending...";
+                    statusStr = Language.T("Continue pending...");
                     this.serviceStatusTB.ForeColor = Color.Black;
                     this.serviceStopBtn.Enabled = false;
                     this.serviceStartBtn.Enabled = false;
                     break;
                 case ServiceControllerStatus.PausePending:
-                    statusStr = "Pause pending...";
+                    statusStr = Language.T("Pause pending...");
                     this.serviceStatusTB.ForeColor = Color.Black;
                     this.serviceStopBtn.Enabled = false;
                     this.serviceStartBtn.Enabled = false;
                     break;
                 case ServiceControllerStatus.StartPending:
-                    statusStr = "Starting...";
+                    statusStr = Language.T("Starting...");
                     this.serviceStatusTB.ForeColor = Color.Black;
                     this.serviceStopBtn.Enabled = false;
                     this.serviceStartBtn.Enabled = false;
                     break;
                 case ServiceControllerStatus.StopPending:
-                    statusStr = "Stopping...";
+                    statusStr = Language.T("Stopping...");
                     this.serviceStatusTB.ForeColor = Color.Black;
                     this.serviceStopBtn.Enabled = false;
                     this.serviceStartBtn.Enabled = false;
@@ -409,7 +429,7 @@ namespace pGina.Configuration
                     this.serviceStartBtn.Enabled = true;
                     break;
                 case ServiceControllerStatus.Stopped:
-                    statusStr = "Stopped";
+                    statusStr = Language.T("Stopped");
                     this.serviceStatusTB.ForeColor = Color.Red;
                     this.serviceStopBtn.Enabled = false;
                     this.serviceStartBtn.Enabled = true;
@@ -428,7 +448,7 @@ namespace pGina.Configuration
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Unable to load a preview image for the selected file, pGina may not be able to show this image at login time.\n", "Error", MessageBoxButtons.OK);
+                    MessageBox.Show(Language.T("Unable to load a preview image for the selected file, pGina may not be able to show this image at login time.\n"), Language.T("Error"), MessageBoxButtons.OK);
                     m_logger.ErrorFormat("User chose {0} as image file, but we failed to load it? Exception: {1}", m_tileImageTxt.Text, ex);
                     m_tileImagePreview.Image = null;
                 }
@@ -438,10 +458,10 @@ namespace pGina.Configuration
         private void InitSimulationTab()
         {
             // Set up columns in simPluginResultsListView
-            this.simPluginResultsListView.Columns.Add("Stage", -2, HorizontalAlignment.Left);
-            this.simPluginResultsListView.Columns.Add("Plugin", -2, HorizontalAlignment.Left);
-            this.simPluginResultsListView.Columns.Add("Result", -2, HorizontalAlignment.Left);
-            this.simPluginResultsListView.Columns.Add("Message", -2, HorizontalAlignment.Left);
+            this.simPluginResultsListView.Columns.Add(Language.T("Stage"), -2, HorizontalAlignment.Left);
+            this.simPluginResultsListView.Columns.Add(Language.T("Plugin"), -2, HorizontalAlignment.Left);
+            this.simPluginResultsListView.Columns.Add(Language.T("Result"), -2, HorizontalAlignment.Left);
+            this.simPluginResultsListView.Columns.Add(Language.T("Message"), -2, HorizontalAlignment.Left);
             this.simPluginResultsListView.LabelEdit = false;
             this.simPluginResultsListView.GridLines = true;
             this.simPluginResultsListView.View = View.Details;
@@ -484,7 +504,7 @@ namespace pGina.Configuration
             dgv.Columns.Add(new DataGridViewTextBoxColumn()
             {
                 Name = PLUGIN_NAME_COLUMN,
-                HeaderText = "Plugin",
+                HeaderText = Language.T("Plugin"),
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
                 ReadOnly = true
             });
@@ -500,7 +520,7 @@ namespace pGina.Configuration
             pluginsDG.Columns.Add(new DataGridViewTextBoxColumn()
             {
                 Name = PLUGIN_NAME_COLUMN,
-                HeaderText = "Plugin Name",
+                HeaderText = Language.T("Plugin Name"),
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
                 ReadOnly = true
             });
@@ -508,42 +528,42 @@ namespace pGina.Configuration
             pluginsDG.Columns.Add(new DataGridViewCheckBoxColumn()
             {
                 Name = AUTHENTICATION_COLUMN,
-                HeaderText = "Authentication",
+                HeaderText = Language.T("Authentication"),
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
             });
 
             pluginsDG.Columns.Add(new DataGridViewCheckBoxColumn()
             {
                 Name = AUTHORIZATION_COLUMN,
-                HeaderText = "Authorization",
+                HeaderText = Language.T("Authorization"),
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
             });
 
             pluginsDG.Columns.Add(new DataGridViewCheckBoxColumn()
             {
                 Name = GATEWAY_COLUMN,
-                HeaderText = "Gateway",
+                HeaderText = Language.T("Gateway"),
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
             });
 
             pluginsDG.Columns.Add(new DataGridViewCheckBoxColumn()
             {
                 Name = NOTIFICATION_COLUMN,
-                HeaderText = "Notification",
+                HeaderText = Language.T("Notification"),
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
             });
 
             pluginsDG.Columns.Add(new DataGridViewCheckBoxColumn()
             {
                 Name = PASSWORD_COLUMN,
-                HeaderText = "Change Password",
+                HeaderText = Language.T("Change Password"),
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
             });
 
             pluginsDG.Columns.Add(new DataGridViewTextBoxColumn()
             {
                 Name = PLUGIN_DESC_COLUMN,
-                HeaderText = "Description",
+                HeaderText = Language.T("Description"),
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
                 ReadOnly = true
             });
@@ -551,7 +571,7 @@ namespace pGina.Configuration
             pluginsDG.Columns.Add(new DataGridViewTextBoxColumn()
             {
                 Name = PLUGIN_VERSION_COLUMN,
-                HeaderText = "Version",
+                HeaderText = Language.T("Version"),
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
                 ReadOnly = true
             });
@@ -559,7 +579,7 @@ namespace pGina.Configuration
             pluginsDG.Columns.Add(new DataGridViewTextBoxColumn()
             {
                 Name = PLUGIN_UUID_COLUMN,
-                HeaderText = "UUID",
+                HeaderText = Language.T("UUID"),
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
                 ReadOnly = true
             });
@@ -823,7 +843,7 @@ namespace pGina.Configuration
             // Populate plugin directories UI
             string[] pluginDirectories = Settings.Get.PluginDirectories;
             lstPluginDirs.Columns.Clear();
-            lstPluginDirs.Columns.Add("Directory");
+            lstPluginDirs.Columns.Add(Language.T("Directory"));
             lstPluginDirs.Columns[0].Width = lstPluginDirs.Width - 5;
             lstPluginDirs.Items.Clear();
 
@@ -871,7 +891,7 @@ namespace pGina.Configuration
                 }
                 catch (Exception e)
                 {
-                    MessageBox.Show("Exception when saving data: " + e);
+                    MessageBox.Show(Language.T("Exception when saving data: ") + e);
                 }
             }
         }
@@ -914,11 +934,11 @@ namespace pGina.Configuration
 
             if (!AUTHENTICATION)
             {
-                MessageBox.Show(this, "At least one plugin must be set for Authentication", "Can't save settings", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, Language.T("At least one plugin must be set for Authentication"), Language.T("Can't save settings"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }/*
             if (!AUTHORIZATION)
             {
-                MessageBox.Show(this, "At least one plugin must be set for Authorization", "Can't save settings", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(this, Language.T("At least one plugin must be set for Authorization"), Language.T("Can't save settings"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }*/
 
             return false;
@@ -938,6 +958,17 @@ namespace pGina.Configuration
             // MOTD stuff
             Settings.Get.EnableMotd = this.enableMotdCB.Checked;
             Settings.Get.Motd = this.motdTB.Text.Trim();
+
+            string language = m_languageCB.SelectedIndex > 0 ? Language.Supported[m_languageCB.SelectedIndex - 1] : "";
+            if (language != Language.Configured)
+            {
+                Settings.Get.Language = language;
+                MessageBox.Show(Language.T("The new language is used the next time this window and the logon screen are opened."),
+                    Language.T("Language"), MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+
+            if (!SaveLockScreen())
+                return false;
 
             // Service status checkbox
             Settings.Get.ShowServiceStatusInLogonUi = this.logonUiShowServiceStatusCB.Checked;
@@ -999,7 +1030,7 @@ namespace pGina.Configuration
         private void btnApply_Click(object sender, EventArgs e)
         {
             if (SaveSettings())
-                MessageBox.Show("Settings written to registry.", "Settings Saved", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(Language.T("Settings written to registry."), Language.T("Settings Saved"), MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
         private void btnSaveAndClose_Click(object sender, EventArgs e)
@@ -1028,7 +1059,7 @@ namespace pGina.Configuration
                 }
                 catch (DuplicatePluginDetectedException ex)
                 {
-                    MessageBox.Show(string.Format("Unable to load full plugin list: {0}", ex.Message), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(Language.Format("Unable to load full plugin list: {0}", ex.Message), Language.T("Error"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }
@@ -1048,7 +1079,7 @@ namespace pGina.Configuration
                 }
                 catch (DuplicatePluginDetectedException ex)
                 {
-                    MessageBox.Show(string.Format("Unable to load full plugin list: {0}", ex.Message), "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show(Language.Format("Unable to load full plugin list: {0}", ex.Message), Language.T("Error"), MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }
@@ -1082,8 +1113,8 @@ namespace pGina.Configuration
         private void m_simIncludeGatewayCB_CheckedChanged(object sender, EventArgs e)
         {
             if (m_simIncludeGatewayCB.Checked &&
-                MessageBox.Show("The gateway stage runs for real: plugins such as Local Machine can create or change local accounts and groups on this computer.\n\nRun the gateway stage in the simulation?",
-                    "Warning", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != System.Windows.Forms.DialogResult.Yes)
+                MessageBox.Show(Language.T("The gateway stage runs for real: plugins such as Local Machine can create or change local accounts and groups on this computer.\n\nRun the gateway stage in the simulation?"),
+                    Language.T("Warning"), MessageBoxButtons.YesNo, MessageBoxIcon.Warning) != System.Windows.Forms.DialogResult.Yes)
             {
                 m_simIncludeGatewayCB.Checked = false;
             }
@@ -1237,8 +1268,8 @@ namespace pGina.Configuration
         {
             if (m_radioUseService.Checked)
             {
-                if (MessageBox.Show("The pGina service runs authentication and authorization with its saved configuration (pending changes are not used). Individual plugin results and results for each stage are unavailable.  Continue?",
-                                "Warning", MessageBoxButtons.YesNo) != System.Windows.Forms.DialogResult.Yes)
+                if (MessageBox.Show(Language.T("The pGina service runs authentication and authorization with its saved configuration (pending changes are not used). Individual plugin results and results for each stage are unavailable.  Continue?"),
+                                Language.T("Warning"), MessageBoxButtons.YesNo) != System.Windows.Forms.DialogResult.Yes)
                     return;
 
                 ResetSimUI();
@@ -1246,8 +1277,8 @@ namespace pGina.Configuration
             }
             else
             {
-                if (MessageBox.Show("Continuing will save all pending changes in configuration, do you want to continue?",
-                                "Warning", MessageBoxButtons.YesNo) != System.Windows.Forms.DialogResult.Yes)
+                if (MessageBox.Show(Language.T("Continuing will save all pending changes in configuration, do you want to continue?"),
+                                Language.T("Warning"), MessageBoxButtons.YesNo) != System.Windows.Forms.DialogResult.Yes)
                 {
                     return;
                 }
@@ -1347,7 +1378,7 @@ namespace pGina.Configuration
                     delegate(IPluginAuthentication p) { return uuid == p.Uuid; }
                     );
                 ListViewItem item = new ListViewItem(
-                    new string[] { "Authentication", plugin.Name, result.Success.ToString(), result.Message });
+                    new string[] { Language.T("Authentication"), plugin.Name, result.Success ? Language.T("Success") : Language.T("Failure"), result.Message });
                 if (result.Success) item.BackColor = successColor;
                 else item.BackColor = failColor;
                 this.simPluginResultsListView.Items.Add(item);
@@ -1363,7 +1394,7 @@ namespace pGina.Configuration
                     delegate(IPluginAuthorization p) { return uuid == p.Uuid; }
                     );
                 ListViewItem item = new ListViewItem(
-                    new string[] { "Authorization", plugin.Name, result.Success.ToString(), result.Message });
+                    new string[] { Language.T("Authorization"), plugin.Name, result.Success ? Language.T("Success") : Language.T("Failure"), result.Message });
                 if (result.Success) item.BackColor = successColor;
                 else item.BackColor = failColor;
                 this.simPluginResultsListView.Items.Add(item);
@@ -1378,7 +1409,7 @@ namespace pGina.Configuration
                 IPluginAuthenticationGateway plugin = actInfo.LoadedAuthenticationGatewayPlugins.Find(
                     delegate(IPluginAuthenticationGateway p) { return uuid == p.Uuid; });
                 ListViewItem item = new ListViewItem(
-                    new string[] { "Gateway", plugin.Name, result.Success.ToString(), result.Message });
+                    new string[] { Language.T("Gateway"), plugin.Name, result.Success ? Language.T("Success") : Language.T("Failure"), result.Message });
                 if (result.Success) item.BackColor = successColor;
                 else item.BackColor = failColor;
                 this.simPluginResultsListView.Items.Add(item);
@@ -1441,6 +1472,96 @@ namespace pGina.Configuration
             }
         }
 
+        private void LoadLockScreenPreview()
+        {
+            Image old = m_lockScreenPreview.Image;
+            m_lockScreenPreview.Image = null;
+            if (old != null)
+                old.Dispose();
+
+            string path = m_lockScreenTxt.Text.Trim();
+            if (path.Length == 0 || !File.Exists(path))
+                return;
+            try
+            {
+                // load from a copy so the file isn't kept locked
+                using (Image img = Image.FromFile(path))
+                    m_lockScreenPreview.Image = new Bitmap(img);
+            }
+            catch (Exception ex)
+            {
+                m_logger.ErrorFormat("Unable to load lock screen image {0}: {1}", path, ex.Message);
+            }
+        }
+
+        private bool SaveLockScreen()
+        {
+            string path = m_lockScreenTxt.Text.Trim();
+            try
+            {
+                if (path.Length == 0)
+                {
+                    if (LockScreen.Current.Length > 0)
+                        LockScreen.Clear();
+                }
+                else if (!LockScreen.IsOwnCopy(path) || !String.Equals(path, LockScreen.Current, StringComparison.OrdinalIgnoreCase))
+                {
+                    if (!File.Exists(path))
+                    {
+                        MessageBox.Show(Language.Format("The lock screen image {0} doesn't exist.", path),
+                            Language.T("Logon Screen"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return false;
+                    }
+                    using (Image.FromFile(path)) { } // make sure it is an image
+                    LockScreen.Set(path);
+                    m_lockScreenTxt.Text = LockScreen.Current;
+                    LoadLockScreenPreview();
+                }
+            }
+            catch (OutOfMemoryException)
+            {
+                // what Image.FromFile throws for files it can't decode
+                MessageBox.Show(Language.Format("{0} isn't a supported image.", path),
+                    Language.T("Logon Screen"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            catch (Exception ex)
+            {
+                m_logger.ErrorFormat("Unable to set the lock screen image: {0}", ex);
+                MessageBox.Show(Language.Format("Unable to set the lock screen image: {0}", ex.Message),
+                    Language.T("Logon Screen"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+            return true;
+        }
+
+        private void m_lockScreenBrowseBtn_Click(object sender, EventArgs e)
+        {
+            using (OpenFileDialog ofd = new OpenFileDialog())
+            {
+                ofd.Filter = Language.T("Images") + " (*.jpg, *.jpeg, *.png, *.bmp)|*.jpg;*.jpeg;*.png;*.bmp";
+                ofd.CheckFileExists = true;
+                if (File.Exists(m_lockScreenTxt.Text))
+                    ofd.FileName = m_lockScreenTxt.Text;
+                if (ofd.ShowDialog() == DialogResult.OK)
+                {
+                    m_lockScreenTxt.Text = ofd.FileName;
+                    LoadLockScreenPreview();
+                }
+            }
+        }
+
+        private void m_lockScreenClearBtn_Click(object sender, EventArgs e)
+        {
+            m_lockScreenTxt.Text = "";
+            LoadLockScreenPreview();
+        }
+
+        private void m_lockScreenTxt_Leave(object sender, EventArgs e)
+        {
+            LoadLockScreenPreview();
+        }
+
         private void m_tabs_Selected(object sender, TabControlEventArgs e)
         {
             if (e.TabPage == m_simTab)
@@ -1493,7 +1614,7 @@ namespace pGina.Configuration
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(String.Format("{0}\nA dependent service is disabled?", ex.Message), "Can't start pGina service", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Language.Format("{0}\nA dependent service is disabled?", ex.Message), Language.T("Can't start pGina service"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 UpdateServiceStatus();
             }
@@ -1512,7 +1633,7 @@ namespace pGina.Configuration
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(String.Format("{0}", ex.Message), "Can't stop pGina service", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(Language.Format("{0}", ex.Message), Language.T("Can't stop pGina service"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 UpdateServiceStatus();
             }
@@ -1548,7 +1669,7 @@ namespace pGina.Configuration
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show(Language.T("Error: ") + ex.Message);
             }
 
             this.UpdateCpStatus();
@@ -1571,7 +1692,7 @@ namespace pGina.Configuration
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show(Language.T("Error: ") + ex.Message);
             }
 
             this.UpdateCpStatus();

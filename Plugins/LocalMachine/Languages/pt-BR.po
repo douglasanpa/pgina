@@ -1,0 +1,101 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: pGina\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Authentication"
+msgstr "Autenticação"
+
+msgid "Always authenticate local users"
+msgstr "Sempre autenticar usuários locais"
+
+msgid "Authorization"
+msgstr "Autorização"
+
+msgid "Mirror groups from local user"
+msgstr "Copiar os grupos do usuário local"
+
+msgid "Require membership in one of the following local groups:"
+msgstr "Exigir participação em um destes grupos locais:"
+
+msgid "Local Groups"
+msgstr "Grupos locais"
+
+msgid "Require local administrator group membership"
+msgstr "Exigir participação no grupo Administradores"
+
+msgid "Authorize all authenticated users"
+msgstr "Autorizar todos os usuários autenticados"
+
+msgid "Gateway"
+msgstr "Gateway"
+
+msgid "Failure to create or join local groups should prevent login"
+msgstr "Impedir logon se falhar ao criar ou entrar nos grupos"
+
+msgid "Mandatory Groups"
+msgstr "Grupos obrigatórios"
+
+msgid "Username"
+msgstr "Usuário"
+
+msgid "Remove account and profile after logout"
+msgstr "Remover conta e perfil após o logoff"
+
+msgid "Scramble password after logout"
+msgstr "Embaralhar a senha após o logoff"
+
+msgid "Save"
+msgstr "Salvar"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid ""
+"Only scramble when LocalMachine authentication fails or \r\n"
+"does not execute."
+msgstr ""
+"Embaralhar só quando a autenticação do LocalMachine\r\n"
+"falhar ou não for executada."
+
+msgid "Never scramble the passwords for these accounts:"
+msgstr "Nunca embaralhar a senha destas contas:"
+
+msgid "Notification"
+msgstr "Notificação"
+
+msgid "Help"
+msgstr "Ajuda"
+
+msgid "LocalMachine Plugin Configuration"
+msgstr "Configuração do plugin LocalMachine"
+
+msgid "When this is checked, the plugin will always attempt to authenticate the user against a local account. If this is not checked, the plugin will only attempt to authenticate when the user has not already been authenticated by a plugin that has executed earlier within the authentication stage."
+msgstr "Se marcado, o plugin sempre tenta autenticar o usuário com uma conta local. Se desmarcado, o plugin só tenta autenticar quando o usuário ainda não foi autenticado por um plugin anterior na etapa de autenticação."
+
+msgid "Load all groups from the local account into the pGina user information store so that the LocalMachine's Gateway stage (and other subsequent plugins) will see that the user should be a member of those groups."
+msgstr "Carrega todos os grupos da conta local nas informações do usuário do pGina, para que o gateway do LocalMachine (e os plugins seguintes) saibam que o usuário deve pertencer a esses grupos."
+
+msgid "When this is checked, the plugin will attempt to authorize all users. Otherwise, the plugin will only authorize users that were authenticated successfully by this plugin."
+msgstr "Se marcado, o plugin tenta autorizar todos os usuários. Caso contrário, só autoriza os usuários que ele mesmo autenticou."
+
+msgid "Only authorize users that are members of the Administrators group."
+msgstr "Autorizar só membros do grupo Administradores."
+
+msgid "Only authorize users that are members of one of the groups listed below this checkbox"
+msgstr "Autorizar só membros de um dos grupos listados abaixo"
+
+msgid "When this is checked, the plugin will register failure if it is unable to create or join the local groups that are requested."
+msgstr "Se marcado, o plugin falha quando não consegue criar ou entrar nos grupos locais pedidos."
+
+msgid "The local account is added to these local groups if not already a member"
+msgstr "A conta local é adicionada a estes grupos locais, se ainda não for membro"
+
+msgid "When this is selected, the plugin will attempt to remove the account and its profile after logout when the account did not exist prior to logon."
+msgstr "Se marcado, o plugin tenta remover a conta e o perfil após o logoff quando a conta não existia antes do logon."
+
+msgid "When this is checked, the plugin will attempt to scramble the password of the local account after logout"
+msgstr "Se marcado, o plugin tenta embaralhar a senha da conta local após o logoff"

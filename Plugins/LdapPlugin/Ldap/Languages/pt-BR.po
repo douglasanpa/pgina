@@ -1,0 +1,296 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: pGina\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Save"
+msgstr "Salvar"
+
+msgid "LDAP Host(s)"
+msgstr "Servidor(es) LDAP"
+
+msgid "Validate Server Certificate"
+msgstr "Validar certificado"
+
+msgid "Certificate"
+msgstr "Certificado"
+
+msgid "LDAP Port"
+msgstr "Porta LDAP"
+
+msgid "Use SSL"
+msgstr "Usar SSL"
+
+msgid "Search DN"
+msgstr "DN de busca"
+
+msgid "Search Password"
+msgstr "Senha de busca"
+
+msgid "Timeout"
+msgstr "Timeout"
+
+msgid "Deny when LDAP authentication fails"
+msgstr "Negar quando a autenticação LDAP falhar"
+
+msgid "Allow when server is unreachable"
+msgstr "Permitir quando o servidor estiver inacessível"
+
+msgid "Allow Empty Passwords"
+msgstr "Permitir senhas vazias"
+
+msgid "Search Context(s)"
+msgstr "Contexto(s) de busca"
+
+msgid "Search Filter"
+msgstr "Filtro de busca"
+
+msgid "User DN Pattern"
+msgstr "Padrão de DN do usuário"
+
+msgid "Search for DN"
+msgstr "Buscar o DN"
+
+msgid "StartTLS"
+msgstr "StartTLS"
+
+msgid "LDAP Server"
+msgstr "Servidor LDAP"
+
+msgid "bind with user credentials instead of anonymously"
+msgstr "Bind com as credenciais do usuário"
+
+msgid "Show Text"
+msgstr "Mostrar"
+
+msgid "Browse..."
+msgstr "Procurar..."
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Authentication"
+msgstr "Autenticação"
+
+msgid "Bind"
+msgstr "Bind"
+
+msgid "Attribute converter"
+msgstr "Conversão de atributos"
+
+msgid "Windows"
+msgstr "Windows"
+
+msgid "available attributes"
+msgstr "Atributos disponíveis"
+
+msgid "LDAP"
+msgstr "LDAP"
+
+msgid "LDAP attribute (case sensitive)"
+msgstr "Atributo LDAP (diferencia maiúsculas)"
+
+msgid "Authorization"
+msgstr "Autorização"
+
+msgid "Path:"
+msgstr "DN:"
+
+msgid "Filter:"
+msgstr "Filtro:"
+
+msgid "Default:"
+msgstr "Padrão:"
+
+msgid "Deny"
+msgstr "Negar"
+
+msgid "Allow"
+msgstr "Permitir"
+
+msgid "Add Rule"
+msgstr "Adicionar regra"
+
+msgid "Gateway"
+msgstr "Gateway"
+
+msgid "add to local group:"
+msgstr "Grupo local:"
+
+msgid "Change Password"
+msgstr "Troca de senha"
+
+msgid "Attributes:"
+msgstr "Atributos:"
+
+msgid "Help"
+msgstr "Ajuda"
+
+msgid "LDAP Plugin Settings"
+msgstr "Configuração do plugin LDAP"
+
+msgid "A whitespace separated list of hostnames or IP addresses."
+msgstr "Nomes ou endereços IP separados por espaço."
+
+msgid "Whether or not to verify the server's SSL certificate when connecting."
+msgstr "Se o certificado SSL do servidor deve ser verificado ao conectar."
+
+msgid ""
+"File containing the LDAP server's public certificate.  If this is left blank (and \"Validate\" is checked) the server's\r\n"
+"certificate is verified against the Windows certificate store."
+msgstr ""
+"Arquivo com o certificado público do servidor LDAP. Se ficar vazio (e \"Validar\" estiver marcado), o certificado\r\n"
+"do servidor é verificado no repositório de certificados do Windows."
+
+msgid "The port number"
+msgstr "Número da porta"
+
+msgid "Whether or not to use SSL encryption."
+msgstr "Se a criptografia SSL deve ser usada."
+
+msgid ""
+"The DN to use when connecting to the server in order\r\n"
+"to perform the search.  If this is left blank, an anonymous\r\n"
+"bind will be attempted."
+msgstr ""
+"DN usado para conectar ao servidor e fazer a busca.\r\n"
+"Se ficar vazio, é feito um bind anônimo."
+
+msgid "The password to use when searching"
+msgstr "Senha usada nas buscas"
+
+msgid ""
+"The number of seconds to wait for a server to respond before giving up \r\n"
+"and moving on to the next server."
+msgstr ""
+"Segundos de espera pela resposta de um servidor antes de desistir\r\n"
+"e passar para o próximo."
+
+msgid ""
+"The number of seconds to wait for a server to respond before\r\n"
+"giving up and moving on to the next server in the list.\r\n"
+msgstr ""
+"Segundos de espera pela resposta de um servidor antes de desistir\r\n"
+"e passar para o próximo da lista.\r\n"
+
+msgid ""
+"Optional.  Used when searching for group \r\n"
+"membership and other search operations\r\n"
+msgstr ""
+"Opcional. Usado na busca de grupos\r\n"
+"e em outras buscas\r\n"
+
+msgid ""
+"When the LDAP server is down or another unexpected error \r\n"
+"occurs, authorization succeeds if this is checked. "
+msgstr ""
+"Se marcado, a autorização tem sucesso quando o servidor LDAP\r\n"
+"está fora do ar ou ocorre outro erro inesperado."
+
+msgid ""
+"Optional:  If left empty, the certificate will be validated against the Local Computer certificate store.\r\n"
+"Put in MATCH if you have stored the certificate in the Local Computer certification storage."
+msgstr ""
+"Opcional: se ficar vazio, o certificado é validado contra o repositório de certificados do computador local.\r\n"
+"Informe MATCH se o certificado estiver guardado no repositório de certificados do computador local."
+
+msgid ""
+"When selected, empty passwords are used in bind\r\n"
+"attempts.  Otherwise, an empty password causes\r\n"
+"authentication to immediately fail."
+msgstr ""
+"Se marcado, senhas vazias são usadas nas tentativas\r\n"
+"de bind. Caso contrário, uma senha vazia faz a\r\n"
+"autenticação falhar na hora."
+
+msgid ""
+"A list of one or more DNs (one per line) that indicate\r\n"
+"roots of LDAP subtrees that will be searched."
+msgstr ""
+"Um ou mais DNs (um por linha) que indicam as raízes\r\n"
+"das subárvores LDAP onde a busca é feita."
+
+msgid ""
+"Pattern used to generate a DN from a user name.  Use\r\n"
+"%u as a placeholder for the user name."
+msgstr ""
+"Padrão usado para gerar um DN a partir do nome do usuário.\r\n"
+"Use %u no lugar do nome do usuário."
+
+msgid ""
+"The filter to use when searching.\r\n"
+"%u is replaced with the user name\r\n"
+msgstr ""
+"Filtro usado nas buscas.\r\n"
+"%u é substituído pelo nome do usuário\r\n"
+
+msgid ""
+"The pattern to use when creating a DN from a user name.\r\n"
+"%u can be used to indicate the user name.\r\n"
+msgstr ""
+"Padrão usado para criar um DN a partir do nome do usuário.\r\n"
+"Use %u para indicar o nome do usuário.\r\n"
+
+msgid ""
+"Whether or not to search a set of LDAP trees for the\r\n"
+"DN rather than using the above pattern."
+msgstr ""
+"Se o DN deve ser buscado nas árvores LDAP\r\n"
+"em vez de usar o padrão acima."
+
+msgid ""
+"Use StartTLS if your LDAP server is not using an alternative (636) port for encryption\n"
+"You can run encryption and clear text over 389"
+msgstr ""
+"Use StartTLS se o servidor LDAP não usa a porta alternativa (636) para criptografia.\n"
+"Com StartTLS, a porta 389 aceita conexões criptografadas e em texto puro."
+
+msgid ""
+"If the LDAP plugin fails to authenticate the user in the authentication\n"
+"stage, then always fail authorization.  This denies any login even when\n"
+"another authentication plugin succeeds (such as Local Machine).   This\n"
+"option is ignored if LDAP is not enabled for authentication."
+msgstr ""
+"Se o plugin LDAP não autenticar o usuário na etapa de autenticação,\n"
+"a autorização sempre falha. Isso nega o logon mesmo quando outro\n"
+"plugin de autenticação tem sucesso (como o Local Machine). A opção\n"
+"é ignorada se o LDAP não estiver ativo na autenticação."
+
+msgid "Attribute Name"
+msgstr "Atributo"
+
+msgid "Method"
+msgstr "Método"
+
+msgid "Please provide at least one LDAP host"
+msgstr "Informe pelo menos um servidor LDAP"
+
+msgid "The LDAP port number must be a positive integer > 0."
+msgstr "A porta LDAP precisa ser um número inteiro maior que 0."
+
+msgid "The timeout must be a positive integer > 0."
+msgstr "O tempo limite precisa ser um número inteiro maior que 0."
+
+msgid "SSL certificate file does not exist."
+msgstr "O arquivo do certificado SSL não existe. "
+
+msgid "Please select a valid certificate file."
+msgstr "Escolha um arquivo de certificado válido."
+
+msgid "There was an error in saving your authorization rules.\n"
+msgstr "Erro ao salvar as regras de autorização.\n"
+
+msgid "There was an error in saving your gateway rules.\n"
+msgstr "Erro ao salvar as regras de gateway.\n"
+
+msgid "Please enter a DN"
+msgstr "Informe um DN"
+
+msgid "Please enter a search filter"
+msgstr "Informe um filtro de busca"
+
+msgid "Please enter a group name"
+msgstr "Informe o nome de um grupo"

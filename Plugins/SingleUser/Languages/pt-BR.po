@@ -1,0 +1,43 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: pGina\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Save"
+msgstr "Salvar"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Username:"
+msgstr "Usuário:"
+
+msgid "Domain:"
+msgstr "Domínio:"
+
+msgid "Password:"
+msgstr "Senha:"
+
+msgid "Plugin Unique ID"
+msgstr "ID do plugin"
+
+msgid "Only substitute if"
+msgstr "Só substituir se"
+
+msgid "any"
+msgstr "um"
+
+msgid "all"
+msgstr "todos"
+
+msgid "of the following plugins have successfully authenticated."
+msgstr "dos plugins abaixo autenticar(em) com sucesso."
+
+msgid "Help"
+msgstr "Ajuda"
+
+msgid "Single User Login Plugin Configuration"
+msgstr "Configuração do plugin Single User"

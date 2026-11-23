@@ -33,6 +33,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using pGina.Shared.Localization;
 
 namespace pGina.Plugin.SessionLimit
 {
@@ -41,6 +42,7 @@ namespace pGina.Plugin.SessionLimit
         public Configuration()
         {
             InitializeComponent();
+            FormStyle.Apply(this);
 
             InitUI();
         }
@@ -60,13 +62,13 @@ namespace pGina.Plugin.SessionLimit
             }
             catch( FormatException )
             {
-                MessageBox.Show("Time limit must be a positive integer.");
+                MessageBox.Show(Language.T("Time limit must be a positive integer."));
                 return false;
             }
 
             if( limit < 0 )
             {
-                MessageBox.Show("Time limit must be a positive integer.");
+                MessageBox.Show(Language.T("Time limit must be a positive integer."));
                 return false;
             }
 

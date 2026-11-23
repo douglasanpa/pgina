@@ -33,6 +33,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Web.Script.Serialization;
+using pGina.Shared.Localization;
 
 namespace pGina.Plugin.MultiEmail
 {
@@ -50,6 +51,7 @@ namespace pGina.Plugin.MultiEmail
         public Configuration()
         {
             InitializeComponent();
+            FormStyle.Apply(this);
             InitUi();
             LoadSettings();
         }
@@ -70,7 +72,7 @@ namespace pGina.Plugin.MultiEmail
             {
                 Name = "Protocol",
                 DataPropertyName = "Protocol",
-                HeaderText = "Protocol",
+                HeaderText = Language.T("Protocol"),
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
                 ReadOnly = true
             });
@@ -78,7 +80,7 @@ namespace pGina.Plugin.MultiEmail
             {
                 Name = "Server",
                 DataPropertyName = "Server",
-                HeaderText = "Server",
+                HeaderText = Language.T("Server"),
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
                 ReadOnly = true
             });
@@ -86,7 +88,7 @@ namespace pGina.Plugin.MultiEmail
             {
                 Name = "UseSsl",
                 DataPropertyName = "UseSsl",
-                HeaderText = "SSL",
+                HeaderText = Language.T("SSL"),
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
                 ReadOnly = true
             });
@@ -94,7 +96,7 @@ namespace pGina.Plugin.MultiEmail
             {
                 Name = "Port",
                 DataPropertyName = "Port",
-                HeaderText = "Port",
+                HeaderText = Language.T("Port"),
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
                 ReadOnly = true
             });
@@ -102,7 +104,7 @@ namespace pGina.Plugin.MultiEmail
             {
                 Name = "AppendDomain",
                 DataPropertyName = "AppendDomain",
-                HeaderText = "Append",
+                HeaderText = Language.T("Append"),
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
                 ReadOnly = true
             });
@@ -110,7 +112,7 @@ namespace pGina.Plugin.MultiEmail
             {
                 Name = "Domain",
                 DataPropertyName = "Domain",
-                HeaderText = "Domain",
+                HeaderText = Language.T("Domain"),
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
                 ReadOnly = true
             });
@@ -118,7 +120,7 @@ namespace pGina.Plugin.MultiEmail
             {
                 Name = "Timeout",
                 DataPropertyName = "Timeout",
-                HeaderText = "Timeout",
+                HeaderText = Language.T("Timeout"),
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
                 ReadOnly = true
             });
@@ -321,7 +323,7 @@ namespace pGina.Plugin.MultiEmail
         {
             if (m_serversListDgv.SelectedRows.Count > 0 && serverTextBox.Text.Trim().Length == 0)
             {
-                MessageBox.Show("Server address can not be blank.");
+                MessageBox.Show(Language.T("Server address can not be blank."));
             }
         }
 
@@ -334,7 +336,7 @@ namespace pGina.Plugin.MultiEmail
             }
             catch (FormatException)
             {
-                MessageBox.Show("Port must be an integer greater than 0.");
+                MessageBox.Show(Language.T("Port must be an integer greater than 0."));
                 e.Cancel = true;
             }
         }
@@ -370,7 +372,7 @@ namespace pGina.Plugin.MultiEmail
         {
             if (appendDomainCheckBox.Checked && domainTextBox.Text.Trim().Length == 0)
             {
-                MessageBox.Show("A domain must be entered if \"Append domain to username\" is checked.");
+                MessageBox.Show(Language.T("A domain must be entered if \"Append domain to username\" is checked."));
             }
         }
 
@@ -419,9 +421,9 @@ namespace pGina.Plugin.MultiEmail
             {
                 state = false;
                 if (serverTextBox.Text.Trim().Length == 0)
-                    MessageBox.Show("Server address can not be blank.");
+                    MessageBox.Show(Language.T("Server address can not be blank."));
                 if (appendDomainCheckBox.Checked && domainTextBox.Text.Trim().Length == 0)
-                    MessageBox.Show("A domain must be entered if \"Append domain to username\" is checked.");
+                    MessageBox.Show(Language.T("A domain must be entered if \"Append domain to username\" is checked."));
             }
 
             return state;

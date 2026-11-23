@@ -1,4 +1,4 @@
-<Project>
+﻿<Project>
   <!-- Common settings for all C# projects (C++ projects are not affected) -->
   <PropertyGroup Condition="'$(MSBuildProjectExtension)' == '.csproj'">
     <TargetFramework>net48</TargetFramework>
@@ -12,4 +12,8 @@
     <NuGetAudit>true</NuGetAudit>
     <NuGetAuditMode>all</NuGetAuditMode>
   </PropertyGroup>
+  <!-- translation catalogs (gettext), read by pGina.Shared.Localization.Language -->
+  <ItemGroup Condition="'$(MSBuildProjectExtension)' == '.csproj'">
+    <EmbeddedResource Include="Languages\*.po" LogicalName="pGina.Language.%(Filename)%(Extension)" />
+  </ItemGroup>
 </Project>

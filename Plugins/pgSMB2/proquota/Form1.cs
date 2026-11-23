@@ -14,6 +14,7 @@ using System.Windows.Forms;
 using System.Threading;
 using System.IO;
 using System.Diagnostics;
+using pGina.Shared.Localization;
 
 namespace proquota
 {
@@ -155,6 +156,7 @@ namespace proquota
         public Form1()
         {
             InitializeComponent();
+            FormStyle.Apply(this);
 
             Application.ThreadException += new ThreadExceptionEventHandler(Application_ThreadException);
 

@@ -40,6 +40,18 @@
             this.chk_preferlocalauthentication = new System.Windows.Forms.CheckBox();
             this.chk_lastusername = new System.Windows.Forms.CheckBox();
             this.groupBox18 = new System.Windows.Forms.GroupBox();
+            this.languageGB = new System.Windows.Forms.GroupBox();
+            this.languageLbl = new System.Windows.Forms.Label();
+            this.m_languageCB = new System.Windows.Forms.ComboBox();
+            this.languageNoteLbl = new System.Windows.Forms.Label();
+            this.m_logonScreenTab = new System.Windows.Forms.TabPage();
+            this.lockScreenGB = new System.Windows.Forms.GroupBox();
+            this.lockScreenLbl = new System.Windows.Forms.Label();
+            this.m_lockScreenTxt = new System.Windows.Forms.TextBox();
+            this.m_lockScreenBrowseBtn = new System.Windows.Forms.Button();
+            this.m_lockScreenClearBtn = new System.Windows.Forms.Button();
+            this.m_lockScreenPreview = new System.Windows.Forms.PictureBox();
+            this.lockScreenNoteLbl = new System.Windows.Forms.Label();
             this.notify_label_pass = new System.Windows.Forms.Label();
             this.notify_label_user = new System.Windows.Forms.Label();
             this.notify_label_email = new System.Windows.Forms.Label();
@@ -176,6 +188,7 @@
             this.motdGB.SuspendLayout();
             this.groupBox12.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_tileImagePreview)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.m_lockScreenPreview)).BeginInit();
             this.m_pluginConfigTab.SuspendLayout();
             this.pluginsGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pluginsDG)).BeginInit();
@@ -216,6 +229,7 @@
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.m_tabs.Controls.Add(this.m_generalConfigTab);
+            this.m_tabs.Controls.Add(this.m_logonScreenTab);
             this.m_tabs.Controls.Add(this.m_pluginConfigTab);
             this.m_tabs.Controls.Add(this.m_pluginOrderTab);
             this.m_tabs.Controls.Add(this.m_simTab);
@@ -230,14 +244,13 @@
             //
             // m_generalConfigTab
             //
+            this.m_generalConfigTab.Controls.Add(this.languageGB);
             this.m_generalConfigTab.Controls.Add(this.ntpservers_group);
             this.m_generalConfigTab.Controls.Add(this.groupLogon);
             this.m_generalConfigTab.Controls.Add(this.groupBox18);
             this.m_generalConfigTab.Controls.Add(this.groupBox4);
             this.m_generalConfigTab.Controls.Add(this.groupBox14);
             this.m_generalConfigTab.Controls.Add(this.servGB);
-            this.m_generalConfigTab.Controls.Add(this.motdGB);
-            this.m_generalConfigTab.Controls.Add(this.groupBox12);
             this.m_generalConfigTab.Location = new System.Drawing.Point(4, 22);
             this.m_generalConfigTab.Name = "m_generalConfigTab";
             this.m_generalConfigTab.Padding = new System.Windows.Forms.Padding(3);
@@ -246,10 +259,131 @@
             this.m_generalConfigTab.Text = "General";
             this.m_generalConfigTab.UseVisualStyleBackColor = true;
             //
+            // languageGB
+            //
+            this.languageGB.Controls.Add(this.languageNoteLbl);
+            this.languageGB.Controls.Add(this.m_languageCB);
+            this.languageGB.Controls.Add(this.languageLbl);
+            this.languageGB.Location = new System.Drawing.Point(17, 16);
+            this.languageGB.Name = "languageGB";
+            this.languageGB.Size = new System.Drawing.Size(749, 55);
+            this.languageGB.TabIndex = 10;
+            this.languageGB.TabStop = false;
+            this.languageGB.Text = "Language";
+            //
+            // languageLbl
+            //
+            this.languageLbl.AutoSize = true;
+            this.languageLbl.Location = new System.Drawing.Point(16, 25);
+            this.languageLbl.Name = "languageLbl";
+            this.languageLbl.Size = new System.Drawing.Size(58, 13);
+            this.languageLbl.TabIndex = 0;
+            this.languageLbl.Text = "Language:";
+            //
+            // m_languageCB
+            //
+            this.m_languageCB.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.m_languageCB.Location = new System.Drawing.Point(86, 21);
+            this.m_languageCB.Name = "m_languageCB";
+            this.m_languageCB.Size = new System.Drawing.Size(220, 21);
+            this.m_languageCB.TabIndex = 1;
+            //
+            // languageNoteLbl
+            //
+            this.languageNoteLbl.AutoSize = true;
+            this.languageNoteLbl.Location = new System.Drawing.Point(320, 25);
+            this.languageNoteLbl.Name = "languageNoteLbl";
+            this.languageNoteLbl.Size = new System.Drawing.Size(300, 13);
+            this.languageNoteLbl.TabIndex = 2;
+            this.languageNoteLbl.Text = "Used by this window and the logon screen after a restart.";
+            //
+            // m_logonScreenTab
+            //
+            this.m_logonScreenTab.Controls.Add(this.lockScreenGB);
+            this.m_logonScreenTab.Controls.Add(this.motdGB);
+            this.m_logonScreenTab.Controls.Add(this.groupBox12);
+            this.m_logonScreenTab.Location = new System.Drawing.Point(4, 22);
+            this.m_logonScreenTab.Name = "m_logonScreenTab";
+            this.m_logonScreenTab.Padding = new System.Windows.Forms.Padding(3);
+            this.m_logonScreenTab.Size = new System.Drawing.Size(790, 547);
+            this.m_logonScreenTab.TabIndex = 6;
+            this.m_logonScreenTab.Text = "Logon Screen";
+            this.m_logonScreenTab.UseVisualStyleBackColor = true;
+            //
+            // lockScreenGB
+            //
+            this.lockScreenGB.Controls.Add(this.lockScreenNoteLbl);
+            this.lockScreenGB.Controls.Add(this.m_lockScreenPreview);
+            this.lockScreenGB.Controls.Add(this.m_lockScreenClearBtn);
+            this.lockScreenGB.Controls.Add(this.m_lockScreenBrowseBtn);
+            this.lockScreenGB.Controls.Add(this.m_lockScreenTxt);
+            this.lockScreenGB.Controls.Add(this.lockScreenLbl);
+            this.lockScreenGB.Location = new System.Drawing.Point(17, 299);
+            this.lockScreenGB.Name = "lockScreenGB";
+            this.lockScreenGB.Size = new System.Drawing.Size(749, 200);
+            this.lockScreenGB.TabIndex = 2;
+            this.lockScreenGB.TabStop = false;
+            this.lockScreenGB.Text = "Lock Screen Background";
+            //
+            // lockScreenLbl
+            //
+            this.lockScreenLbl.AutoSize = true;
+            this.lockScreenLbl.Location = new System.Drawing.Point(16, 28);
+            this.lockScreenLbl.Name = "lockScreenLbl";
+            this.lockScreenLbl.Size = new System.Drawing.Size(39, 13);
+            this.lockScreenLbl.TabIndex = 0;
+            this.lockScreenLbl.Text = "Image:";
+            //
+            // m_lockScreenTxt
+            //
+            this.m_lockScreenTxt.Location = new System.Drawing.Point(86, 25);
+            this.m_lockScreenTxt.Name = "m_lockScreenTxt";
+            this.m_lockScreenTxt.Size = new System.Drawing.Size(420, 20);
+            this.m_lockScreenTxt.TabIndex = 1;
+            this.m_lockScreenTxt.Leave += new System.EventHandler(this.m_lockScreenTxt_Leave);
+            //
+            // m_lockScreenBrowseBtn
+            //
+            this.m_lockScreenBrowseBtn.Location = new System.Drawing.Point(512, 23);
+            this.m_lockScreenBrowseBtn.Name = "m_lockScreenBrowseBtn";
+            this.m_lockScreenBrowseBtn.Size = new System.Drawing.Size(35, 23);
+            this.m_lockScreenBrowseBtn.TabIndex = 2;
+            this.m_lockScreenBrowseBtn.Text = "...";
+            this.m_lockScreenBrowseBtn.UseVisualStyleBackColor = true;
+            this.m_lockScreenBrowseBtn.Click += new System.EventHandler(this.m_lockScreenBrowseBtn_Click);
+            //
+            // m_lockScreenClearBtn
+            //
+            this.m_lockScreenClearBtn.Location = new System.Drawing.Point(553, 23);
+            this.m_lockScreenClearBtn.Name = "m_lockScreenClearBtn";
+            this.m_lockScreenClearBtn.Size = new System.Drawing.Size(130, 23);
+            this.m_lockScreenClearBtn.TabIndex = 3;
+            this.m_lockScreenClearBtn.Text = "Windows Default";
+            this.m_lockScreenClearBtn.UseVisualStyleBackColor = true;
+            this.m_lockScreenClearBtn.Click += new System.EventHandler(this.m_lockScreenClearBtn_Click);
+            //
+            // m_lockScreenPreview
+            //
+            this.m_lockScreenPreview.BackColor = System.Drawing.Color.Black;
+            this.m_lockScreenPreview.Location = new System.Drawing.Point(86, 55);
+            this.m_lockScreenPreview.Name = "m_lockScreenPreview";
+            this.m_lockScreenPreview.Size = new System.Drawing.Size(240, 135);
+            this.m_lockScreenPreview.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.m_lockScreenPreview.TabIndex = 4;
+            this.m_lockScreenPreview.TabStop = false;
+            //
+            // lockScreenNoteLbl
+            //
+            this.lockScreenNoteLbl.Location = new System.Drawing.Point(340, 55);
+            this.lockScreenNoteLbl.Name = "lockScreenNoteLbl";
+            this.lockScreenNoteLbl.Size = new System.Drawing.Size(395, 135);
+            this.lockScreenNoteLbl.TabIndex = 5;
+            this.lockScreenNoteLbl.Text = "Shown on the lock screen and on the sign-in screen. When saved, the image is copied to the pGina folder, so it keeps working if the original file changes or is removed.\n\nWindows Default removes the image set here. Windows shows the new background the next time the screen is locked or the computer restarts.";
+            //
             // ntpservers_group
             //
             this.ntpservers_group.Controls.Add(this.ntpservers);
-            this.ntpservers_group.Location = new System.Drawing.Point(572, 299);
+            this.ntpservers_group.Location = new System.Drawing.Point(572, 81);
             this.ntpservers_group.Name = "ntpservers_group";
             this.ntpservers_group.Size = new System.Drawing.Size(194, 106);
             this.ntpservers_group.TabIndex = 4;
@@ -269,7 +403,7 @@
             //
             this.groupLogon.Controls.Add(this.chk_preferlocalauthentication);
             this.groupLogon.Controls.Add(this.chk_lastusername);
-            this.groupLogon.Location = new System.Drawing.Point(369, 411);
+            this.groupLogon.Location = new System.Drawing.Point(369, 193);
             this.groupLogon.Name = "groupLogon";
             this.groupLogon.Size = new System.Drawing.Size(397, 47);
             this.groupLogon.TabIndex = 6;
@@ -307,7 +441,7 @@
             this.groupBox18.Controls.Add(this.notify_user);
             this.groupBox18.Controls.Add(this.notify_email);
             this.groupBox18.Controls.Add(this.notify_smtp);
-            this.groupBox18.Location = new System.Drawing.Point(17, 464);
+            this.groupBox18.Location = new System.Drawing.Point(17, 246);
             this.groupBox18.Name = "groupBox18";
             this.groupBox18.Size = new System.Drawing.Size(749, 77);
             this.groupBox18.TabIndex = 7;
@@ -403,7 +537,7 @@
             // groupBox4
             //
             this.groupBox4.Controls.Add(this.chk_originalUsernameUnlock);
-            this.groupBox4.Location = new System.Drawing.Point(17, 411);
+            this.groupBox4.Location = new System.Drawing.Point(17, 193);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(346, 47);
             this.groupBox4.TabIndex = 5;
@@ -428,7 +562,7 @@
             this.groupBox14.Controls.Add(this.cpEnabledLabel);
             this.groupBox14.Controls.Add(this.cpRegisteredTB);
             this.groupBox14.Controls.Add(this.label13);
-            this.groupBox14.Location = new System.Drawing.Point(264, 299);
+            this.groupBox14.Location = new System.Drawing.Point(264, 81);
             this.groupBox14.Name = "groupBox14";
             this.groupBox14.Size = new System.Drawing.Size(296, 106);
             this.groupBox14.TabIndex = 3;
@@ -496,7 +630,7 @@
             this.servGB.Controls.Add(this.serviceStartBtn);
             this.servGB.Controls.Add(this.serviceStatusTB);
             this.servGB.Controls.Add(this.servStatusLabel);
-            this.servGB.Location = new System.Drawing.Point(17, 299);
+            this.servGB.Location = new System.Drawing.Point(17, 81);
             this.servGB.Name = "servGB";
             this.servGB.Size = new System.Drawing.Size(236, 106);
             this.servGB.TabIndex = 2;
@@ -1678,6 +1812,12 @@
             this.groupBox12.ResumeLayout(false);
             this.groupBox12.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_tileImagePreview)).EndInit();
+            this.languageGB.ResumeLayout(false);
+            this.languageGB.PerformLayout();
+            this.m_logonScreenTab.ResumeLayout(false);
+            this.lockScreenGB.ResumeLayout(false);
+            this.lockScreenGB.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.m_lockScreenPreview)).EndInit();
             this.m_pluginConfigTab.ResumeLayout(false);
             this.pluginsGroupBox.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pluginsDG)).EndInit();
@@ -1784,6 +1924,18 @@
         private System.Windows.Forms.TextBox m_domainResult;
         private System.Windows.Forms.TextBox m_usernameResult;
         private System.Windows.Forms.GroupBox groupBox12;
+        private System.Windows.Forms.GroupBox languageGB;
+        private System.Windows.Forms.Label languageLbl;
+        private System.Windows.Forms.ComboBox m_languageCB;
+        private System.Windows.Forms.Label languageNoteLbl;
+        private System.Windows.Forms.TabPage m_logonScreenTab;
+        private System.Windows.Forms.GroupBox lockScreenGB;
+        private System.Windows.Forms.Label lockScreenLbl;
+        private System.Windows.Forms.TextBox m_lockScreenTxt;
+        private System.Windows.Forms.Button m_lockScreenBrowseBtn;
+        private System.Windows.Forms.Button m_lockScreenClearBtn;
+        private System.Windows.Forms.PictureBox m_lockScreenPreview;
+        private System.Windows.Forms.Label lockScreenNoteLbl;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.PictureBox m_tileImagePreview;

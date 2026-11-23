@@ -1,0 +1,113 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: pGina\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Host:"
+msgstr "Host:"
+
+msgid "Save"
+msgstr "Salvar"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Port:"
+msgstr "Porta:"
+
+msgid "Database:"
+msgstr "Banco:"
+
+msgid "User:"
+msgstr "Login:"
+
+msgid "Password:"
+msgstr "Senha:"
+
+msgid "Test..."
+msgstr "Testar..."
+
+msgid "Create Table..."
+msgstr "Criar tabela..."
+
+msgid "Show Text"
+msgstr "Mostrar"
+
+msgid "Events"
+msgstr "Eventos"
+
+msgid "Remote Disconnect"
+msgstr "Desconexão remota"
+
+msgid "Remote Connect"
+msgstr "Conexão remota"
+
+msgid "Remote Control"
+msgstr "Controle remoto"
+
+msgid "Console Disconnect"
+msgstr "Console desconectado"
+
+msgid "Console Connect"
+msgstr "Console conectado"
+
+msgid "Unlock"
+msgstr "Desbloqueio"
+
+msgid "Lock"
+msgstr "Bloqueio"
+
+msgid "Logoff"
+msgstr "Logoff"
+
+msgid "Logon"
+msgstr "Logon"
+
+msgid "Server"
+msgstr "Servidor"
+
+msgid "Session Table:"
+msgstr "Sessões:"
+
+msgid "Event Table:"
+msgstr "Eventos:"
+
+msgid "Options"
+msgstr "Opções"
+
+msgid "Use Modified Username"
+msgstr "Usar o usuário modificado"
+
+msgid "Mode"
+msgstr "Modo"
+
+msgid "Session Mode"
+msgstr "Modo sessão"
+
+msgid "Event Mode"
+msgstr "Modo evento"
+
+msgid "Help"
+msgstr "Ajuda"
+
+msgid "MySQL Logger Plugin Configuration"
+msgstr "Configuração do plugin MySQL Logger"
+
+msgid "Invalid port number."
+msgstr "Porta inválida."
+
+msgid "The Event Table must be different from the Session Table."
+msgstr "A tabela de eventos precisa ser diferente da tabela de sessões."
+
+msgid ""
+"Event Mode Table: {0}\n"
+"Session Mode Table: {1}"
+msgstr ""
+"Tabela do modo evento: {0}\n"
+"Tabela do modo sessão: {1}"
+
+msgid "The following error occurred: {0}"
+msgstr "Ocorreu um erro: {0}"

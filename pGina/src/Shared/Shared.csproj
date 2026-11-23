@@ -9,6 +9,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -26,6 +27,8 @@
     <Compile Include="..\Core\Properties\SharedAssemblyInfo.cs">
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Localization\FormStyle.cs" />
+    <Compile Include="Localization\Language.cs" />
     <Compile Include="Logging\InProcAppender.cs" />
     <Compile Include="Registration\CredProviderManager.cs" />
     <Compile Include="Registration\DllUtils.cs" />

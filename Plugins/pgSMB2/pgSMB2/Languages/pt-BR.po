@@ -1,0 +1,152 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: pGina\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Gateway"
+msgstr "Gateway"
+
+msgid ""
+"Macros:\r\n"
+"  %u = UserName, %z = User Profile Path (c:\\users\\%username%)\r\n"
+"  any other Environment Varaiable will also be resolved"
+msgstr ""
+"Macros:\r\n"
+"  %u = usuário, %z = pasta do perfil (c:\\users\\%username%)\r\n"
+"  outras variáveis de ambiente também são resolvidas"
+
+msgid "User"
+msgstr "Usuário"
+
+msgid "Proquota Balloontip and MessageBox Text: (MaxStoreText)"
+msgstr "Texto do aviso e da mensagem do proquota (MaxStoreText)"
+
+msgid "The user quota in kbytes (MaxStore)"
+msgstr "Cota do usuário em KB (MaxStore)"
+
+msgid "Script Path (ScriptPath)"
+msgstr "Script de logon (ScriptPath)"
+
+msgid "The user HomeDir (HomeDir)"
+msgstr "Pasta pessoal do usuário (HomeDir)"
+
+msgid "The user HomeDirDrive (HomeDirDrive)"
+msgstr "Unidade da pasta pessoal (HomeDirDrive)"
+
+msgid "System"
+msgstr "Sistema"
+
+msgid "The command to compress the Profile (CompressCLI)"
+msgstr "Comando para compactar o perfil (CompressCLI)"
+
+msgid "The command to uncompress the Profile (UncompressCLI)"
+msgstr "Comando para descompactar o perfil (UncompressCLI)"
+
+msgid "The Programm to un-comress the Profile (Compressor)"
+msgstr "Programa que compacta e descompacta o perfil (Compressor)"
+
+msgid "Try n times to connect/extract/compress (ConnectRetry)"
+msgstr "Tentativas de conectar/extrair/compactar (ConnectRetry)"
+
+msgid "Where temporarily store the compressed profile (TempComp) %d"
+msgstr "Pasta temporária do perfil compactado (TempComp) %d"
+
+msgid "The name and extension of the Profile (Filename) %f"
+msgstr "Nome e extensão do perfil (Filename) %f"
+
+msgid "Where to store the compressed Profile (RoamingSource) %r"
+msgstr "Onde guardar o perfil compactado (RoamingSource) %r"
+
+msgid "The SMB share to connect (SMBshare) %s"
+msgstr "Compartilhamento SMB (SMBshare) %s"
+
+msgid "Save"
+msgstr "Salvar"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Help"
+msgstr "Ajuda"
+
+msgid "Exclude profile directories from quota as regex (MaxStoreExclude)"
+msgstr "Pastas do perfil fora da cota, em regex (MaxStoreExclude)"
+
+msgid "pgSMB2 plugin Configuration"
+msgstr "Configuração do plugin pgSMB2"
+
+msgid "Setup at least one Ntp server in the global configuration"
+msgstr "Configure pelo menos um servidor NTP na configuração geral"
+
+msgid "Global Ntp Server missing"
+msgstr "Falta o servidor NTP"
+
+msgid "The UNC name of the share to connect"
+msgstr "Caminho UNC do compartilhamento"
+
+msgid "Where to store the compressed profile"
+msgstr "Onde guardar o perfil compactado"
+
+msgid "The name of the compressed profile"
+msgstr "Nome do perfil compactado"
+
+msgid "A local temporarily storage for the compressed Profile"
+msgstr "Pasta local temporária para o perfil compactado"
+
+msgid ""
+"How often to retry to connect to the share\n"
+"(un)compress the profile"
+msgstr ""
+"Quantas vezes tentar conectar ao compartilhamento\n"
+"e (des)compactar o perfil"
+
+msgid "The Program to (un)compress the user profile"
+msgstr "Programa que (des)compacta o perfil do usuário"
+
+msgid "The command to uncompress the profile"
+msgstr "Comando para descompactar o perfil"
+
+msgid "The Commandline to compress the user profile"
+msgstr "Linha de comando para compactar o perfil do usuário"
+
+msgid "The user home directory"
+msgstr "Pasta pessoal do usuário"
+
+msgid "The user home drive"
+msgstr "Unidade da pasta pessoal"
+
+msgid "The full path to your login script (Runonce regkey!)"
+msgstr "Caminho completo do script de logon (chave RunOnce!)"
+
+msgid ""
+"Maximum profile size in kbytes\n"
+"less or equal 10MB == all space"
+msgstr ""
+"Tamanho máximo do perfil em KB\n"
+"menor ou igual a 10 MB = sem limite"
+
+msgid ""
+"Exclude Directories from user profile storage quota\n"
+"Regular-Expressions!"
+msgstr ""
+"Pastas excluídas da cota do perfil\n"
+"Expressões regulares!"
+
+msgid "Text for proquota"
+msgstr "Texto do proquota"
+
+msgid "A regular expression parsing error occurred"
+msgstr "Erro na expressão regular"
+
+msgid ""
+"No ntp server given!\n"
+"Set at least one NTP server in the global configuration!"
+msgstr ""
+"Nenhum servidor NTP informado!\n"
+"Configure pelo menos um servidor NTP na configuração geral!"
+
+msgid "Warning NTP server needed"
+msgstr "Atenção: servidor NTP necessário"

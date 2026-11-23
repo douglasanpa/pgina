@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using pGina.Shared.Localization;
 
 namespace pGina.Plugin.Kerberos
 {
@@ -14,6 +15,7 @@ namespace pGina.Plugin.Kerberos
         public Configuration()
         {
             InitializeComponent();
+            FormStyle.Apply(this);
             SettingsToUi();
         }
 

@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 
 using pGina.Shared.Settings;
+using pGina.Shared.Localization;
 
 namespace pGina.Plugin.Email
 {
@@ -22,6 +23,7 @@ namespace pGina.Plugin.Email
         public Configuration()
         {
             InitializeComponent();
+            FormStyle.Apply(this);
             LoadSettings();
         }
 
@@ -62,13 +64,13 @@ namespace pGina.Plugin.Email
         {
             if (serverTextBox.Text.Trim().Length == 0)
             {
-                MessageBox.Show("Server address can not be blank.");
+                MessageBox.Show(Language.T("Server address can not be blank."));
                 return false;
             }
 
             if (!popButton.Checked && !imapButton.Checked)
             {
-                MessageBox.Show("A protocol must be selected.");
+                MessageBox.Show(Language.T("A protocol must be selected."));
                 return false;
             }
 
@@ -79,13 +81,13 @@ namespace pGina.Plugin.Email
             }
             catch (FormatException)
             {
-                MessageBox.Show("Port must be an integer greater than 0.");
+                MessageBox.Show(Language.T("Port must be an integer greater than 0."));
                 return false;
             }
 
             if (domainAppendCheckBox.Checked && domainTextBox.Text.Trim().Length == 0)
             {
-                MessageBox.Show("A domain must be entered if \"Append domain to username\" is checked.");
+                MessageBox.Show(Language.T("A domain must be entered if \"Append domain to username\" is checked."));
                 return false;
             }
 

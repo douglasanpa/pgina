@@ -1,0 +1,25 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: pGina\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Realm:"
+msgstr "Realm:"
+
+msgid "Save"
+msgstr "Salvar"
+
+msgid "Enter the target Kerberos realm name ex: REALM.UTAH.EDU"
+msgstr "Informe o realm Kerberos, ex.: REALM.EXEMPLO.EDU"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Help"
+msgstr "Ajuda"
+
+msgid "KRB5 Realm Configuration"
+msgstr "Configuração do realm KRB5"

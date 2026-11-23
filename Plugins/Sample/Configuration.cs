@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 
 using pGina.Shared.Settings;
+using pGina.Shared.Localization;
 
 namespace pGina.Plugin.Sample
 {
@@ -18,6 +19,7 @@ namespace pGina.Plugin.Sample
         public Configuration()
         {
             InitializeComponent();
+            FormStyle.Apply(this);
             txtDescription.Text = m_settings.Description;
             chkShowDescription.Checked = m_settings.ShowDescription;
         }
