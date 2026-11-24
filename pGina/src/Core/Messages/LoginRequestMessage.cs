@@ -39,7 +39,9 @@ namespace pGina.Core.Messages
         {
             Login = 0,
             Unlock,
-            CredUI
+            CredUI,
+            // login test from the configuration tool: no gateway stage, no session is created
+            Test
         }
 
         public string Username

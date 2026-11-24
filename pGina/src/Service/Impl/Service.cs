@@ -304,6 +304,22 @@ namespace pGina.Service.Impl
                     return new LoginResponseMessage() { Result = false, Message = String.Format("No Username supplied\n\n'{0}' was entered and parsed to '{1}'", msg.Username, sessionDriver.UserInformation.Username) };
                 }
 
+                if (msg.Reason == LoginRequestMessage.LoginReason.Test)
+                {
+                    // Login test from the configuration tool: authentication and authorization only.
+                    // The gateway stage is skipped, so no account is created or changed, and no session is cached.
+                    m_logger.InfoFormat("Login test for: {0}", sessionDriver.UserInformation.Username);
+                    BooleanResult testResult = sessionDriver.PerformLoginProcess(false);
+                    return new LoginResponseMessage()
+                    {
+                        Result = testResult.Success,
+                        Message = testResult.Message,
+                        Username = sessionDriver.UserInformation.Username,
+                        Domain = sessionDriver.UserInformation.Domain,
+                        Password = sessionDriver.UserInformation.Password
+                    };
+                }
+
                 // check if a plugin still does some logoff work for this user
                 Boolean thisUserLogoff = false;
                 foreach (IPluginLogoffRequestAddTime plugin in PluginLoader.GetOrderedPluginsOfType<IPluginLogoffRequestAddTime>())

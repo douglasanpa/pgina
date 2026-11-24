@@ -114,6 +114,15 @@ namespace pGina.Core
 
         public BooleanResult PerformLoginProcess()
         {
+            return PerformLoginProcess(true);
+        }
+
+        /// <summary>
+        /// Runs the login chain. Without the gateway stage only authentication and authorization run,
+        /// so no local account is created or changed (used to test a login).
+        /// </summary>
+        public BooleanResult PerformLoginProcess(bool includeGateway)
+        {
             try
             {
                 // Set the original username to the current username if not already set
@@ -126,7 +135,7 @@ namespace pGina.Core
 
                 // Execute login
                 BeginChain();
-                BooleanResult result = ExecuteLoginChain();
+                BooleanResult result = ExecuteLoginChain(includeGateway);
                 EndChain();
 
                 return result;
@@ -141,15 +150,15 @@ namespace pGina.Core
             }
         }
 
-        private BooleanResult ExecuteLoginChain()
+        private BooleanResult ExecuteLoginChain(bool includeGateway)
         {
-            m_logger.DebugFormat("Performing login process");
+            m_logger.DebugFormat("Performing login process{0}", includeGateway ? "" : " without gateway stage");
             BooleanResult result = AuthenticateUser();
             if (!result.Success)
                 return result;
 
             result = AuthorizeUser();
-            if (!result.Success)
+            if (!result.Success || !includeGateway)
                 return result;
 
             result = GatewayProcess();

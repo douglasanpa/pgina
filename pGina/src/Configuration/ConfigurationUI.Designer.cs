@@ -123,6 +123,7 @@
             this.label17 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.m_simTab = new System.Windows.Forms.TabPage();
+            this.m_simIncludeGatewayCB = new System.Windows.Forms.CheckBox();
             this.viewLogBtn = new System.Windows.Forms.Button();
             this.groupBox13 = new System.Windows.Forms.GroupBox();
             this.simResultLocalGroupsTB = new System.Windows.Forms.TextBox();
@@ -217,6 +218,7 @@
             this.m_tabs.Controls.Add(this.m_generalConfigTab);
             this.m_tabs.Controls.Add(this.m_pluginConfigTab);
             this.m_tabs.Controls.Add(this.m_pluginOrderTab);
+            this.m_tabs.Controls.Add(this.m_simTab);
             this.m_tabs.Controls.Add(this.ginaOptions);
             this.m_tabs.Controls.Add(this.cpOptions);
             this.m_tabs.Location = new System.Drawing.Point(12, 12);
@@ -1519,6 +1521,7 @@
             //
             // groupBox3
             //
+            this.groupBox3.Controls.Add(this.m_simIncludeGatewayCB);
             this.groupBox3.Controls.Add(this.btnLaunchCredUI);
             this.groupBox3.Controls.Add(this.m_radioCredUI);
             this.groupBox3.Controls.Add(this.m_radioEmulate);
@@ -1534,7 +1537,7 @@
             //
             this.btnLaunchCredUI.Enabled = false;
             this.btnLaunchCredUI.Image = global::pGina.Configuration.Properties.Resources.arrow_right_3;
-            this.btnLaunchCredUI.Location = new System.Drawing.Point(169, 69);
+            this.btnLaunchCredUI.Location = new System.Drawing.Point(169, 59);
             this.btnLaunchCredUI.Name = "btnLaunchCredUI";
             this.btnLaunchCredUI.Size = new System.Drawing.Size(30, 27);
             this.btnLaunchCredUI.TabIndex = 6;
@@ -1544,7 +1547,7 @@
             // m_radioCredUI
             //
             this.m_radioCredUI.AutoSize = true;
-            this.m_radioCredUI.Location = new System.Drawing.Point(21, 74);
+            this.m_radioCredUI.Location = new System.Drawing.Point(21, 64);
             this.m_radioCredUI.Name = "m_radioCredUI";
             this.m_radioCredUI.Size = new System.Drawing.Size(142, 17);
             this.m_radioCredUI.TabIndex = 2;
@@ -1556,7 +1559,7 @@
             //
             this.m_radioEmulate.AutoSize = true;
             this.m_radioEmulate.Checked = true;
-            this.m_radioEmulate.Location = new System.Drawing.Point(21, 28);
+            this.m_radioEmulate.Location = new System.Drawing.Point(21, 20);
             this.m_radioEmulate.Name = "m_radioEmulate";
             this.m_radioEmulate.Size = new System.Drawing.Size(133, 17);
             this.m_radioEmulate.TabIndex = 1;
@@ -1568,13 +1571,24 @@
             // m_radioUseService
             //
             this.m_radioUseService.AutoSize = true;
-            this.m_radioUseService.Location = new System.Drawing.Point(21, 51);
+            this.m_radioUseService.Location = new System.Drawing.Point(21, 42);
             this.m_radioUseService.Name = "m_radioUseService";
             this.m_radioUseService.Size = new System.Drawing.Size(114, 17);
             this.m_radioUseService.TabIndex = 0;
             this.m_radioUseService.Text = "Use pGina Service";
             this.m_radioUseService.UseVisualStyleBackColor = true;
             this.m_radioUseService.CheckedChanged += new System.EventHandler(this.simMethodChanged);
+            //
+            // m_simIncludeGatewayCB
+            //
+            this.m_simIncludeGatewayCB.AutoSize = true;
+            this.m_simIncludeGatewayCB.Location = new System.Drawing.Point(21, 89);
+            this.m_simIncludeGatewayCB.Name = "m_simIncludeGatewayCB";
+            this.m_simIncludeGatewayCB.Size = new System.Drawing.Size(180, 17);
+            this.m_simIncludeGatewayCB.TabIndex = 7;
+            this.m_simIncludeGatewayCB.Text = "Run gateway stage";
+            this.m_simIncludeGatewayCB.UseVisualStyleBackColor = true;
+            this.m_simIncludeGatewayCB.CheckedChanged += new System.EventHandler(this.m_simIncludeGatewayCB_CheckedChanged);
             //
             // btnApply
             //
@@ -1727,6 +1741,7 @@
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.RadioButton m_radioCredUI;
+        private System.Windows.Forms.CheckBox m_simIncludeGatewayCB;
         private System.Windows.Forms.RadioButton m_radioEmulate;
         private System.Windows.Forms.RadioButton m_radioUseService;
         private System.Windows.Forms.GroupBox groupBox6;
