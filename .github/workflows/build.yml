@@ -3,6 +3,7 @@ name: Build
 on:
   push:
     branches: [master]
+    tags: ['v*']
   pull_request:
   workflow_dispatch:
 
@@ -12,6 +13,9 @@ permissions:
 jobs:
   build:
     runs-on: windows-latest
+    permissions:
+      # creating the release on tag pushes
+      contents: write
     steps:
       - uses: actions/checkout@v4
 
@@ -30,6 +34,26 @@ jobs:
         shell: pwsh
         run: python tools/i18n/update-po.py --check
 
+      - name: Install Inno Setup
+        shell: pwsh
+        run: |
+          if (-not (Test-Path "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe")) {
+            choco install innosetup -y --no-progress
+          }
+
+      - name: Build installer
+        id: installer
+        shell: pwsh
+        run: |
+          # tag v3.10.0.0 -> version 3.10.0.0; other builds use the assembly version
+          $version = if ($env:GITHUB_REF_TYPE -eq "tag") { $env:GITHUB_REF_NAME.TrimStart("v") } else { "" }
+          $a = @{ SkipBuild = $true }
+          if ($version) { $a.Version = $version }
+          ./Installer/make.ps1 @a
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          $setup = Get-ChildItem Installer/Output/pGinaSetup-*.exe | Select-Object -First 1
+          "path=$($setup.FullName)" >> $env:GITHUB_OUTPUT
+
       - name: Upload binaries
         uses: actions/upload-artifact@v4
         with:
@@ -38,3 +62,19 @@ jobs:
             pGina/src/bin/
             Plugins/bin/
           if-no-files-found: error
+
+      - name: Upload installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: pgina-setup-${{ github.sha }}
+          path: ${{ steps.installer.outputs.path }}
+          if-no-files-found: error
+
+      - name: Publish release
+        if: github.ref_type == 'tag'
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh release create $env:GITHUB_REF_NAME "${{ steps.installer.outputs.path }}" `
+            --title "pGina.fork $env:GITHUB_REF_NAME" --generate-notes
