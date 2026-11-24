@@ -11,9 +11,20 @@ and C++ desktop workloads. From the repository root:
 
     powershell -ExecutionPolicy Bypass -File tools\build.ps1
 
-pGina is built to `pGina\src\bin` and the plugins to `Plugins\bin`. Every push
-and pull request is also built by GitHub Actions, which keeps the binaries as a
-downloadable artifact of the run.
+pGina is built to `pGina\src\bin` and the plugins to `Plugins\bin`. To also
+build the installer (needs [Inno Setup 6](https://jrsoftware.org/isinfo.php)):
+
+    powershell -ExecutionPolicy Bypass -File Installer\make.ps1
+
+Every push and pull request is also built by GitHub Actions, which keeps the
+binaries and the installer as downloadable artifacts of the run.
+
+## Releasing
+
+Push a tag named after the version, e.g. `v3.10.0.0`. The workflow builds the
+installer with that version and publishes it as a GitHub release. Keep the
+version in `pGina/src/Core/Properties/SharedAssemblyInfo.cs` and
+`pGina/src/CredentialProvider/CredentialProvider.rc` in step with the tag.
 
 Translations: see [tools/i18n](tools/i18n/README.md).
 

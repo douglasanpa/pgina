@@ -1,175 +1,123 @@
+﻿; pGina.fork installer (Inno Setup 6.3 or later).
+; Build pGina first (tools\build.ps1), then:  ISCC.exe /DMyAppVersion=3.10.0 installer.iss
+
 #define MyAppName "pGina.fork"
-#define MyAppVersion "3.9.9.12"
-#define MyAppPublisher "pGina Team"
-#define MyAppURL "http://www.pgina.org/"
+#ifndef MyAppVersion
+  #define MyAppVersion "0.0.0"
+#endif
+#define MyAppPublisher "pGina.fork"
+#define MyAppURL "https://douglasanpa.github.io/pgina/"
 #define MyAppExeName "pGina.Configuration.exe"
-#define MyAppSetupName 'pGina'
-#define SetupScriptVersion '0'
-
-
-; Use some useful packaging stuff from: http://tonaday.blogspot.com/2010/12/innosetup.html
-// dotnet_Passive enabled shows the .NET/VC2010 installation progress, as it can take quite some time
-#define dotnet_Passive
-#define use_dotnetfx40
-#define use_vc2010
-
-// Enable the required define(s) below if a local event function (prepended with Local) is used
-//#define haveLocalPrepareToInstall
-//#define haveLocalNeedRestart
-//#define haveLocalNextButtonClick
-
 
 [Setup]
-; NOTE: The value of AppId uniquely identifies this application.
-; Do not use the same AppId value in installers for other applications.
-; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-UsePreviousAppDir=no
+; NOTE: The value of AppId uniquely identifies this application, keep it so upgrades replace older installs
 AppID={{3D8D0F0D-7DBF-400C-9C44-00BD21986139}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
 AppVerName={#MyAppName} v{#MyAppVersion}
 AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
-AppSupportURL={#MyAppURL}
-AppUpdatesURL={#MyAppURL}
-DefaultDirName={pf}\{#MyAppName}
-DefaultGroupName={#MyAppName}
-AllowNoIcons=true
-LicenseFile=..\LICENSE
-OutputBaseFilename=pGinaSetup-{#MyAppVersion}
-SetupIconFile=..\Installer\pgina_icons.ico
-Compression=lzma/Max
-SolidCompression=true
+AppSupportURL=https://github.com/douglasanpa/pgina/issues
+AppUpdatesURL=https://github.com/douglasanpa/pgina/releases
 AppCopyright=pGina Team
-ExtraDiskSpaceRequired=6
-DisableDirPage=auto
-AlwaysShowDirOnReadyPage=yes
-AlwaysShowGroupOnReadyPage=yes
+VersionInfoVersion={#MyAppVersion}
+DefaultDirName={autopf}\{#MyAppName}
+UsePreviousAppDir=no
+DefaultGroupName={#MyAppName}
 DisableProgramGroupPage=auto
+AllowNoIcons=yes
+LicenseFile=..\LICENSE
+OutputDir=Output
+OutputBaseFilename=pGinaSetup-{#MyAppVersion}
+SetupIconFile=pgina_icons.ico
+UninstallDisplayIcon={app}\{#MyAppExeName}
+Compression=lzma2/max
+SolidCompression=yes
+WizardStyle=modern
+PrivilegesRequired=admin
+ArchitecturesAllowed=x86compatible x64compatible
+ArchitecturesInstallIn64BitMode=x64compatible
+MinVersion=10.0
+; the credential provider DLL in System32 is replaced at the next restart
 AlwaysRestart=yes
-
-ArchitecturesInstallIn64BitMode=x64 ia64
 
 [Languages]
 Name: "en"; MessagesFile: "compiler:Default.isl"
-;Name: "english"; MessagesFile: "compiler:Default.isl"
+Name: "ptbr"; MessagesFile: "compiler:Languages\BrazilianPortuguese.isl"
+
+[CustomMessages]
+en.NetMissing=pGina needs the .NET Framework 4.8, which is not installed.%n%nInstall it from https://dotnet.microsoft.com/download/dotnet-framework/net48 and run this setup again.
+ptbr.NetMissing=O pGina precisa do .NET Framework 4.8, que não está instalado.%n%nInstale-o pelo endereço https://dotnet.microsoft.com/download/dotnet-framework/net48 e execute esta instalação de novo.
+en.InstallingService=Installing the service and the credential provider...
+ptbr.InstallingService=Instalando o serviço e o provedor de credenciais...
+en.RemovingService=Removing the service and the credential provider...
+ptbr.RemovingService=Removendo o serviço e o provedor de credenciais...
 
 [Tasks]
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "..\pGina\src\bin\pGina.Configuration.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "..\pGina\src\bin\*.exe"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "..\pGina\src\bin\*.dll"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+; test programs and build leftovers stay out
+#define Skip "*.pdb,*.lib,*.exp,FakeWinlogon.exe,NativeLibTest.exe"
+Source: "..\pGina\src\bin\*.exe"; DestDir: "{app}"; Excludes: "{#Skip}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "..\pGina\src\bin\*.dll"; DestDir: "{app}"; Excludes: "{#Skip}"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "..\pGina\src\bin\*.xml"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "..\pGina\src\bin\*.config"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "..\Plugins\bin\*.exe"; DestDir: "{app}\Plugins"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "..\Plugins\bin\*.dll"; DestDir: "{app}\Plugins"; Flags: ignoreversion recursesubdirs createallsubdirs
-;Source: "..\Plugins\bin\*.xml"; DestDir: "{app}\Plugins"; Flags: ignoreversion recursesubdirs createallsubdirs
-;Source: "..\Plugins\bin\*.config"; DestDir: "{app}\Plugins"; Flags: ignoreversion recursesubdirs createallsubdirs
-; NOTE: Don't use "Flags: ignoreversion" on any shared system files
+Source: "..\pGina\src\bin\*.config"; DestDir: "{app}"; Excludes: "log4net.config"; Flags: ignoreversion recursesubdirs createallsubdirs
+; keep the logging setup of an existing install
+Source: "..\pGina\src\bin\log4net.config"; DestDir: "{app}"; Flags: onlyifdoesntexist
+Source: "..\Plugins\bin\*.exe"; DestDir: "{app}\Plugins"; Excludes: "{#Skip}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "..\Plugins\bin\*.dll"; DestDir: "{app}\Plugins"; Excludes: "{#Skip}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "..\Plugins\bin\*.config"; DestDir: "{app}\Plugins"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 [Icons]
 Name: "{group}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 Name: "{commondesktop}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
 
 [Run]
-Filename: "{app}\pGina.InstallUtil.exe"; Parameters: "post-install"; StatusMsg: "Installing service, CP/GINA, and setting permissions..."; WorkingDir: "{app}"; Flags: runhidden
-Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, "&", "&&")}}"; Flags: nowait postinstall skipifsilent runascurrentuser
-Filename: "sc"; Parameters: "failure pgina reset= 0 actions= restart/5000"
+Filename: "{app}\pGina.InstallUtil.exe"; Parameters: "post-install"; StatusMsg: "{cm:InstallingService}"; WorkingDir: "{app}"; Flags: runhidden
+Filename: "{sys}\sc.exe"; Parameters: "failure pgina reset= 0 actions= restart/5000"; Flags: runhidden
+Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent runascurrentuser
 
 [UninstallRun]
-Filename: "{app}\pGina.InstallUtil.exe"; Parameters: "post-uninstall"; StatusMsg: "Removing service and CP/GINA..."; WorkingDir: "{app}"; Flags: runhidden
-
-; More custom stuff from [] for ensuring user gets everything needed
-#include "scripts\products.iss"
-
-#include "scripts\products\winversion.iss"
-#include "scripts\products\fileversion.iss"
-
-#ifdef use_dotnetfx40
-#include "scripts\products\dotnetfx40client.iss"
-#include "scripts\products\dotnetfx40full.iss"
-#endif
-#ifdef use_vc2010
-#include "scripts\products\vc2010.iss"
-#endif
-
-#include "scripts\services.iss"
-
-[CustomMessages]
-win2000sp3_title=Windows 2000 Service Pack 3
-winxpsp2_title=Windows XP Service Pack 2
-winxpsp3_title=Windows XP Service Pack 3
-
-#expr SaveToFile(AddBackslash(SourcePath) + "Preprocessed"+MyAppSetupname+SetupScriptVersion+".iss")
+Filename: "{app}\pGina.InstallUtil.exe"; Parameters: "post-uninstall"; StatusMsg: "{cm:RemovingService}"; WorkingDir: "{app}"; Flags: runhidden; RunOnceId: "RemoveService"
 
 [Code]
-var isVerySilent: Boolean;
+function IsNet48Installed(): Boolean;
+var
+  release: Cardinal;
+begin
+  Result := RegQueryDWordValue(HKLM, 'SOFTWARE\Microsoft\NET Framework Setup\NDP\v4\Full', 'Release', release)
+    and (release >= 528040);
+end;
 
 function InitializeSetup(): Boolean;
-var ResultCode: integer;
 begin
-  isVerySilent := False;
-  for ResultCode := 1 to ParamCount do
-    if CompareText(ParamStr(ResultCode), '/verysilent') = 0 then
-    begin
-      isVerySilent := True;
-      Break;
-    end;
-
-  //init windows version
-  initwinversion();
-
-  //check if dotnetfx20 can be installed on this OS
-  //if not minwinspversion(5, 0, 3) then begin
-  //	MsgBox(FmtMessage(CustomMessage('depinstall_missing'), [CustomMessage('win2000sp3_title')]), mbError, MB_OK);
-  //	exit;
-  //end;
-  if not minwinspversion(5, 1, 3) then begin
-    if not isVerySilent then begin
-      MsgBox(FmtMessage(CustomMessage('depinstall_missing'), [CustomMessage('winxpsp3_title')]), mbError, MB_OK);
-      end;
-    Abort;
-  end;
-	
-  // If no .NET 4.0 framework found, install the full thing
-#ifdef use_dotnetfx40
-  dotnetfx40full(false);
-#endif
-
-  // Visual C++ 2010 Redistributable
-#ifdef use_vc2010
-  vc2010();
-#endif
-	
-  Result := true;
+  Result := IsNet48Installed();
+  if not Result then
+    SuppressibleMsgBox(CustomMessage('NetMissing'), mbCriticalError, MB_OK, IDOK);
 end;
 
-procedure DoPreInstall();
-var ResultCode: Integer;
+procedure StopPginaService();
+var
+  resultCode: Integer;
 begin
-  // If our service is already installed, stop it!
-  if IsServiceInstalled('pGina') = true then begin
-    Exec('net', 'stop pgina', '', SW_HIDE, ewWaitUntilTerminated, ResultCode)
-    StopService('pGina');		
-  end
+  // fails harmlessly on a first install, when the service doesn't exist
+  Exec(ExpandConstant('{sys}\net.exe'), 'stop pgina', '', SW_HIDE, ewWaitUntilTerminated, resultCode);
 end;
 
-procedure DoPostInstall();
+procedure ReplaceCredentialProvider();
 begin
-  if IsWin64 then begin
-    RestartReplace(ExpandConstant('{app}') + '\x64\pGinaCredentialProvider.dll', 'C:\WINDOWS\SYSTEM32\pGinaCredentialProvider.dll')
-  end else begin
-    RestartReplace(ExpandConstant('{app}') + '\Win32\pGinaCredentialProvider.dll', 'C:\WINDOWS\SYSTEM32\pGinaCredentialProvider.dll')
-  end
+  // LogonUI keeps the DLL loaded, so it is replaced at the next restart
+  if Is64BitInstallMode() then
+    RestartReplace(ExpandConstant('{app}\x64\pGinaCredentialProvider.dll'), ExpandConstant('{sys}\pGinaCredentialProvider.dll'))
+  else
+    RestartReplace(ExpandConstant('{app}\Win32\pGinaCredentialProvider.dll'), ExpandConstant('{sys}\pGinaCredentialProvider.dll'));
 end;
 
 procedure CurStepChanged(CurStep: TSetupStep);
 begin
-  if CurStep = ssInstall then begin
-    DoPreInstall();
-  end else if CurStep = ssPostInstall then begin
-    DoPostInstall();
-  end;
+  if CurStep = ssInstall then
+    StopPginaService()
+  else if CurStep = ssPostInstall then
+    ReplaceCredentialProvider();
 end;
