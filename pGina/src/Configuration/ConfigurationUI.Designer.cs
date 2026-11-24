@@ -132,6 +132,8 @@
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.label18 = new System.Windows.Forms.Label();
             this.dgvCredProvFilter = new System.Windows.Forms.DataGridView();
+            this.btnOnlyPgina = new System.Windows.Forms.Button();
+            this.btnWindowsDefault = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.m_simTab = new System.Windows.Forms.TabPage();
@@ -1284,6 +1286,8 @@
             //
             // groupBox9
             //
+            this.groupBox9.Controls.Add(this.btnWindowsDefault);
+            this.groupBox9.Controls.Add(this.btnOnlyPgina);
             this.groupBox9.Controls.Add(this.label18);
             this.groupBox9.Controls.Add(this.dgvCredProvFilter);
             this.groupBox9.Controls.Add(this.label17);
@@ -1293,24 +1297,43 @@
             this.groupBox9.Size = new System.Drawing.Size(752, 407);
             this.groupBox9.TabIndex = 0;
             this.groupBox9.TabStop = false;
-            this.groupBox9.Text = "Disable Credential Providers";
+            this.groupBox9.Text = "Windows Sign-in Options";
+            //
+            // btnOnlyPgina
+            //
+            this.btnOnlyPgina.Location = new System.Drawing.Point(13, 308);
+            this.btnOnlyPgina.Name = "btnOnlyPgina";
+            this.btnOnlyPgina.Size = new System.Drawing.Size(130, 25);
+            this.btnOnlyPgina.TabIndex = 2;
+            this.btnOnlyPgina.Text = "Only pGina";
+            this.btnOnlyPgina.UseVisualStyleBackColor = true;
+            this.btnOnlyPgina.Click += new System.EventHandler(this.btnOnlyPgina_Click);
+            //
+            // btnWindowsDefault
+            //
+            this.btnWindowsDefault.Location = new System.Drawing.Point(149, 308);
+            this.btnWindowsDefault.Name = "btnWindowsDefault";
+            this.btnWindowsDefault.Size = new System.Drawing.Size(130, 25);
+            this.btnWindowsDefault.TabIndex = 3;
+            this.btnWindowsDefault.Text = "Show All";
+            this.btnWindowsDefault.UseVisualStyleBackColor = true;
+            this.btnWindowsDefault.Click += new System.EventHandler(this.btnWindowsDefault_Click);
             //
             // label18
             //
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(13, 312);
+            this.label18.Location = new System.Drawing.Point(290, 306);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(411, 13);
-            this.label18.TabIndex = 2;
-            this.label18.Text = "To disable the built-in Microsoft credential provider, select \"PasswordProvider\" " +
-                "above.";
+            this.label18.Size = new System.Drawing.Size(444, 30);
+            this.label18.TabIndex = 4;
+            this.label18.Text = "Only pGina unticks everything at logon and unlock. UAC prompts and password chang" +
+                "es keep the Windows options.";
             //
             // dgvCredProvFilter
             //
             this.dgvCredProvFilter.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvCredProvFilter.Location = new System.Drawing.Point(13, 38);
             this.dgvCredProvFilter.Name = "dgvCredProvFilter";
-            this.dgvCredProvFilter.Size = new System.Drawing.Size(721, 266);
+            this.dgvCredProvFilter.Size = new System.Drawing.Size(721, 262);
             this.dgvCredProvFilter.TabIndex = 1;
             //
             // label17
@@ -1320,7 +1343,7 @@
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(240, 13);
             this.label17.TabIndex = 0;
-            this.label17.Text = "Mark a checkbox to disable a credential provider:";
+            this.label17.Text = "Ticked options appear on the Windows screens. Untick what you want to hide. pGina itself is always shown.";
             //
             // textBox1
             //
@@ -1990,6 +2013,8 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.DataGridView dgvCredProvFilter;
+        private System.Windows.Forms.Button btnOnlyPgina;
+        private System.Windows.Forms.Button btnWindowsDefault;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.CheckBox chk_originalUsernameUnlock;

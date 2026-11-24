@@ -84,12 +84,11 @@ namespace pGina.Configuration
         private const string PASSWORD_COLUMN = "Change Password";
 
         // Cred Prov Filter data grid view
-        private const string CPF_CP_NAME_COLUMN = "Name";
-        private const string CPF_CP_LOGON_COLUMN = "FilterLogon";
-        private const string CPF_CP_UNLOCK_COLUMN = "FilterUnlock";
-        private const string CPF_CP_CHANGE_PASS_COLUMN = "FilterChangePass";
-        private const string CPF_CP_CREDUI_COLUMN = "FilterCredUI";
-        private const string CPF_CP_UUID_COLUMN = "Uuid";
+        private const string CPF_CP_NAME_COLUMN = "DisplayName";
+        private const string CPF_CP_LOGON_COLUMN = "ShowLogon";
+        private const string CPF_CP_UNLOCK_COLUMN = "ShowUnlock";
+        private const string CPF_CP_CHANGE_PASS_COLUMN = "ShowChangePass";
+        private const string CPF_CP_CREDUI_COLUMN = "ShowCredUI";
 
         private LogViewWindow logWindow = null;
 
@@ -184,8 +183,8 @@ namespace pGina.Configuration
             {
                 Name = CPF_CP_NAME_COLUMN,
                 DataPropertyName = CPF_CP_NAME_COLUMN,
-                HeaderText = Language.T("Credential Provider"),
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells,
+                HeaderText = Language.T("Sign-in option"),
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
                 ReadOnly = true
             });
             dgvCredProvFilter.Columns.Add(new DataGridViewCheckBoxColumn()
@@ -213,19 +212,36 @@ namespace pGina.Configuration
             {
                 Name = CPF_CP_CREDUI_COLUMN,
                 DataPropertyName = CPF_CP_CREDUI_COLUMN,
-                HeaderText = Language.T("Cred UI"),
+                HeaderText = Language.T("UAC prompts"),
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
-            });
-            dgvCredProvFilter.Columns.Add(new DataGridViewTextBoxColumn()
-            {
-                Name = CPF_CP_UUID_COLUMN,
-                DataPropertyName = CPF_CP_UUID_COLUMN,
-                HeaderText = Language.T("UUID"),
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
             });
 
             dgvCredProvFilter.AutoGenerateColumns = false;
             dgvCredProvFilter.DataSource = CredProvFilterConfig.LoadCredProvsAndFilterSettings();
+            // technical name and id, for whoever needs them
+            dgvCredProvFilter.CellToolTipTextNeeded += (s, e) =>
+            {
+                if (e.RowIndex < 0) return;
+                CredProv cp = (CredProv)dgvCredProvFilter.Rows[e.RowIndex].DataBoundItem;
+                e.ToolTipText = String.Format("{0}\n{{{1}}}", cp.Name, cp.Uuid);
+            };
+        }
+
+        private void SetCredProvFilters(Action<List<CredProv>> change)
+        {
+            dgvCredProvFilter.EndEdit();
+            change((List<CredProv>)dgvCredProvFilter.DataSource);
+            dgvCredProvFilter.Refresh();
+        }
+
+        private void btnOnlyPgina_Click(object sender, EventArgs e)
+        {
+            SetCredProvFilters(CredProvFilterConfig.OnlyPgina);
+        }
+
+        private void btnWindowsDefault_Click(object sender, EventArgs e)
+        {
+            SetCredProvFilters(CredProvFilterConfig.WindowsDefault);
         }
 
         private void InitGinaOptions()

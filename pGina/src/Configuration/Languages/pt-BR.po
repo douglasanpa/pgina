@@ -192,14 +192,20 @@ msgstr "Ativar o botão 'Ação especial' para:"
 msgid "Credential Provider Options"
 msgstr "Provedores de credenciais"
 
-msgid "Disable Credential Providers"
-msgstr "Desativar provedores de credenciais"
+msgid "Windows Sign-in Options"
+msgstr "Formas de entrar no Windows"
 
-msgid "To disable the built-in Microsoft credential provider, select \"PasswordProvider\" above."
-msgstr "Para desativar o provedor de credenciais da Microsoft, marque \"PasswordProvider\" acima."
+msgid "Only pGina"
+msgstr "Somente o pGina"
 
-msgid "Mark a checkbox to disable a credential provider:"
-msgstr "Marque para desativar um provedor de credenciais:"
+msgid "Show All"
+msgstr "Mostrar tudo"
+
+msgid "Only pGina unticks everything at logon and unlock. UAC prompts and password changes keep the Windows options."
+msgstr "Somente o pGina desmarca tudo no logon e no desbloqueio. As janelas do UAC e a troca de senha continuam com as opções do Windows."
+
+msgid "Ticked options appear on the Windows screens. Untick what you want to hide. pGina itself is always shown."
+msgstr "As opções marcadas aparecem nas telas do Windows. Desmarque o que quiser esconder. O pGina sempre aparece."
 
 msgid "Simulation"
 msgstr "Simulação"
@@ -286,14 +292,8 @@ msgstr ""
 "Mensagem do dia, exibida abaixo da imagem do usuário e acima dos campos de usuário e senha.\n"
 "Substituições:   %m - nome do computador, %d - data de hoje, %i - endereço IP, %n - nome DNS, %v - versão do pGina"
 
-msgid ""
-"WARNING: Disabling a credential provider can be risky.  If pGina malfunctions or otherwise prevents access\n"
-" to the machine, it may be necessary to boot into safe mode in order to restore access.  Before disabling a\n"
-"credential provider, be sure you know what you're doing. You have been warned."
-msgstr ""
-"ATENÇÃO: desativar um provedor de credenciais é arriscado. Se o pGina falhar ou impedir o acesso ao\n"
-"computador, pode ser preciso iniciar no modo de segurança para recuperar o acesso. Antes de desativar um\n"
-"provedor de credenciais, tenha certeza do que está fazendo."
+msgid "WARNING: before hiding the Windows options, test logging on through pGina, including with the local administrator account. If nobody can log on, start Windows in Safe Mode: it always shows the Windows options."
+msgstr "ATENÇÃO: antes de esconder as opções do Windows, teste o logon pelo pGina, inclusive com a conta de administrador local. Se ninguém conseguir entrar, inicie o Windows no Modo de Segurança: nele as opções do Windows sempre aparecem."
 
 msgid "Unable to load full plugin list: {0}"
 msgstr "Não foi possível carregar a lista completa de plugins: {0}"
@@ -336,14 +336,11 @@ msgstr "Não foi possível acessar o registro. Execute como administrador."
 msgid "Registry access error"
 msgstr "Erro de acesso ao registro"
 
-msgid "Credential Provider"
-msgstr "Provedor de credenciais"
+msgid "Sign-in option"
+msgstr "Forma de entrar"
 
-msgid "Cred UI"
-msgstr "Cred UI"
-
-msgid "UUID"
-msgstr "UUID"
+msgid "UAC prompts"
+msgstr "Janelas do UAC"
 
 msgid "Automatic (Windows language)"
 msgstr "Automático (idioma do Windows)"
@@ -410,6 +407,9 @@ msgstr "Descrição"
 
 msgid "Version"
 msgstr "Versão"
+
+msgid "UUID"
+msgstr "UUID"
 
 msgid "Directory"
 msgstr "Pasta"
@@ -486,6 +486,48 @@ msgstr "Não foi possível parar o serviço do pGina"
 
 msgid "Error: "
 msgstr "Erro: "
+
+msgid "Windows password and \"Other user\""
+msgstr "Senha do Windows e \"Outro usuário\""
+
+msgid "Windows Hello PIN"
+msgstr "PIN do Windows Hello"
+
+msgid "Windows Hello fingerprint or face"
+msgstr "Digital ou rosto do Windows Hello"
+
+msgid "Picture password"
+msgstr "Senha com imagem"
+
+msgid "Security key (FIDO)"
+msgstr "Chave de segurança (FIDO)"
+
+msgid "Smart card"
+msgstr "Cartão inteligente"
+
+msgid "Smart card PIN"
+msgstr "PIN do cartão inteligente"
+
+msgid "Smart card reader selection"
+msgstr "Seleção de leitor de cartão"
+
+msgid "Smart card for apps"
+msgstr "Cartão inteligente para apps"
+
+msgid "Network providers"
+msgstr "Provedores de rede"
+
+msgid "Companion device"
+msgstr "Dispositivo complementar"
+
+msgid "Trusted signal (dynamic lock)"
+msgstr "Sinal confiável (bloqueio dinâmico)"
+
+msgid "Windows generic provider"
+msgstr "Provedor genérico do Windows"
+
+msgid "CNG credentials (UAC prompts)"
+msgstr "Credenciais CNG (janelas do UAC)"
 
 msgid "File saved successfully: {0}"
 msgstr "Arquivo salvo: {0}"
