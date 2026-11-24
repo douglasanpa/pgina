@@ -201,11 +201,11 @@ msgstr "Somente o pGina"
 msgid "Show All"
 msgstr "Mostrar tudo"
 
-msgid "Only pGina unticks everything at logon and unlock. UAC prompts and password changes keep the Windows options."
-msgstr "Somente o pGina desmarca tudo no logon e no desbloqueio. As janelas do UAC e a troca de senha continuam com as opções do Windows."
+msgid "Only pGina unticks everything. UAC prompts and password changes always keep the Windows options."
+msgstr "Somente o pGina desmarca tudo. As janelas do UAC e a troca de senha sempre mantêm as opções do Windows."
 
-msgid "Ticked options appear on the Windows screens. Untick what you want to hide. pGina itself is always shown."
-msgstr "As opções marcadas aparecem nas telas do Windows. Desmarque o que quiser esconder. O pGina sempre aparece."
+msgid "Ticked options appear on the logon and unlock screens. Untick what you want to hide. pGina is always shown."
+msgstr "As opções marcadas aparecem no logon e no desbloqueio. Desmarque o que quiser esconder. O pGina sempre aparece."
 
 msgid "Simulation"
 msgstr "Simulação"
@@ -335,12 +335,6 @@ msgstr "Não foi possível acessar o registro. Execute como administrador."
 
 msgid "Registry access error"
 msgstr "Erro de acesso ao registro"
-
-msgid "Sign-in option"
-msgstr "Forma de entrar"
-
-msgid "UAC prompts"
-msgstr "Janelas do UAC"
 
 msgid "Automatic (Windows language)"
 msgstr "Automático (idioma do Windows)"
@@ -528,6 +522,15 @@ msgstr "Provedor genérico do Windows"
 
 msgid "CNG credentials (UAC prompts)"
 msgstr "Credenciais CNG (janelas do UAC)"
+
+msgid "Windows Hello for Business"
+msgstr "Windows Hello para Empresas"
+
+msgid "Microsoft account"
+msgstr "Conta Microsoft"
+
+msgid "Certificate"
+msgstr "Certificado"
 
 msgid "File saved successfully: {0}"
 msgstr "Arquivo salvo: {0}"

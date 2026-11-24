@@ -83,12 +83,6 @@ namespace pGina.Configuration
         private const string NOTIFICATION_COLUMN = "Notification";
         private const string PASSWORD_COLUMN = "Change Password";
 
-        // Cred Prov Filter data grid view
-        private const string CPF_CP_NAME_COLUMN = "DisplayName";
-        private const string CPF_CP_LOGON_COLUMN = "ShowLogon";
-        private const string CPF_CP_UNLOCK_COLUMN = "ShowUnlock";
-        private const string CPF_CP_CHANGE_PASS_COLUMN = "ShowChangePass";
-        private const string CPF_CP_CREDUI_COLUMN = "ShowCredUI";
 
         private LogViewWindow logWindow = null;
 
@@ -172,76 +166,28 @@ namespace pGina.Configuration
             }
         }
 
+        // Windows sign-in options, in the order of the check list
+        private List<CredProv> m_credProvs;
+
         private void InitCpOptions()
         {
-            dgvCredProvFilter.RowHeadersVisible = false;
-            dgvCredProvFilter.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvCredProvFilter.MultiSelect = false;
-            dgvCredProvFilter.AllowUserToAddRows = false;
-
-            dgvCredProvFilter.Columns.Add(new DataGridViewTextBoxColumn()
-            {
-                Name = CPF_CP_NAME_COLUMN,
-                DataPropertyName = CPF_CP_NAME_COLUMN,
-                HeaderText = Language.T("Sign-in option"),
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
-                ReadOnly = true
-            });
-            dgvCredProvFilter.Columns.Add(new DataGridViewCheckBoxColumn()
-            {
-                Name = CPF_CP_LOGON_COLUMN,
-                DataPropertyName = CPF_CP_LOGON_COLUMN,
-                HeaderText = Language.T("Logon"),
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
-            });
-            dgvCredProvFilter.Columns.Add(new DataGridViewCheckBoxColumn()
-            {
-                Name = CPF_CP_UNLOCK_COLUMN,
-                DataPropertyName = CPF_CP_UNLOCK_COLUMN,
-                HeaderText = Language.T("Unlock"),
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
-            });
-            dgvCredProvFilter.Columns.Add(new DataGridViewCheckBoxColumn()
-            {
-                Name = CPF_CP_CHANGE_PASS_COLUMN,
-                DataPropertyName = CPF_CP_CHANGE_PASS_COLUMN,
-                HeaderText = Language.T("Change Password"),
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
-            });
-            dgvCredProvFilter.Columns.Add(new DataGridViewCheckBoxColumn()
-            {
-                Name = CPF_CP_CREDUI_COLUMN,
-                DataPropertyName = CPF_CP_CREDUI_COLUMN,
-                HeaderText = Language.T("UAC prompts"),
-                AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
-            });
-
-            dgvCredProvFilter.AutoGenerateColumns = false;
-            dgvCredProvFilter.DataSource = CredProvFilterConfig.LoadCredProvsAndFilterSettings();
-            // technical name and id, for whoever needs them
-            dgvCredProvFilter.CellToolTipTextNeeded += (s, e) =>
-            {
-                if (e.RowIndex < 0) return;
-                CredProv cp = (CredProv)dgvCredProvFilter.Rows[e.RowIndex].DataBoundItem;
-                e.ToolTipText = String.Format("{0}\n{{{1}}}", cp.Name, cp.Uuid);
-            };
-        }
-
-        private void SetCredProvFilters(Action<List<CredProv>> change)
-        {
-            dgvCredProvFilter.EndEdit();
-            change((List<CredProv>)dgvCredProvFilter.DataSource);
-            dgvCredProvFilter.Refresh();
+            m_credProvs = CredProvFilterConfig.LoadCredProvsAndFilterSettings();
+            clbCredProv.Items.Clear();
+            foreach (CredProv cp in m_credProvs)
+                clbCredProv.Items.Add(cp, cp.Shown);
         }
 
         private void btnOnlyPgina_Click(object sender, EventArgs e)
         {
-            SetCredProvFilters(CredProvFilterConfig.OnlyPgina);
+            for (int i = 0; i < clbCredProv.Items.Count; i++)
+                clbCredProv.SetItemChecked(i, false);
         }
 
         private void btnWindowsDefault_Click(object sender, EventArgs e)
         {
-            SetCredProvFilters(CredProvFilterConfig.WindowsDefault);
+            CredProvFilterConfig.WindowsDefault(m_credProvs);
+            for (int i = 0; i < clbCredProv.Items.Count; i++)
+                clbCredProv.SetItemChecked(i, true);
         }
 
         private void InitGinaOptions()
@@ -1743,8 +1689,14 @@ namespace pGina.Configuration
 
         private void SaveCpSettings()
         {
-            List<CredProv> credProvs = (List<CredProv>)dgvCredProvFilter.DataSource;
-            CredProvFilterConfig.SaveFilterSettings(credProvs);
+            // only touch the ones that changed, so finer settings made before are kept
+            for (int i = 0; i < m_credProvs.Count; i++)
+            {
+                bool ticked = clbCredProv.GetItemChecked(i);
+                if (ticked != m_credProvs[i].Shown)
+                    m_credProvs[i].Shown = ticked;
+            }
+            CredProvFilterConfig.SaveFilterSettings(m_credProvs);
         }
 
         private void chkSpecialButton_CheckedChanged(object sender, EventArgs e)
