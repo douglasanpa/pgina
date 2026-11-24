@@ -18,6 +18,24 @@ msgstr "Idioma:"
 msgid "Used by this window and the logon screen after a restart."
 msgstr "Usado por esta janela e pela tela de logon depois de reiniciar."
 
+msgid "Updates"
+msgstr "Atualizações"
+
+msgid "What's new in this version"
+msgstr "Novidades desta versão"
+
+msgid "Check now"
+msgstr "Verificar agora"
+
+msgid "Download and install"
+msgstr "Baixar e instalar"
+
+msgid "Check for updates automatically"
+msgstr "Verificar atualizações automaticamente"
+
+msgid "Install updates automatically (while nobody is logged on; the computer restarts)"
+msgstr "Instalar atualizações automaticamente (sem ninguém logado; o computador reinicia)"
+
 msgid "Logon Screen"
 msgstr "Tela de logon"
 
@@ -294,6 +312,42 @@ msgstr ""
 
 msgid "WARNING: before hiding the Windows options, test logging on through pGina, including with the local administrator account. If nobody can log on, start Windows in Safe Mode: it always shows the Windows options."
 msgstr "ATENÇÃO: antes de esconder as opções do Windows, teste o logon pelo pGina, inclusive com a conta de administrador local. Se ninguém conseguir entrar, inicie o Windows no Modo de Segurança: nele as opções do Windows sempre aparecem."
+
+msgid "pGina {0} is available (installed: {1})."
+msgstr "O pGina {0} está disponível (instalado: {1})."
+
+msgid "Installed version: {0}."
+msgstr "Versão instalada: {0}."
+
+msgid "Last check: {0}."
+msgstr "Última verificação: {0}."
+
+msgid "Checking for updates..."
+msgstr "Verificando atualizações..."
+
+msgid "pGina is up to date ({0})."
+msgstr "O pGina está atualizado ({0})."
+
+msgid "Unable to check for updates: {0}"
+msgstr "Não foi possível verificar atualizações: {0}"
+
+msgid ""
+"Download and install pGina {0}?\n"
+"\n"
+"The computer restarts at the end of the installation. Save your work in other programs first."
+msgstr ""
+"Baixar e instalar o pGina {0}?\n"
+"\n"
+"O computador reinicia no final da instalação. Salve antes o que estiver aberto em outros programas."
+
+msgid "Downloading pGina {0}..."
+msgstr "Baixando o pGina {0}..."
+
+msgid "Installing pGina {0}..."
+msgstr "Instalando o pGina {0}..."
+
+msgid "Unable to download the update: {0}"
+msgstr "Não foi possível baixar a atualização: {0}"
 
 msgid "Unable to load full plugin list: {0}"
 msgstr "Não foi possível carregar a lista completa de plugins: {0}"

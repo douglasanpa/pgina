@@ -26,6 +26,32 @@ installer with that version and publishes it as a GitHub release. Keep the
 version in `pGina/src/Core/Properties/SharedAssemblyInfo.cs` and
 `pGina/src/CredentialProvider/CredentialProvider.rc` in step with the tag.
 
+The release carries `pGinaSetup-<version>.exe` and its `.sha256`: installed
+copies use both to update themselves (below).
+
+## Updates
+
+pGina looks for new releases on its GitHub page (`/releases/latest`, not the
+API, so a whole lab behind one address isn't rate limited). Settings under
+`HKLM\SOFTWARE\pGina3.fork`, also in Configuration > General > Updates:
+
+| Value | Default | Meaning |
+|---|---|---|
+| `UpdateCheck` | `True` | the service checks every 6 hours (plus up to one hour at random) and the configuration window shows when a new version is available, with a button to download and install it |
+| `AutoUpdate` | `False` | the service also downloads the new version and installs it while nobody is logged on; the computer restarts at the end |
+| `UpdateSource` | this repository | another repository or mirror with the same release layout |
+
+A download is kept only if its SHA-256 matches the `.sha256` of the release
+and its file version is the release version. It is stored in
+`C:\ProgramData\pGina.fork\Update`, which only SYSTEM and the administrators
+can write to. Installing stops the pGina service, and a session open at that
+moment could no longer be unlocked, so automatic installs wait until nobody is
+logged on; each version is tried at most once a day. The service log
+(`log\pGina.Service.ServiceHost_log.txt`) records every check and install.
+
+Machines whose version is managed elsewhere (Salt, GPO, SCCM) should set both
+values to `False`.
+
 Translations: see [tools/i18n](tools/i18n/README.md).
 
 ## License

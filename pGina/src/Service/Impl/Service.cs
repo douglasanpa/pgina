@@ -113,6 +113,8 @@ namespace pGina.Service.Impl
             get { return Core.Settings.Get.PluginDirectories; }
         }
 
+        private AutoUpdate m_autoUpdate = new AutoUpdate();
+
         public Service()
         {
             try
@@ -141,11 +143,13 @@ namespace pGina.Service.Impl
             HookUpAbstractionsLibraryLogging();
             m_server.Start();
             PluginDriver.Starting();
+            m_autoUpdate.Start();
         }
 
         public void Stop()
         {
             m_logger.InfoFormat("Stopping service");
+            m_autoUpdate.Dispose();
             PluginDriver.Stopping();
             DetachAbstractionsLibraryLogging();
             m_server.Stop();

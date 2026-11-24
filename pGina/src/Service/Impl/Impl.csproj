@@ -28,6 +28,7 @@
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="AutoUpdate.cs" />
     <Compile Include="Service.cs" />
     <Compile Include="ServiceThread.cs" />
   </ItemGroup>
