@@ -49,6 +49,11 @@ namespace pGina.Shared.Types
         }
         private string _Message;
 
+        // Set by authentication plugins when the server checked the credentials and refused
+        //  them, as opposed to failing because it couldn't be reached. Lets other plugins
+        //  tell a wrong password apart from being offline.
+        public bool Rejected { get; set; }
+
         public BooleanResultEx ToBooleanResultEx()
         {
             return new BooleanResultEx { Success = Success, Message = Message };

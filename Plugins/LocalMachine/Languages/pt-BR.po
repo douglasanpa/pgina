@@ -12,6 +12,9 @@ msgstr "Autenticação"
 msgid "Always authenticate local users"
 msgstr "Sempre autenticar usuários locais"
 
+msgid "Deny pGina accounts the server refused"
+msgstr "Negar contas do pGina recusadas pelo servidor"
+
 msgid "Authorization"
 msgstr "Autorização"
 
@@ -96,6 +99,9 @@ msgstr "A conta local é adicionada a estes grupos locais, se ainda não for mem
 
 msgid "When this is selected, the plugin will attempt to remove the account and its profile after logout when the account did not exist prior to logon."
 msgstr "Se marcado, o plugin tenta remover a conta e o perfil após o logoff quando a conta não existia antes do logon."
+
+msgid "For accounts created by pGina, the local password is a copy from the last logon, kept for logging on when the server can't be reached. When this is checked and a plugin such as LDAP reached its server and the password was refused (changed password, disabled or removed account), the local password isn't accepted either. Needs this plugin after the others in the authentication order."
+msgstr "Nas contas criadas pelo pGina, a senha local é uma cópia do último logon, guardada para entrar quando o servidor está fora do alcance. Com esta opção marcada, se um plugin como o LDAP alcançou o servidor e a senha foi recusada (senha trocada, conta desativada ou removida), a senha local também não é aceita. Este plugin precisa vir depois dos outros na ordem de autenticação."
 
 msgid "When this is checked, the plugin will attempt to scramble the password of the local account after logout"
 msgstr "Se marcado, o plugin tenta embaralhar a senha da conta local após o logoff"

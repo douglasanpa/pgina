@@ -30,6 +30,7 @@
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.m_chkAlwaysAuth = new System.Windows.Forms.CheckBox();
+            this.m_chkDenyRejected = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.m_chkMirror = new System.Windows.Forms.CheckBox();
             this.m_chkAuthzRequireLocal = new System.Windows.Forms.CheckBox();
@@ -62,10 +63,11 @@
             //
             // groupBox1
             //
+            this.groupBox1.Controls.Add(this.m_chkDenyRejected);
             this.groupBox1.Controls.Add(this.m_chkAlwaysAuth);
             this.groupBox1.Location = new System.Drawing.Point(13, 13);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(342, 54);
+            this.groupBox1.Size = new System.Drawing.Size(342, 78);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Authentication";
@@ -80,6 +82,16 @@
             this.m_chkAlwaysAuth.Text = "Always authenticate local users";
             this.m_chkAlwaysAuth.UseVisualStyleBackColor = true;
             //
+            // m_chkDenyRejected
+            //
+            this.m_chkDenyRejected.AutoSize = true;
+            this.m_chkDenyRejected.Location = new System.Drawing.Point(15, 47);
+            this.m_chkDenyRejected.Name = "m_chkDenyRejected";
+            this.m_chkDenyRejected.Size = new System.Drawing.Size(240, 17);
+            this.m_chkDenyRejected.TabIndex = 1;
+            this.m_chkDenyRejected.Text = "Deny pGina accounts the server refused";
+            this.m_chkDenyRejected.UseVisualStyleBackColor = true;
+            //
             // groupBox2
             //
             this.groupBox2.Controls.Add(this.m_chkMirror);
@@ -87,9 +99,9 @@
             this.groupBox2.Controls.Add(this.m_localGroupDgv);
             this.groupBox2.Controls.Add(this.m_chkAuthzLocalAdmin);
             this.groupBox2.Controls.Add(this.m_chkAuthzAll);
-            this.groupBox2.Location = new System.Drawing.Point(12, 73);
+            this.groupBox2.Location = new System.Drawing.Point(12, 97);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(343, 333);
+            this.groupBox2.Size = new System.Drawing.Size(343, 309);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Authorization";
@@ -122,7 +134,7 @@
             this.LocalGroup});
             this.m_localGroupDgv.Location = new System.Drawing.Point(15, 113);
             this.m_localGroupDgv.Name = "m_localGroupDgv";
-            this.m_localGroupDgv.Size = new System.Drawing.Size(311, 200);
+            this.m_localGroupDgv.Size = new System.Drawing.Size(311, 176);
             this.m_localGroupDgv.TabIndex = 4;
             //
             // LocalGroup
@@ -320,6 +332,7 @@
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox m_chkAlwaysAuth;
+        private System.Windows.Forms.CheckBox m_chkDenyRejected;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.CheckBox m_chkAuthzAll;
         private System.Windows.Forms.CheckBox m_chkAuthzLocalAdmin;

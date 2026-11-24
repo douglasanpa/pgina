@@ -829,6 +829,27 @@ namespace pGina.Plugin.LocalMachine
         }
 
         /// <summary>
+        /// Whether the account was created by pGina (from the account description), as opposed
+        /// to a local account made by hand, such as the administrator's.
+        /// </summary>
+        public static bool IsCreatedByPgina(string strUserName)
+        {
+            try
+            {
+                using (DirectoryEntry userEntry = LocalAccount.GetUserDirectoryEntry(strUserName))
+                {
+                    string description = userEntry == null ? null : userEntry.Properties["Description"].Value as string;
+                    return description != null &&
+                        (description.Contains("pGina created") || description.Contains("pgSMB"));
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
         /// Returns a list of groups of which the user is a member.  It does so in a fashion that
         /// may seem strange since one can call UserPrincipal.GetGroups, but seems to be much faster
         /// in my tests.

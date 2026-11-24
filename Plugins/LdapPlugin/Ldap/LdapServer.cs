@@ -518,14 +518,14 @@ namespace pGina.Plugin.Ldap
             if (!allowEmpty && string.IsNullOrEmpty(password))
             {
                 m_logger.Info("Authentication failed due to empty password.");
-                return new BooleanResult { Success = false, Message = "Authentication failed due to empty password." };
+                return new BooleanResult { Success = false, Rejected = true, Message = "Authentication failed due to empty password." };
             }
 
             // Get the user's DN
             string userDN = "";
             try
             {
-                userDN = GetUserDN(uname);
+                userDN = GetUserDN(uname, true);
             }
             catch (Exception ex)
             {
@@ -558,7 +558,7 @@ namespace pGina.Plugin.Ldap
                         }
 
                         m_logger.ErrorFormat("LDAP bind failed: invalid credentials.");
-                        return new BooleanResult { Success = false, Message = "Authentication via LDAP failed. Invalid credentials." };
+                        return new BooleanResult { Success = false, Rejected = true, Message = "Authentication via LDAP failed. Invalid credentials." };
                     }
 
                     // Let caller handle other kinds of exceptions
@@ -570,7 +570,7 @@ namespace pGina.Plugin.Ldap
                     if (e.ToString().Contains("pGina.Plugin.Ldap.LdapServer.Bind"))
                     {
                         m_logger.ErrorFormat("The user name or password is incorrect: {0}", e.Message);
-                        return new BooleanResult { Success = false, Message = "The user name or password is incorrect" };
+                        return new BooleanResult { Success = false, Rejected = true, Message = "The user name or password is incorrect" };
                     }
 
                     m_logger.ErrorFormat("LDAP plugin failed {0}",e.Message);
@@ -655,8 +655,9 @@ namespace pGina.Plugin.Ldap
             } // end if(userDN != null)
             else
             {
+                // the server answered the search and has no such user
                 m_logger.ErrorFormat("Unable to determine DN for: {0}", uname);
-                return new BooleanResult { Success = false, Message = "Unable to determine the user's LDAP DN for authentication." };
+                return new BooleanResult { Success = false, Rejected = true, Message = "Unable to determine the user's LDAP DN for authentication." };
             }
         }
 
@@ -849,7 +850,8 @@ namespace pGina.Plugin.Ldap
             return new BooleanResultEx { Success = false };
         }
 
-        public string GetUserDN(string uname)
+        /// <param name="throwOnError">throw when the search fails, so null only means the user wasn't found</param>
+        public string GetUserDN(string uname, bool throwOnError = false)
         {
             bool doSearch = Settings.Store.DoSearch;
             if (!doSearch)
@@ -858,7 +860,7 @@ namespace pGina.Plugin.Ldap
             }
             else
             {
-                return FindUserDN(uname);
+                return FindUserDN(uname, throwOnError);
             }
         }
 
@@ -937,7 +939,7 @@ namespace pGina.Plugin.Ldap
         /// searches fail, this method returns null.
         /// </summary>
         /// <returns>The DN of the first object found, or null if searches fail.</returns>
-        private string FindUserDN(string uname)
+        private string FindUserDN(string uname, bool throwOnError)
         {
             // Attempt to bind in order to do the search
             this.BindForSearch();
@@ -961,6 +963,9 @@ namespace pGina.Plugin.Ldap
                 catch (Exception e)
                 {
                     m_logger.ErrorFormat("FindUserDN failed: {0}", e.Message);
+                    // e.g. the connection dropped, which isn't the same as "no such user"
+                    if (throwOnError)
+                        throw;
                     return null;
                 }
                 if (dn != null)
