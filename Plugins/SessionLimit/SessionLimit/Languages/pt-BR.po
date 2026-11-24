@@ -1,0 +1,28 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: pGina\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Save"
+msgstr "Salvar"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Global time limit (minutes): "
+msgstr "Tempo limite geral (minutos): "
+
+msgid "A value of 0 means sessions will not be logged off."
+msgstr "Com 0, as sessões não são encerradas."
+
+msgid "Help"
+msgstr "Ajuda"
+
+msgid "Session Limit Plugin Configuration"
+msgstr "Configuração do plugin Session Limit"
+
+msgid "Time limit must be a positive integer."
+msgstr "O tempo limite precisa ser um número inteiro positivo."

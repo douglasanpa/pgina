@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.IO;
+using pGina.Shared.Localization;
 
 namespace pGina.Configuration
 {
@@ -17,6 +18,7 @@ namespace pGina.Configuration
         public LogViewWindow()
         {
             InitializeComponent();
+            FormStyle.Apply(this);
         }
 
         private void saveBtn_Click(object sender, EventArgs e)
@@ -32,7 +34,7 @@ namespace pGina.Configuration
                     file.Write(logTextArea.Text);
                 }
 
-                MessageBox.Show(string.Format("File saved successfully: {0}", sfd.FileName), "Log Export", MessageBoxButtons.OK);
+                MessageBox.Show(Language.Format("File saved successfully: {0}", sfd.FileName), Language.T("Log Export"), MessageBoxButtons.OK);
             }
         }
 

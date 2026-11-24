@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 
 using pGina.Shared.Settings;
+using pGina.Shared.Localization;
 
 namespace pGina.Plugin.SingleUser
 {
@@ -16,6 +17,7 @@ namespace pGina.Plugin.SingleUser
         public Configuration()
         {
             InitializeComponent();
+            FormStyle.Apply(this);
             SettingsToUi();
         }
 

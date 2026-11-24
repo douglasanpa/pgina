@@ -37,6 +37,7 @@ using System.Windows.Forms;
 using pGina.Shared.Settings;
 using pGina.Plugin.UsernameMod;
 using pGina.Plugin.UsernameMod.Rules;
+using pGina.Shared.Localization;
 
 namespace pGina.Plugin.UsernameMod
 {
@@ -47,6 +48,7 @@ namespace pGina.Plugin.UsernameMod
         public Configuration()
         {
             InitializeComponent();
+            FormStyle.Apply(this);
 
             //Setup the drop down box
             actionBox.Items.AddRange(ListOfRules.Rules);
@@ -61,7 +63,7 @@ namespace pGina.Plugin.UsernameMod
             }
             catch (UsernameModPluginException)
             {
-                MessageBox.Show("Unable to load all rules from registry.");
+                MessageBox.Show(Language.T("Unable to load all rules from registry."));
             }
             updateListView();
 
@@ -83,7 +85,7 @@ namespace pGina.Plugin.UsernameMod
             }
             catch (UsernameModPluginException ex)
             {
-                MessageBox.Show("Unable to save settings.\n{0}", ex.Message);
+                MessageBox.Show(Language.Format("Unable to save settings.\n{0}", ex.Message));
                 return;
             }
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
@@ -129,7 +131,7 @@ namespace pGina.Plugin.UsernameMod
                 stage = Stage.Gateway;
             else
             {
-                MessageBox.Show("Authentication, Authorization or Gateway button must be checked.");
+                MessageBox.Show(Language.T("Authentication, Authorization or Gateway button must be checked."));
                 return;
             }
 
@@ -210,22 +212,22 @@ namespace pGina.Plugin.UsernameMod
             switch ((string)actionBox.SelectedItem)
             {
                 case "Append":
-                    setForm("Append the following:", null);
+                    setForm(Language.T("Append the following:"), null);
                     break;
                 case "Prepend":
-                    setForm("Prepend the following:", null);
+                    setForm(Language.T("Prepend the following:"), null);
                     break;
                 case "Truncate":
-                    setForm("Number of characters allowed:", null);
+                    setForm(Language.T("Number of characters allowed:"), null);
                     break;
                 case "Replace":
-                    setForm("Replace the following characters:", "With this string:");
+                    setForm(Language.T("Replace the following characters:"), Language.T("With this string:"));
                     break;
                 case "RegEx Replace":
-                    setForm("Replace the regex expression:", "With this string:");
+                    setForm(Language.T("Replace the regex expression:"), Language.T("With this string:"));
                     break;
                 case "Match":
-                    setForm("Require the username to match:", null);
+                    setForm(Language.T("Require the username to match:"), null);
                     break;
             }
         }

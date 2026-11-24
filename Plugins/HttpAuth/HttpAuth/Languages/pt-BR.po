@@ -1,0 +1,38 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: pGina\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "The Webserver address (Loginserver)"
+msgstr "Endereço do servidor web (Loginserver)"
+
+msgid "Save"
+msgstr "Salvar"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Help"
+msgstr "Ajuda"
+
+msgid ""
+"Macros:\r\n"
+"  %u = UserName\r\n"
+msgstr ""
+"Macros:\r\n"
+"  %u = usuário\r\n"
+
+msgid "HttpAuth plugin Configuration"
+msgstr "Configuração do plugin HttpAuth"
+
+msgid "The Authentication server address"
+msgstr "Endereço do servidor de autenticação"
+
+msgid "Loginserver is empty"
+msgstr "Informe o Loginserver"
+
+msgid "Loginserver"
+msgstr "Loginserver"

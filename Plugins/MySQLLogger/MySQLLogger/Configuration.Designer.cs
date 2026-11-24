@@ -88,7 +88,7 @@
             //
             // okBtn
             //
-            this.okBtn.Location = new System.Drawing.Point(430, 394);
+            this.okBtn.Location = new System.Drawing.Point(430, 416);
             this.okBtn.Name = "okBtn";
             this.okBtn.Size = new System.Drawing.Size(70, 28);
             this.okBtn.TabIndex = 8;
@@ -98,7 +98,7 @@
             //
             // cancelBtn
             //
-            this.cancelBtn.Location = new System.Drawing.Point(354, 394);
+            this.cancelBtn.Location = new System.Drawing.Point(354, 416);
             this.cancelBtn.Name = "cancelBtn";
             this.cancelBtn.Size = new System.Drawing.Size(70, 28);
             this.cancelBtn.TabIndex = 7;
@@ -173,7 +173,7 @@
             //
             // testButton
             //
-            this.testButton.Location = new System.Drawing.Point(6, 396);
+            this.testButton.Location = new System.Drawing.Point(6, 418);
             this.testButton.Name = "testButton";
             this.testButton.Size = new System.Drawing.Size(67, 27);
             this.testButton.TabIndex = 4;
@@ -183,7 +183,7 @@
             //
             // createTableBtn
             //
-            this.createTableBtn.Location = new System.Drawing.Point(79, 396);
+            this.createTableBtn.Location = new System.Drawing.Point(79, 418);
             this.createTableBtn.Name = "createTableBtn";
             this.createTableBtn.Size = new System.Drawing.Size(91, 26);
             this.createTableBtn.TabIndex = 5;
@@ -215,7 +215,7 @@
             this.eventsBox.Controls.Add(this.logonEvtCB);
             this.eventsBox.Location = new System.Drawing.Point(6, 274);
             this.eventsBox.Name = "eventsBox";
-            this.eventsBox.Size = new System.Drawing.Size(494, 66);
+            this.eventsBox.Size = new System.Drawing.Size(494, 88);
             this.eventsBox.TabIndex = 2;
             this.eventsBox.TabStop = false;
             this.eventsBox.Text = "Events";
@@ -223,7 +223,7 @@
             // remoteDisconnectEvtCB
             //
             this.remoteDisconnectEvtCB.AutoSize = true;
-            this.remoteDisconnectEvtCB.Location = new System.Drawing.Point(261, 42);
+            this.remoteDisconnectEvtCB.Location = new System.Drawing.Point(300, 42);
             this.remoteDisconnectEvtCB.Name = "remoteDisconnectEvtCB";
             this.remoteDisconnectEvtCB.Size = new System.Drawing.Size(120, 17);
             this.remoteDisconnectEvtCB.TabIndex = 8;
@@ -233,7 +233,7 @@
             // remoteConnectEvtCB
             //
             this.remoteConnectEvtCB.AutoSize = true;
-            this.remoteConnectEvtCB.Location = new System.Drawing.Point(261, 19);
+            this.remoteConnectEvtCB.Location = new System.Drawing.Point(300, 19);
             this.remoteConnectEvtCB.Name = "remoteConnectEvtCB";
             this.remoteConnectEvtCB.Size = new System.Drawing.Size(106, 17);
             this.remoteConnectEvtCB.TabIndex = 3;
@@ -243,7 +243,7 @@
             // remoteControlEvtCB
             //
             this.remoteControlEvtCB.AutoSize = true;
-            this.remoteControlEvtCB.Location = new System.Drawing.Point(383, 19);
+            this.remoteControlEvtCB.Location = new System.Drawing.Point(300, 65);
             this.remoteControlEvtCB.Name = "remoteControlEvtCB";
             this.remoteControlEvtCB.Size = new System.Drawing.Size(99, 17);
             this.remoteControlEvtCB.TabIndex = 4;
@@ -253,7 +253,7 @@
             // consoleDisconnectEvtCB
             //
             this.consoleDisconnectEvtCB.AutoSize = true;
-            this.consoleDisconnectEvtCB.Location = new System.Drawing.Point(134, 42);
+            this.consoleDisconnectEvtCB.Location = new System.Drawing.Point(130, 65);
             this.consoleDisconnectEvtCB.Name = "consoleDisconnectEvtCB";
             this.consoleDisconnectEvtCB.Size = new System.Drawing.Size(121, 17);
             this.consoleDisconnectEvtCB.TabIndex = 7;
@@ -263,7 +263,7 @@
             // consoleConnectEvtCB
             //
             this.consoleConnectEvtCB.AutoSize = true;
-            this.consoleConnectEvtCB.Location = new System.Drawing.Point(134, 19);
+            this.consoleConnectEvtCB.Location = new System.Drawing.Point(130, 42);
             this.consoleConnectEvtCB.Name = "consoleConnectEvtCB";
             this.consoleConnectEvtCB.Size = new System.Drawing.Size(107, 17);
             this.consoleConnectEvtCB.TabIndex = 2;
@@ -273,7 +273,7 @@
             // unlockEvtCB
             //
             this.unlockEvtCB.AutoSize = true;
-            this.unlockEvtCB.Location = new System.Drawing.Point(68, 42);
+            this.unlockEvtCB.Location = new System.Drawing.Point(130, 19);
             this.unlockEvtCB.Name = "unlockEvtCB";
             this.unlockEvtCB.Size = new System.Drawing.Size(60, 17);
             this.unlockEvtCB.TabIndex = 6;
@@ -283,7 +283,7 @@
             // lockEvtCB
             //
             this.lockEvtCB.AutoSize = true;
-            this.lockEvtCB.Location = new System.Drawing.Point(68, 19);
+            this.lockEvtCB.Location = new System.Drawing.Point(6, 65);
             this.lockEvtCB.Name = "lockEvtCB";
             this.lockEvtCB.Size = new System.Drawing.Size(50, 17);
             this.lockEvtCB.TabIndex = 1;
@@ -369,7 +369,7 @@
             // optionsBox
             //
             this.optionsBox.Controls.Add(this.useModNameCB);
-            this.optionsBox.Location = new System.Drawing.Point(6, 347);
+            this.optionsBox.Location = new System.Drawing.Point(6, 369);
             this.optionsBox.Name = "optionsBox";
             this.optionsBox.Size = new System.Drawing.Size(494, 41);
             this.optionsBox.TabIndex = 3;
@@ -421,7 +421,7 @@
             //
             // helpBtn
             //
-            this.helpBtn.Location = new System.Drawing.Point(278, 394);
+            this.helpBtn.Location = new System.Drawing.Point(278, 416);
             this.helpBtn.Name = "helpBtn";
             this.helpBtn.Size = new System.Drawing.Size(70, 28);
             this.helpBtn.TabIndex = 6;
@@ -433,7 +433,7 @@
             //
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(512, 437);
+            this.ClientSize = new System.Drawing.Size(512, 459);
             this.Controls.Add(this.helpBtn);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.optionsBox);

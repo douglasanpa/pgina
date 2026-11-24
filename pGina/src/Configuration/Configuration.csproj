@@ -40,6 +40,7 @@
       <DependentUpon>ConfigurationUI.cs</DependentUpon>
     </Compile>
     <Compile Include="CredProvFilterConfig.cs" />
+    <Compile Include="LockScreen.cs" />
     <Compile Include="LogViewWindow.cs">
       <SubType>Form</SubType>
     </Compile>

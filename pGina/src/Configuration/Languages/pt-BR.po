@@ -1,0 +1,494 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: pGina\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "General"
+msgstr "Geral"
+
+msgid "Language"
+msgstr "Idioma"
+
+msgid "Language:"
+msgstr "Idioma:"
+
+msgid "Used by this window and the logon screen after a restart."
+msgstr "Usado por esta janela e pela tela de logon depois de reiniciar."
+
+msgid "Logon Screen"
+msgstr "Tela de logon"
+
+msgid "Lock Screen Background"
+msgstr "Fundo da tela de bloqueio"
+
+msgid "Image:"
+msgstr "Imagem:"
+
+msgid "Windows Default"
+msgstr "Padrão do Windows"
+
+msgid ""
+"Shown on the lock screen and on the sign-in screen. When saved, the image is copied to the pGina folder, so it keeps working if the original file changes or is removed.\n"
+"\n"
+"Windows Default removes the image set here. Windows shows the new background the next time the screen is locked or the computer restarts."
+msgstr ""
+"Aparece na tela de bloqueio e na tela de entrada. Ao salvar, a imagem é copiada para a pasta do pGina, e continua valendo mesmo que o arquivo original mude ou seja apagado.\n"
+"\n"
+"Padrão do Windows remove a imagem definida aqui. O Windows mostra o novo fundo na próxima vez que a tela for bloqueada ou o computador reiniciar."
+
+msgid "NTP Servers"
+msgstr "Servidores NTP"
+
+msgid "Logon"
+msgstr "Logon"
+
+msgid "Prefer local Authentication"
+msgstr "Preferir autenticação local"
+
+msgid "Display last user name in logon screen"
+msgstr "Mostrar o último usuário na tela de logon"
+
+msgid "Email Notifications"
+msgstr "Notificações por e-mail"
+
+msgid "Password:"
+msgstr "Senha:"
+
+msgid "Username:"
+msgstr "Usuário:"
+
+msgid "email Addr.:"
+msgstr "E-mail:"
+
+msgid "smtp Server:"
+msgstr "SMTP:"
+
+msgid "SSL"
+msgstr "SSL"
+
+msgid "Prefer Login credentials"
+msgstr "Usar dados do logon"
+
+msgid "Unlock"
+msgstr "Desbloqueio"
+
+msgid "Use original username to unlock computer (Windows 7 and later)."
+msgstr "Desbloquear com o usuário original (Windows 7 ou superior)."
+
+msgid "Credential Provider/GINA Status"
+msgstr "Status do provedor de credenciais/GINA"
+
+msgid "Enable"
+msgstr "Ativar"
+
+msgid "Register"
+msgstr "Registrar"
+
+msgid "Enabled:"
+msgstr "Ativado:"
+
+msgid "Registered:"
+msgstr "Registrado:"
+
+msgid "pGina Service"
+msgstr "Serviço do pGina"
+
+msgid "Show service status in logon UI"
+msgstr "Mostrar o status do serviço na tela de logon"
+
+msgid "Stop"
+msgstr "Parar"
+
+msgid "Start"
+msgstr "Iniciar"
+
+msgid "Status:"
+msgstr "Status:"
+
+msgid "MOTD"
+msgstr "Mensagem do dia"
+
+msgid "Enable MOTD"
+msgstr "Ativar mensagem do dia"
+
+msgid "MOTD:"
+msgstr "Texto:"
+
+msgid "Tile Image"
+msgstr "Imagem do usuário"
+
+msgid "Preview:"
+msgstr "Prévia:"
+
+msgid "Tile image:"
+msgstr "Imagem:"
+
+msgid "Plugin Selection"
+msgstr "Plugins"
+
+msgid "Current Plugins"
+msgstr "Plugins disponíveis"
+
+msgid "Configure..."
+msgstr "Configurar..."
+
+msgid "Search Directories"
+msgstr "Pastas de plugins"
+
+msgid "Remove"
+msgstr "Remover"
+
+msgid "Add"
+msgstr "Adicionar"
+
+msgid "Plugin Order"
+msgstr "Ordem dos plugins"
+
+msgid "Change Password"
+msgstr "Troca de senha"
+
+msgid "Gateway"
+msgstr "Gateway"
+
+msgid "Event Notification"
+msgstr "Notificação de eventos"
+
+msgid "Authorization"
+msgstr "Autorização"
+
+msgid "Authentication"
+msgstr "Autenticação"
+
+msgid "GINA Options"
+msgstr "Opções da GINA"
+
+msgid "Browse..."
+msgstr "Procurar..."
+
+msgid "Chained GINA:"
+msgstr "GINA encadeada:"
+
+msgid "Login UI"
+msgstr "Tela de logon"
+
+msgid "Hibernate the machine"
+msgstr "Hibernar o computador"
+
+msgid "Put the machine to sleep"
+msgstr "Suspender o computador"
+
+msgid "Restart the machine"
+msgstr "Reiniciar o computador"
+
+msgid "Shutdown the machine"
+msgstr "Desligar o computador"
+
+msgid "Enable 'Special Action' Button for:"
+msgstr "Ativar o botão 'Ação especial' para:"
+
+msgid "Credential Provider Options"
+msgstr "Provedores de credenciais"
+
+msgid "Disable Credential Providers"
+msgstr "Desativar provedores de credenciais"
+
+msgid "To disable the built-in Microsoft credential provider, select \"PasswordProvider\" above."
+msgstr "Para desativar o provedor de credenciais da Microsoft, marque \"PasswordProvider\" acima."
+
+msgid "Mark a checkbox to disable a credential provider:"
+msgstr "Marque para desativar um provedor de credenciais:"
+
+msgid "Simulation"
+msgstr "Simulação"
+
+msgid "View Log"
+msgstr "Ver log"
+
+msgid "Results"
+msgstr "Resultados"
+
+msgid "Local Groups:"
+msgstr "Grupos locais:"
+
+msgid "Result:"
+msgstr "Final:"
+
+msgid "Message:"
+msgstr "Mensagem:"
+
+msgid "pGina Stages"
+msgstr "Etapas do pGina"
+
+msgid "Authentication:"
+msgstr "Autenticação:"
+
+msgid "Authorization:"
+msgstr "Autorização:"
+
+msgid "Gateway:"
+msgstr "Gateway:"
+
+msgid "Final User Data"
+msgstr "Dados finais do usuário"
+
+msgid "Show Text"
+msgstr "Mostrar"
+
+msgid "Domain:"
+msgstr "Domínio:"
+
+msgid "Simulated LogonUI"
+msgstr "Tela de logon simulada"
+
+msgid "Simulation Method"
+msgstr "Método de simulação"
+
+msgid "Launch a CredUI Prompt"
+msgstr "Abrir uma janela do CredUI"
+
+msgid "Emulate pGina Service"
+msgstr "Emular o serviço do pGina"
+
+msgid "Use pGina Service"
+msgstr "Usar o serviço do pGina"
+
+msgid "Run gateway stage"
+msgstr "Executar a etapa de gateway"
+
+msgid "Apply"
+msgstr "Aplicar"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "pGina version"
+msgstr "Versão do pGina"
+
+msgid "Save"
+msgstr "Salvar"
+
+msgid "Help"
+msgstr "Ajuda"
+
+msgid "pGina Configuration"
+msgstr "Configuração do pGina"
+
+msgid "pGina Log"
+msgstr "Log do pGina"
+
+msgid ""
+"Message of the Day (MOTD).   Displayed below the tile image and  above the username/password fields.\n"
+"Valid substitutions:   %m - Machine name, %d - Today's date, %i - IP address, %n - DNS name, %v pGina version"
+msgstr ""
+"Mensagem do dia, exibida abaixo da imagem do usuário e acima dos campos de usuário e senha.\n"
+"Substituições:   %m - nome do computador, %d - data de hoje, %i - endereço IP, %n - nome DNS, %v - versão do pGina"
+
+msgid ""
+"WARNING: Disabling a credential provider can be risky.  If pGina malfunctions or otherwise prevents access\n"
+" to the machine, it may be necessary to boot into safe mode in order to restore access.  Before disabling a\n"
+"credential provider, be sure you know what you're doing. You have been warned."
+msgstr ""
+"ATENÇÃO: desativar um provedor de credenciais é arriscado. Se o pGina falhar ou impedir o acesso ao\n"
+"computador, pode ser preciso iniciar no modo de segurança para recuperar o acesso. Antes de desativar um\n"
+"provedor de credenciais, tenha certeza do que está fazendo."
+
+msgid "Unable to load full plugin list: {0}"
+msgstr "Não foi possível carregar a lista completa de plugins: {0}"
+
+msgid "Error"
+msgstr "Erro"
+
+msgid ""
+"space separated FQDN list of your smtp servers\n"
+"smtp.domain.local:25"
+msgstr ""
+"Servidores SMTP (FQDN) separados por espaço\n"
+"smtp.dominio.local:25"
+
+msgid ""
+"space separated FQDN list of email addresses\n"
+"admin@domain.local"
+msgstr ""
+"Endereços de e-mail separados por espaço\n"
+"admin@dominio.local"
+
+msgid "smtp username"
+msgstr "Usuário do SMTP"
+
+msgid "smtp password"
+msgstr "Senha do SMTP"
+
+msgid "prefer Login credentials instead of smtp username and password"
+msgstr "Usar as credenciais do logon em vez do usuário e senha do SMTP"
+
+msgid "use encrypted smtp connection"
+msgstr "Usar conexão SMTP criptografada"
+
+msgid "list of NTP servers"
+msgstr "Lista de servidores NTP"
+
+msgid "Unable to access registry, good bye."
+msgstr "Não foi possível acessar o registro. Execute como administrador."
+
+msgid "Registry access error"
+msgstr "Erro de acesso ao registro"
+
+msgid "Credential Provider"
+msgstr "Provedor de credenciais"
+
+msgid "Cred UI"
+msgstr "Cred UI"
+
+msgid "UUID"
+msgstr "UUID"
+
+msgid "Automatic (Windows language)"
+msgstr "Automático (idioma do Windows)"
+
+msgid "Not Installed"
+msgstr "Não instalado"
+
+msgid "Yes"
+msgstr "Sim"
+
+msgid "Unregister"
+msgstr "Remover registro"
+
+msgid "Disable"
+msgstr "Desativar"
+
+msgid "No"
+msgstr "Não"
+
+msgid "Warning: The 32-bit CredentialProvider is not registered.  32-bit apps that make use of the CredentialProvider may not function correctly."
+msgstr "Atenção: o provedor de credenciais de 32 bits não está registrado. Aplicativos de 32 bits que usam o provedor de credenciais podem não funcionar corretamente."
+
+msgid "Running"
+msgstr "Em execução"
+
+msgid "Continue pending..."
+msgstr "Retomando..."
+
+msgid "Pause pending..."
+msgstr "Pausando..."
+
+msgid "Starting..."
+msgstr "Iniciando..."
+
+msgid "Stopping..."
+msgstr "Parando..."
+
+msgid "Stopped"
+msgstr "Parado"
+
+msgid "Unable to load a preview image for the selected file, pGina may not be able to show this image at login time.\n"
+msgstr "Não foi possível carregar a prévia do arquivo escolhido. O pGina talvez não consiga mostrar essa imagem no logon.\n"
+
+msgid "Stage"
+msgstr "Etapa"
+
+msgid "Plugin"
+msgstr "Plugin"
+
+msgid "Result"
+msgstr "Resultado"
+
+msgid "Message"
+msgstr "Mensagem"
+
+msgid "Plugin Name"
+msgstr "Plugin"
+
+msgid "Notification"
+msgstr "Notificação"
+
+msgid "Description"
+msgstr "Descrição"
+
+msgid "Version"
+msgstr "Versão"
+
+msgid "Directory"
+msgstr "Pasta"
+
+msgid "Exception when saving data: "
+msgstr "Erro ao salvar os dados: "
+
+msgid "At least one plugin must be set for Authentication"
+msgstr "Pelo menos um plugin precisa estar ativo na Autenticação"
+
+msgid "Can't save settings"
+msgstr "Não foi possível salvar"
+
+msgid "At least one plugin must be set for Authorization"
+msgstr "Pelo menos um plugin precisa estar ativo na Autorização"
+
+msgid "The new language is used the next time this window and the logon screen are opened."
+msgstr "O novo idioma vale a partir da próxima vez que esta janela e a tela de logon forem abertas."
+
+msgid "Settings written to registry."
+msgstr "Configurações gravadas no registro."
+
+msgid "Settings Saved"
+msgstr "Configurações salvas"
+
+msgid ""
+"The gateway stage runs for real: plugins such as Local Machine can create or change local accounts and groups on this computer.\n"
+"\n"
+"Run the gateway stage in the simulation?"
+msgstr ""
+"A etapa de gateway é executada de verdade: plugins como o Local Machine podem criar ou alterar contas e grupos locais neste computador.\n"
+"\n"
+"Executar a etapa de gateway na simulação?"
+
+msgid "Warning"
+msgstr "Atenção"
+
+msgid "The pGina service runs authentication and authorization with its saved configuration (pending changes are not used). Individual plugin results and results for each stage are unavailable.  Continue?"
+msgstr "O serviço do pGina executa a autenticação e a autorização com a configuração salva (alterações pendentes não são usadas). Os resultados de cada plugin e de cada etapa não ficam disponíveis. Continuar?"
+
+msgid "Continuing will save all pending changes in configuration, do you want to continue?"
+msgstr "Continuar vai salvar todas as alterações pendentes na configuração. Deseja continuar?"
+
+msgid "Success"
+msgstr "Sucesso"
+
+msgid "Failure"
+msgstr "Falha"
+
+msgid "The lock screen image {0} doesn't exist."
+msgstr "A imagem da tela de bloqueio {0} não existe."
+
+msgid "{0} isn't a supported image."
+msgstr "{0} não é uma imagem suportada."
+
+msgid "Unable to set the lock screen image: {0}"
+msgstr "Não foi possível definir a imagem da tela de bloqueio: {0}"
+
+msgid "Images"
+msgstr "Imagens"
+
+msgid ""
+"{0}\n"
+"A dependent service is disabled?"
+msgstr ""
+"{0}\n"
+"Algum serviço do qual ele depende está desativado?"
+
+msgid "Can't start pGina service"
+msgstr "Não foi possível iniciar o serviço do pGina"
+
+msgid "Can't stop pGina service"
+msgstr "Não foi possível parar o serviço do pGina"
+
+msgid "Error: "
+msgstr "Erro: "
+
+msgid "File saved successfully: {0}"
+msgstr "Arquivo salvo: {0}"
+
+msgid "Log Export"
+msgstr "Exportar log"

@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 
 using pGina.Shared.Settings;
+using pGina.Shared.Localization;
 
 namespace pGina.Plugin.RADIUS
 {
@@ -18,6 +19,7 @@ namespace pGina.Plugin.RADIUS
         public Configuration()
         {
             InitializeComponent();
+            FormStyle.Apply(this);
             secretTB.UseSystemPasswordChar = true;
             sendNasIdentifierCB.CheckedChanged += checkboxModifyInputs;
             sendCalledStationCB.CheckedChanged += checkboxModifyInputs;
@@ -48,7 +50,7 @@ namespace pGina.Plugin.RADIUS
             }
             catch (FormatException)
             {
-                MessageBox.Show("Port and Timeout values must be numbers greater than 0.");
+                MessageBox.Show(Language.T("Port and Timeout values must be numbers greater than 0."));
                 return false;
             }
 
@@ -57,19 +59,19 @@ namespace pGina.Plugin.RADIUS
             {
                 if (!sendNasIpAddrCB.Checked && !sendNasIdentifierCB.Checked)
                 {
-                    MessageBox.Show("Send NAS IP Address or Send NAS Identifier must be checked under Authentication Options");
+                    MessageBox.Show(Language.T("Send NAS IP Address or Send NAS Identifier must be checked under Authentication Options"));
                     return false;
                 }
 
                 if (sendNasIdentifierCB.Checked && String.IsNullOrEmpty(sendNasIdentifierTB.Text.Trim()))
                 {
-                    MessageBox.Show("NAS Identifier can not be blank if the option is enabled.");
+                    MessageBox.Show(Language.T("NAS Identifier can not be blank if the option is enabled."));
                     return false;
                 }
 
                 if (sendCalledStationCB.Checked && String.IsNullOrEmpty(sendCalledStationTB.Text.Trim()))
                 {
-                    MessageBox.Show("Called-Station-ID can not be blank if the option is enabled.");
+                    MessageBox.Show(Language.T("Called-Station-ID can not be blank if the option is enabled."));
                     return false;
                 }
             }

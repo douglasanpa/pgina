@@ -1,0 +1,86 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: pGina\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Authentication"
+msgstr "Autenticação"
+
+msgid "system context"
+msgstr "Contexto do sistema"
+
+msgid "submit pwd"
+msgstr "Enviar senha"
+
+msgid "submit user password"
+msgstr "Enviar a senha do usuário"
+
+msgid "script"
+msgstr "Script"
+
+msgid "script to run"
+msgstr "Script a executar"
+
+msgid "Authorization"
+msgstr "Autorização"
+
+msgid "Gateway"
+msgstr "Gateway"
+
+msgid "Event Notification"
+msgstr "Notificação de eventos"
+
+msgid "user context"
+msgstr "Contexto do usuário"
+
+msgid "logon"
+msgstr "Logon"
+
+msgid "run on logon"
+msgstr "Executar no logon"
+
+msgid "logoff"
+msgstr "Logoff"
+
+msgid "run on logoff"
+msgstr "Executar no logoff"
+
+msgid "Change Password"
+msgstr "Troca de senha"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Save"
+msgstr "Salvar"
+
+msgid "Help"
+msgstr "Ajuda"
+
+msgid ""
+"Macros: %u = Username, %o = OriginalUsername, %p = Password, %P = OriginalPassword, %b = oldPassword, %s = SID, %e = PasswordEXP,\r\n"
+" %i = SessionID, %Ae = Authentication plugins, %Ao = Authorization plugins, %Gw = Gateway plugins"
+msgstr ""
+"Macros: %u usuário, %o usuário original, %p senha, %P senha original, %b senha antiga, %s SID, %e expiração da senha,\r\n"
+" %i sessão, %Ae plugins de autenticação, %Ao de autorização, %Gw de gateway"
+
+msgid "Configuration"
+msgstr "Configuração"
+
+msgid ""
+"scripting plugin\n"
+"\n"
+"{0}"
+msgstr ""
+"Plugin scripting\n"
+"\n"
+"{0}"
+
+msgid "can't save settings in registry"
+msgstr "Não foi possível salvar no registro"
+
+msgid "can't load settings from registry"
+msgstr "Não foi possível ler do registro"

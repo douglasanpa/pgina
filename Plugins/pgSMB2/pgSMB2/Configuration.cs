@@ -33,6 +33,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using pGina.Shared.Localization;
 
 namespace pGina.Plugin.pgSMB2
 {
@@ -41,6 +42,7 @@ namespace pGina.Plugin.pgSMB2
         public Configuration()
         {
             InitializeComponent();
+            FormStyle.Apply(this);
             SettingsToUi();
         }
 
@@ -69,7 +71,7 @@ namespace pGina.Plugin.pgSMB2
             Dictionary<string, string> ntps = pGina.Shared.Settings.pGinaDynamicSettings.GetSettings(pGina.Shared.Settings.pGinaDynamicSettings.pGinaRoot, new string[] { "" });
             if (!ntps.ContainsKey("ntpservers") || String.IsNullOrEmpty(ntps["ntpservers"]))
             {
-                MessageBox.Show(this, "Setup at least one Ntp server in the global configuration", "Global Ntp Server missing");
+                MessageBox.Show(this, Language.T("Setup at least one Ntp server in the global configuration"), Language.T("Global Ntp Server missing"));
             }
 
             this.SMBshare.Text = SMBshare_str;
@@ -113,20 +115,20 @@ namespace pGina.Plugin.pgSMB2
             toolTip1.ReshowDelay = 0;
             toolTip1.ShowAlways = true;
 
-            toolTip1.SetToolTip(this.SMBshare, "The UNC name of the share to connect");
-            toolTip1.SetToolTip(this.RoamingSource, "Where to store the compressed profile");
-            toolTip1.SetToolTip(this.Filename, "The name of the compressed profile");
-            toolTip1.SetToolTip(this.TempComp, "A local temporarily storage for the compressed Profile");
-            toolTip1.SetToolTip(this.ConnectRetry, "How often to retry to connect to the share\n(un)compress the profile");
-            toolTip1.SetToolTip(this.Compressor, "The Program to (un)compress the user profile");
-            toolTip1.SetToolTip(this.UncompressCLI, "The command to uncompress the profile");
-            toolTip1.SetToolTip(this.CompressCLI, "The Commandline to compress the user profile");
-            toolTip1.SetToolTip(this.HomeDir, "The user home directory");
-            toolTip1.SetToolTip(this.HomeDirDrive, "The user home drive");
-            toolTip1.SetToolTip(this.ScriptPath, "The full path to your login script (Runonce regkey!)");
-            toolTip1.SetToolTip(this.MaxStore, "Maximum profile size in kbytes\nless or equal 10MB == all space");
-            toolTip1.SetToolTip(this.MaxStore_exclude, "Exclude Directories from user profile storage quota\nRegular-Expressions!");
-            toolTip1.SetToolTip(this.MaxStore_proquota_comboBox, "Text for proquota");
+            toolTip1.SetToolTip(this.SMBshare, Language.T("The UNC name of the share to connect"));
+            toolTip1.SetToolTip(this.RoamingSource, Language.T("Where to store the compressed profile"));
+            toolTip1.SetToolTip(this.Filename, Language.T("The name of the compressed profile"));
+            toolTip1.SetToolTip(this.TempComp, Language.T("A local temporarily storage for the compressed Profile"));
+            toolTip1.SetToolTip(this.ConnectRetry, Language.T("How often to retry to connect to the share\n(un)compress the profile"));
+            toolTip1.SetToolTip(this.Compressor, Language.T("The Program to (un)compress the user profile"));
+            toolTip1.SetToolTip(this.UncompressCLI, Language.T("The command to uncompress the profile"));
+            toolTip1.SetToolTip(this.CompressCLI, Language.T("The Commandline to compress the user profile"));
+            toolTip1.SetToolTip(this.HomeDir, Language.T("The user home directory"));
+            toolTip1.SetToolTip(this.HomeDirDrive, Language.T("The user home drive"));
+            toolTip1.SetToolTip(this.ScriptPath, Language.T("The full path to your login script (Runonce regkey!)"));
+            toolTip1.SetToolTip(this.MaxStore, Language.T("Maximum profile size in kbytes\nless or equal 10MB == all space"));
+            toolTip1.SetToolTip(this.MaxStore_exclude, Language.T("Exclude Directories from user profile storage quota\nRegular-Expressions!"));
+            toolTip1.SetToolTip(this.MaxStore_proquota_comboBox, Language.T("Text for proquota"));
         }
 
         private void UiToSettings()
@@ -151,7 +153,7 @@ namespace pGina.Plugin.pgSMB2
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, ex.Message, "A regular expression parsing error occurred");
+                MessageBox.Show(this, ex.Message, Language.T("A regular expression parsing error occurred"));
             }
 
             List<MaxStoreText> proquota_text = this.MaxStore_proquota_comboBox.DataSource as List<MaxStoreText>;
@@ -165,7 +167,7 @@ namespace pGina.Plugin.pgSMB2
             Dictionary<string, string> ntps = pGina.Shared.Settings.pGinaDynamicSettings.GetSettings(pGina.Shared.Settings.pGinaDynamicSettings.pGinaRoot, new string[] { "" });
             if (!ntps.ContainsKey("ntpservers") || String.IsNullOrEmpty(ntps["ntpservers"]))
             {
-                MessageBox.Show(this, "No ntp server given!\nSet at least one NTP server in the global configuration!", "Warning NTP server needed");
+                MessageBox.Show(this, Language.T("No ntp server given!\nSet at least one NTP server in the global configuration!"), Language.T("Warning NTP server needed"));
             }
         }
 

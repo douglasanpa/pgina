@@ -35,6 +35,7 @@ using System.Windows.Forms;
 
 using MySql.Data;
 using MySql.Data.MySqlClient;
+using pGina.Shared.Localization;
 
 namespace pGina.Plugin.MySQLAuth
 {
@@ -46,6 +47,7 @@ namespace pGina.Plugin.MySQLAuth
         public Configuration()
         {
             InitializeComponent();
+            FormStyle.Apply(this);
             InitUI();
         }
 
@@ -145,7 +147,7 @@ namespace pGina.Plugin.MySQLAuth
             }
             catch (Exception)
             {
-                MessageBox.Show("The port must be a positive integer.");
+                MessageBox.Show(Language.T("The port must be a positive integer."));
                 return false;
             }
 
@@ -518,7 +520,7 @@ namespace pGina.Plugin.MySQLAuth
             }
             catch (FormatException)
             {
-                MessageBox.Show("Invalid port number.");
+                MessageBox.Show(Language.T("Invalid port number."));
                 return null;
             }
 
@@ -552,7 +554,7 @@ namespace pGina.Plugin.MySQLAuth
             string localGrp = this.gtwRuleLocalGroupTB.Text.Trim();
             if (string.IsNullOrEmpty(localGrp))
             {
-                MessageBox.Show("Please enter a local group name");
+                MessageBox.Show(Language.T("Please enter a local group name"));
                 return;
             }
             int idx = this.gtwRuleConditionCB.SelectedIndex;
@@ -571,7 +573,7 @@ namespace pGina.Plugin.MySQLAuth
                 string remoteGroup = this.gtwRuleMysqlGroupTB.Text.Trim();
                 if (string.IsNullOrEmpty(remoteGroup))
                 {
-                    MessageBox.Show("Please enter a remote group name");
+                    MessageBox.Show(Language.T("Please enter a remote group name"));
                     return;
                 }
                 this.gtwRulesListBox.Items.Add(new GroupGatewayRule(remoteGroup, c, localGrp));
@@ -594,7 +596,7 @@ namespace pGina.Plugin.MySQLAuth
             string grp = this.tbAuthzRuleGroup.Text.Trim();
             if (string.IsNullOrEmpty(grp))
             {
-                MessageBox.Show("Please enter a group name.");
+                MessageBox.Show(Language.T("Please enter a group name."));
                 return;
             }
 

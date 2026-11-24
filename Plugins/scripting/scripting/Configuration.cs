@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using pGina.Shared.Localization;
 
 namespace pGina.Plugin.scripting
 {
@@ -14,6 +15,7 @@ namespace pGina.Plugin.scripting
         public Configuration()
         {
             InitializeComponent();
+            FormStyle.Apply(this);
             LoadSettings();
         }
 
@@ -35,7 +37,7 @@ namespace pGina.Plugin.scripting
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, String.Format("scripting plugin\n\n{0}", ex.Message), "can't save settings in registry");
+                MessageBox.Show(this, Language.Format("scripting plugin\n\n{0}", ex.Message), Language.T("can't save settings in registry"));
             }
         }
 
@@ -57,7 +59,7 @@ namespace pGina.Plugin.scripting
             }
             catch (Exception ex)
             {
-                MessageBox.Show(this, String.Format("scripting plugin\n\n{0}", ex.Message), "can't load settings from registry");
+                MessageBox.Show(this, Language.Format("scripting plugin\n\n{0}", ex.Message), Language.T("can't load settings from registry"));
             }
         }
 

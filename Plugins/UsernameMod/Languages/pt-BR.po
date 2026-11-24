@@ -1,0 +1,83 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: pGina\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Action:"
+msgstr "Ação:"
+
+msgid "Save"
+msgstr "Salvar"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Authentication"
+msgstr "Autenticação"
+
+msgid "Authorization"
+msgstr "Autorização"
+
+msgid "Gateway"
+msgstr "Gateway"
+
+msgid "will be replaced with"
+msgstr "será substituído por"
+
+msgid "The characters"
+msgstr "Os caracteres"
+
+msgid "Remove"
+msgstr "Remover"
+
+msgid "Add Rule"
+msgstr "Adicionar regra"
+
+msgid "List of Rules"
+msgstr "Lista de regras"
+
+msgid "Rules"
+msgstr "Regras"
+
+msgid "Help"
+msgstr "Ajuda"
+
+msgid "Modify Username Plugin Configuration"
+msgstr "Configuração do plugin Modify Username"
+
+msgid "Unable to load all rules from registry."
+msgstr "Não foi possível carregar todas as regras do registro."
+
+msgid ""
+"Unable to save settings.\n"
+"{0}"
+msgstr ""
+"Não foi possível salvar as configurações.\n"
+"{0}"
+
+msgid "Authentication, Authorization or Gateway button must be checked."
+msgstr "Marque Autenticação, Autorização ou Gateway."
+
+msgid "Append the following:"
+msgstr "Acrescentar no final:"
+
+msgid "Prepend the following:"
+msgstr "Acrescentar no início:"
+
+msgid "Number of characters allowed:"
+msgstr "Número de caracteres permitidos:"
+
+msgid "Replace the following characters:"
+msgstr "Substituir estes caracteres:"
+
+msgid "With this string:"
+msgstr "Por este texto:"
+
+msgid "Replace the regex expression:"
+msgstr "Substituir a expressão regular:"
+
+msgid "Require the username to match:"
+msgstr "Exigir que o usuário corresponda a:"

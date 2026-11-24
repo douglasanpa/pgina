@@ -1,0 +1,31 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: pGina\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Host:"
+msgstr "Host:"
+
+msgid "Save"
+msgstr "Salvar"
+
+msgid "Hostname or address of SSH Server"
+msgstr "Nome ou endereço do servidor SSH"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Help"
+msgstr "Ajuda"
+
+msgid "Port:"
+msgstr "Porta:"
+
+msgid "Port or service of SSH server (usually 22)"
+msgstr "Porta ou serviço do servidor SSH (normalmente 22)"
+
+msgid "SSHAuth Configuration"
+msgstr "Configuração do SSHAuth"

@@ -1,0 +1,79 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: pGina\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Details"
+msgstr "Detalhes"
+
+msgid "Delete"
+msgstr "Excluir"
+
+msgid "New"
+msgstr "Novo"
+
+msgid "Protocol:"
+msgstr "Protocolo:"
+
+msgid "Server:"
+msgstr "Servidor:"
+
+msgid "Port:"
+msgstr "Porta:"
+
+msgid "Use SSL"
+msgstr "Usar SSL"
+
+msgid "Append Domain to Username"
+msgstr "Acrescentar domínio ao usuário"
+
+msgid "Domain:"
+msgstr "Domínio:"
+
+msgid "Timeout:"
+msgstr "Timeout:"
+
+msgid "Help"
+msgstr "Ajuda"
+
+msgid "Save"
+msgstr "Salvar"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Multi Email Configuration"
+msgstr "Configuração do Multi Email"
+
+msgid "Protocol"
+msgstr "Protocolo"
+
+msgid "Server"
+msgstr "Servidor"
+
+msgid "SSL"
+msgstr "SSL"
+
+msgid "Port"
+msgstr "Porta"
+
+msgid "Append"
+msgstr "Acrescentar"
+
+msgid "Domain"
+msgstr "Domínio"
+
+msgid "Timeout"
+msgstr "Timeout"
+
+msgid "Server address can not be blank."
+msgstr "Informe o endereço do servidor."
+
+msgid "Port must be an integer greater than 0."
+msgstr "A porta precisa ser um número inteiro maior que 0."
+
+msgid "A domain must be entered if \"Append domain to username\" is checked."
+msgstr "Informe um domínio quando \"Acrescentar domínio ao usuário\" estiver marcado."

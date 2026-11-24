@@ -1,0 +1,154 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: pGina\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Save"
+msgstr "Salvar"
+
+msgid "Host:"
+msgstr "Host:"
+
+msgid "Port:"
+msgstr "Porta:"
+
+msgid "User:"
+msgstr "Login:"
+
+msgid "Password:"
+msgstr "Senha:"
+
+msgid "Show Text"
+msgstr "Mostrar"
+
+msgid "Use SSL"
+msgstr "Usar SSL"
+
+msgid "MySQL Server"
+msgstr "Servidor MySQL"
+
+msgid "MySQL Database:"
+msgstr "Banco MySQL:"
+
+msgid "User Table"
+msgstr "Tabela de usuários"
+
+msgid "Base 64"
+msgstr "Base 64"
+
+msgid "Hexadecimal"
+msgstr "Hexadecimal"
+
+msgid "Column Names"
+msgstr "Nomes das colunas"
+
+msgid "Primary Key:"
+msgstr "Chave primária:"
+
+msgid "Hash Method:"
+msgstr "Método de hash:"
+
+msgid "Username:"
+msgstr "Usuário:"
+
+msgid "Password encoding:"
+msgstr "Codificação da senha:"
+
+msgid "Table Name:"
+msgstr "Tabela:"
+
+msgid "Group Table"
+msgstr "Tabela de grupos"
+
+msgid "Group Name:"
+msgstr "Nome do grupo:"
+
+msgid "User-Group Table"
+msgstr "Tabela usuário-grupo"
+
+msgid "Group Foreign Key:"
+msgstr "Chave estrangeira do grupo:"
+
+msgid "User Foreign Key:"
+msgstr "Chave estrangeira do usuário:"
+
+msgid "Create Tables..."
+msgstr "Criar tabelas..."
+
+msgid "Test..."
+msgstr "Testar..."
+
+msgid "Server"
+msgstr "Servidor"
+
+msgid "Database Schema"
+msgstr "Esquema do banco"
+
+msgid "Authorization"
+msgstr "Autorização"
+
+msgid "Authorization rules:"
+msgstr "Regras de autorização:"
+
+msgid "Add"
+msgstr "Adicionar"
+
+msgid "Deny when MySQL authentication fails."
+msgstr "Negar quando a autenticação MySQL falhar."
+
+msgid "Default:"
+msgstr "Padrão:"
+
+msgid "Deny"
+msgstr "Negar"
+
+msgid "Allow"
+msgstr "Permitir"
+
+msgid "Gateway"
+msgstr "Gateway"
+
+msgid "Prevent logon on server error."
+msgstr "Impedir o logon em caso de erro no servidor."
+
+msgid "Gateway rules:"
+msgstr "Regras de gateway:"
+
+msgid "Add Rule"
+msgstr "Adicionar regra"
+
+msgid "add to local group:"
+msgstr "Grupo local:"
+
+msgid "Help"
+msgstr "Ajuda"
+
+msgid "MySQL Plugin Configuration"
+msgstr "Configuração do plugin MySQL"
+
+msgid "Close"
+msgstr "Fechar"
+
+msgid "Information"
+msgstr "Informação"
+
+msgid "The port must be a positive integer."
+msgstr "A porta precisa ser um número inteiro positivo."
+
+msgid "Invalid port number."
+msgstr "Porta inválida."
+
+msgid "Please enter a local group name"
+msgstr "Informe o nome do grupo local"
+
+msgid "Please enter a remote group name"
+msgstr "Informe o nome do grupo remoto"
+
+msgid "Please enter a group name."
+msgstr "Informe o nome de um grupo."

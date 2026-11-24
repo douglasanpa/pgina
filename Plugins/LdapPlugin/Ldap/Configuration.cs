@@ -40,6 +40,7 @@ using pGina.Shared.Settings;
 using pGina.Plugin.Ldap;
 
 using log4net;
+using pGina.Shared.Localization;
 
 namespace pGina.Plugin.Ldap
 {
@@ -50,6 +51,7 @@ namespace pGina.Plugin.Ldap
         public Configuration()
         {
             InitializeComponent();
+            FormStyle.Apply(this);
 
             InitUI();
             LoadSettings();
@@ -68,7 +70,7 @@ namespace pGina.Plugin.Ldap
             {
                 Name = "Attribute Name",
                 DataPropertyName = "Name",
-                HeaderText = "Attribute Name",
+                HeaderText = Language.T("Attribute Name"),
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
                 ReadOnly = false
             });
@@ -76,7 +78,7 @@ namespace pGina.Plugin.Ldap
             {
                 Name = "Method",
                 DataPropertyName = "Method",
-                HeaderText = "Method",
+                HeaderText = Language.T("Method"),
                 AutoSizeMode = DataGridViewAutoSizeColumnMode.None,
                 Width = 250,
                 DisplayMember = "Name",
@@ -319,7 +321,7 @@ namespace pGina.Plugin.Ldap
         {
             if (ldapHostTextBox.Text.Trim().Length == 0)
             {
-                MessageBox.Show("Please provide at least one LDAP host");
+                MessageBox.Show(Language.T("Please provide at least one LDAP host"));
                 return false;
             }
 
@@ -330,7 +332,7 @@ namespace pGina.Plugin.Ldap
             }
             catch (FormatException)
             {
-                MessageBox.Show("The LDAP port number must be a positive integer > 0.");
+                MessageBox.Show(Language.T("The LDAP port number must be a positive integer > 0."));
                 return false;
             }
 
@@ -341,7 +343,7 @@ namespace pGina.Plugin.Ldap
             }
             catch (FormatException)
             {
-                MessageBox.Show("The timout be a positive integer > 0.");
+                MessageBox.Show(Language.T("The timeout must be a positive integer > 0."));
                 return false;
             }
 
@@ -352,8 +354,8 @@ namespace pGina.Plugin.Ldap
 
             if (validateServerCertCheckBox.CheckState == CheckState.Checked && sslCertFileTextBox.Text.Trim().Length > 0 && !File.Exists(sslCertFileTextBox.Text.Trim()))
             {
-                MessageBox.Show("SSL certificate file does not exist."
-                    + "Please select a valid certificate file.");
+                MessageBox.Show(Language.T("SSL certificate file does not exist.")
+                    + Language.T("Please select a valid certificate file."));
                 return false;
             }
             // TODO: Make sure that other input is valid.
@@ -408,7 +410,7 @@ namespace pGina.Plugin.Ldap
             string SaveAuthzRules_ret = GroupRuleLoader.SaveAuthzRules(lst);
             if (!string.IsNullOrEmpty(SaveAuthzRules_ret))
             {
-                MessageBox.Show("There was an error in saving your authorization rules.\n" + SaveAuthzRules_ret);
+                MessageBox.Show(Language.T("There was an error in saving your authorization rules.\n") + SaveAuthzRules_ret);
             }
 
             // Gateway
@@ -421,7 +423,7 @@ namespace pGina.Plugin.Ldap
             string SaveGatewayRules_ret = GroupRuleLoader.SaveGatewayRules(gwList);
             if (!string.IsNullOrEmpty(SaveGatewayRules_ret))
             {
-                MessageBox.Show("There was an error in saving your gateway rules.\n" + SaveGatewayRules_ret);
+                MessageBox.Show(Language.T("There was an error in saving your gateway rules.\n") + SaveGatewayRules_ret);
             }
 
             // Change Password
@@ -456,7 +458,7 @@ namespace pGina.Plugin.Ldap
             string path = this.authzRulePathTB.Text.Trim();
             if (string.IsNullOrEmpty(path))
             {
-                MessageBox.Show("Please enter a DN");
+                MessageBox.Show(Language.T("Please enter a DN"));
                 return;
             }
 
@@ -478,7 +480,7 @@ namespace pGina.Plugin.Ldap
             string filter = this.authzRuleFilter.Text.Trim();
             if (string.IsNullOrEmpty(path))
             {
-                MessageBox.Show("Please enter a search filter");
+                MessageBox.Show(Language.T("Please enter a search filter"));
                 return;
             }
             SearchScope search = (SearchScope)this.authzRuleScope.SelectedIndex;
@@ -492,7 +494,7 @@ namespace pGina.Plugin.Ldap
             string localGrp = this.gatewayRuleLocalGroupTB.Text.Trim();
             if (string.IsNullOrEmpty(localGrp))
             {
-                MessageBox.Show("Please enter a group name");
+                MessageBox.Show(Language.T("Please enter a group name"));
                 return;
             }
             int idx = this.gatewayRuleGroupMemberCB.SelectedIndex;
@@ -512,13 +514,13 @@ namespace pGina.Plugin.Ldap
                 string path = this.gatwayRulePathTB.Text.Trim();
                 if (string.IsNullOrEmpty(path))
                 {
-                    MessageBox.Show("Please enter a DN");
+                    MessageBox.Show(Language.T("Please enter a DN"));
                     return;
                 }
                 string filter = this.gatewayRuleFilter.Text;
                 if (string.IsNullOrEmpty(filter))
                 {
-                    MessageBox.Show("Please enter a searh filter");
+                    MessageBox.Show(Language.T("Please enter a search filter"));
                     return;
                 }
                 SearchScope scope = (SearchScope)this.gatewayRuleScope.SelectedIndex;

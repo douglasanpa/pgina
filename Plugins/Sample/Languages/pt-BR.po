@@ -1,0 +1,22 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: pGina\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Show Description Text"
+msgstr "Mostrar texto de descrição"
+
+msgid "Description Text:"
+msgstr "Texto de descrição:"
+
+msgid "Save"
+msgstr "Salvar"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Sample Plugin Configuration"
+msgstr "Configuração do plugin de exemplo"

@@ -34,6 +34,7 @@ using System.Text;
 using System.Windows.Forms;
 
 using MySql.Data.MySqlClient;
+using pGina.Shared.Localization;
 
 namespace pGina.Plugin.MySqlLogger
 {
@@ -42,6 +43,7 @@ namespace pGina.Plugin.MySqlLogger
         public Configuration()
         {
             InitializeComponent();
+            FormStyle.Apply(this);
             InitUI();
         }
 
@@ -114,14 +116,14 @@ namespace pGina.Plugin.MySqlLogger
             }
             catch (FormatException)
             {
-                MessageBox.Show("Invalid port number.");
+                MessageBox.Show(Language.T("Invalid port number."));
                 return false;
             }
 
             if (sessionModeCB.Checked && eventModeCB.Checked
                 && sessionTableTB.Text.Trim() == eventTableTB.Text.Trim())
             {
-                MessageBox.Show("The Event Table must be different from the Session Table.");
+                MessageBox.Show(Language.T("The Event Table must be different from the Session Table."));
                 return false;
             }
 
@@ -174,7 +176,7 @@ namespace pGina.Plugin.MySqlLogger
                 //Show one or both messages
                 if (sessionModeMsg != null && eventModeMsg != null)
                 {
-                    MessageBox.Show(String.Format("Event Mode Table: {0}\nSession Mode Table: {1}", eventModeMsg, sessionModeMsg));
+                    MessageBox.Show(Language.Format("Event Mode Table: {0}\nSession Mode Table: {1}", eventModeMsg, sessionModeMsg));
                 }
                 else
                 {
@@ -183,7 +185,7 @@ namespace pGina.Plugin.MySqlLogger
             }
             catch (Exception ex)
             {
-                MessageBox.Show(String.Format("The following error occurred: {0}", ex.Message));
+                MessageBox.Show(Language.Format("The following error occurred: {0}", ex.Message));
             }
 
             //Since the server info may change, close the connection
@@ -214,7 +216,7 @@ namespace pGina.Plugin.MySqlLogger
                 //Show one or both messages
                 if (sessionModeMsg != null && eventModeMsg != null)
                 {
-                    MessageBox.Show(String.Format("Event Mode Table: {0}\nSession Mode Table: {1}", eventModeMsg, sessionModeMsg));
+                    MessageBox.Show(Language.Format("Event Mode Table: {0}\nSession Mode Table: {1}", eventModeMsg, sessionModeMsg));
                 }
                 else
                 {
@@ -223,7 +225,7 @@ namespace pGina.Plugin.MySqlLogger
             }
             catch (Exception ex)
             {
-                MessageBox.Show("The following error occurred: {0}", ex.Message);
+                MessageBox.Show(Language.Format("The following error occurred: {0}", ex.Message));
             }
 
             //Since the server info may change, close the current connection
