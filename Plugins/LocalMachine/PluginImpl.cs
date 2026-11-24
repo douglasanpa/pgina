@@ -296,6 +296,18 @@ namespace pGina.Plugin.LocalMachine
             return false;
         }
 
+        // The authentication plugin that reached its server and had the password refused, if any
+        private string RejectingPlugin(SessionProperties properties)
+        {
+            PluginActivityInformation pluginInfo = properties.GetTrackedSingle<PluginActivityInformation>();
+            foreach (Guid uuid in pluginInfo.GetAuthenticationPlugins())
+            {
+                if (uuid != PluginUuid && pluginInfo.GetAuthenticationResult(uuid).Rejected)
+                    return uuid.ToString();
+            }
+            return null;
+        }
+
         public BooleanResult AuthenticateUser(SessionProperties properties)
         {
             try
@@ -307,6 +319,21 @@ namespace pGina.Plugin.LocalMachine
                 // Get user info
                 UserInformation userInfo = properties.GetTrackedSingle<UserInformation>();
                 m_logger.DebugFormat("Found username: {0}", userInfo.Username);
+
+                // The local password of an account pGina created is a copy of the server's from the
+                //  last logon. It is there for logging on offline, so it must not override a server
+                //  that is online and says the password is wrong (changed or disabled account).
+                bool denyRejected = Settings.Store.DenyRejectedPginaAccounts;
+                if (denyRejected && !HasUserAuthenticatedYet(properties))
+                {
+                    string rejectedBy = RejectingPlugin(properties);
+                    if (rejectedBy != null && LocalAccount.IsCreatedByPgina(userInfo.Username))
+                    {
+                        m_logger.InfoFormat("Not authenticating {0} locally: the account was created by pGina and plugin {1} refused the password",
+                            userInfo.Username, rejectedBy);
+                        return new BooleanResult() { Success = false, Message = null };
+                    }
+                }
 
                 // Should we authenticate? Only if user has not yet authenticated, or we are not in fallback mode
                 if (alwaysAuth || !HasUserAuthenticatedYet(properties))

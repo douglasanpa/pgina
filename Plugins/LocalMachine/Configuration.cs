@@ -61,6 +61,7 @@ namespace pGina.Plugin.LocalMachine
             string[] scrambleExceptions = Settings.Store.ScramblePasswordsExceptions;
 
             m_chkAlwaysAuth.Checked = AlwaysAuthenticate;
+            m_chkDenyRejected.Checked = Settings.Store.DenyRejectedPginaAccounts;
             m_chkAuthzLocalAdmin.Checked = AuthzLocalAdminsOnly;
             m_chkAuthzRequireLocal.Checked = AuthzLocalGroupsOnly;
             m_chkScramble.Checked = ScramblePasswords;
@@ -106,12 +107,14 @@ namespace pGina.Plugin.LocalMachine
             toolTip1.SetToolTip(this.m_chkGroupFailIsFAIL, Language.T("When this is checked, the plugin will register failure if it is unable to create or join the local groups that are requested."));
             toolTip1.SetToolTip(this.m_groupsDgv, Language.T("The local account is added to these local groups if not already a member"));
             toolTip1.SetToolTip(this.m_chkRemoveProfile, Language.T("When this is selected, the plugin will attempt to remove the account and its profile after logout when the account did not exist prior to logon."));
-            toolTip1.SetToolTip(this.m_chkScramble, Language.T("When this is checked, the plugin will attempt to scramble the password of the local account after logout"));
+            toolTip1.SetToolTip(this.m_chkDenyRejected, Language.T("For accounts created by pGina, the local password is a copy from the last logon, kept for logging on when the server can't be reached. When this is checked and a plugin such as LDAP reached its server and the password was refused (changed password, disabled or removed account), the local password isn't accepted either. Needs this plugin after the others in the authentication order."));
+            toolTip1.SetToolTip(this.m_chkScramble,Language.T("When this is checked, the plugin will attempt to scramble the password of the local account after logout"));
         }
 
         public void UiToSettings()
         {
             Settings.Store.AlwaysAuthenticate = m_chkAlwaysAuth.Checked;
+            Settings.Store.DenyRejectedPginaAccounts = m_chkDenyRejected.Checked;
             Settings.Store.AuthzLocalAdminsOnly = m_chkAuthzLocalAdmin.Checked;
             Settings.Store.AuthzLocalGroupsOnly = m_chkAuthzRequireLocal.Checked;
             Settings.Store.ScramblePasswords = m_chkScramble.Checked;

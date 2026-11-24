@@ -41,6 +41,7 @@ namespace pGina.Plugin.LocalMachine
         {
             // Authentication step settings:
             m_settings.SetDefault("AlwaysAuthenticate", false);           // Auth regardless of other plugins auth step
+            m_settings.SetDefault("DenyRejectedPginaAccounts", true);     // Don't auth accounts pGina created when a server (e.g. LDAP) refused the password; only when it can't be reached
 
             // Authorization step settings
             m_settings.SetDefault("AuthzLocalAdminsOnly", false);        // Prevent non-admins
