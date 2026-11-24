@@ -16,6 +16,13 @@ build the installer (needs [Inno Setup 6](https://jrsoftware.org/isinfo.php)):
 
     powershell -ExecutionPolicy Bypass -File Installer\make.ps1
 
+The installer lets you choose the plugins. The standard installation has LDAP,
+Local Machine, SingleUser and Scripting, and the others can be checked.
+Unchecking a plugin in an upgrade removes it. A silent install
+(`/VERYSILENT`) keeps the previous choice, otherwise uses the standard one,
+and never removes a plugin that is turned on in the pGina settings. To choose
+on the command line: `/COMPONENTS="plugins\ldap,plugins\localmachine,extra\radius"`.
+
 Every push and pull request is also built by GitHub Actions, which keeps the
 binaries and the installer as downloadable artifacts of the run.
 
