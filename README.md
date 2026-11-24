@@ -4,6 +4,19 @@ pGina is a pluggable Open Source GINA and CredentialProvider replacement.
 Plugins are written in managed code and allow for user authentication, session
 management and login time actions.
 
+## Building
+
+Requires Visual Studio 2026 or 2022 (or the Build Tools) with the .NET desktop
+and C++ desktop workloads. From the repository root:
+
+    powershell -ExecutionPolicy Bypass -File tools\build.ps1
+
+pGina is built to `pGina\src\bin` and the plugins to `Plugins\bin`. Every push
+and pull request is also built by GitHub Actions, which keeps the binaries as a
+downloadable artifact of the run.
+
+Translations: see [tools/i18n](tools/i18n/README.md).
+
 ## License
 
 Copyright (c) 2016, pGina Team

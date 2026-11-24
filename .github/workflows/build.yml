@@ -1,0 +1,40 @@
+name: Build
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Cache NuGet packages
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: nuget-${{ hashFiles('Directory.Packages.props', '**/*.csproj') }}
+          restore-keys: nuget-
+
+      - name: Build
+        shell: pwsh
+        run: ./tools/build.ps1 -Configuration Release
+
+      - name: Check translations
+        shell: pwsh
+        run: python tools/i18n/update-po.py --check
+
+      - name: Upload binaries
+        uses: actions/upload-artifact@v4
+        with:
+          name: pgina-${{ github.sha }}
+          path: |
+            pGina/src/bin/
+            Plugins/bin/
+          if-no-files-found: error
