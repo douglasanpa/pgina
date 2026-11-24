@@ -152,3 +152,27 @@ msgstr "Informe o nome do grupo remoto"
 
 msgid "Please enter a group name."
 msgstr "Informe o nome de um grupo."
+
+msgid "Success."
+msgstr "Sucesso."
+
+msgid "Invalid username or password."
+msgstr "Usuário ou senha incorretos."
+
+msgid "Preventing logon due to server error: {0}"
+msgstr "Logon bloqueado por um erro no servidor: {0}"
+
+msgid "Encountered server error: {0}"
+msgstr "Erro no servidor: {0}"
+
+msgid "Deny because MySQL authentication failed."
+msgstr "Acesso negado: a autenticação no MySQL falhou."
+
+msgid "Deny because MySQL auth did not execute, and configured to require MySQL auth."
+msgstr "Acesso negado: a autenticação no MySQL é obrigatória e não foi executada."
+
+msgid "Allow via rule '{0}'"
+msgstr "Permitido pela regra '{0}'"
+
+msgid "Deny via rule '{0}'"
+msgstr "Negado pela regra '{0}'"

@@ -36,3 +36,6 @@ msgstr "Informe o Loginserver"
 
 msgid "Loginserver"
 msgstr "Loginserver"
+
+msgid "Current password or username is not valid."
+msgstr "O usuário ou a senha atual não são válidos."

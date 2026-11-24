@@ -294,3 +294,71 @@ msgstr "Informe um filtro de busca"
 
 msgid "Please enter a group name"
 msgstr "Informe o nome de um grupo"
+
+msgid "Authentication failed due to empty password."
+msgstr "A autenticação falhou: a senha está vazia."
+
+msgid "Password expired"
+msgstr "A senha expirou"
+
+msgid "Authentication via LDAP failed. Invalid credentials."
+msgstr "A autenticação no LDAP falhou: usuário ou senha incorretos."
+
+msgid "The user name or password is incorrect"
+msgstr "O usuário ou a senha estão incorretos"
+
+msgid ""
+"LDAP plugin failed\n"
+"{0}"
+msgstr ""
+"O plugin LDAP falhou\n"
+"{0}"
+
+msgid "Unable to determine the user's LDAP DN for authentication."
+msgstr "Não foi possível encontrar o usuário no LDAP (DN) para a autenticação."
+
+msgid "Internal error: LdapServer object not available"
+msgstr "Erro interno: o objeto LdapServer não está disponível"
+
+msgid "Failed to contact LDAP server."
+msgstr "Não foi possível conectar ao servidor LDAP."
+
+msgid "LDAP server unavailable."
+msgstr "O servidor LDAP não está disponível."
+
+msgid "Deny because LDAP authentication failed, or did not execute."
+msgstr "Acesso negado: a autenticação no LDAP falhou ou não foi executada."
+
+msgid "Allow via rule: \"{0}\""
+msgstr "Permitido pela regra: \"{0}\""
+
+msgid "Deny via rule: \"{0}\""
+msgstr "Negado pela regra: \"{0}\""
+
+msgid "You are not allowed to login! No matching rule found! Default rule:{0}"
+msgstr "Você não tem permissão para entrar: nenhuma regra se aplica. Regra padrão: {0}"
+
+msgid "Authorization via LDAP failed. Invalid credentials."
+msgstr "A autorização no LDAP falhou: usuário ou senha incorretos."
+
+msgid "LDAP server not available"
+msgstr "O servidor LDAP não está disponível"
+
+msgid "Password change failed: Invalid LDAP username or password."
+msgstr "A troca de senha falhou: usuário ou senha do LDAP incorretos."
+
+msgid "Failed to change password.\n"
+msgstr "Não foi possível trocar a senha.\n"
+
+msgid ""
+"LDAPplugin failed by setting an attribute\n"
+"For more details please consult the log!"
+msgstr ""
+"O plugin LDAP falhou ao gravar um atributo\n"
+"Veja os detalhes no log."
+
+msgid "LDAP password successfully changed"
+msgstr "A senha do LDAP foi trocada"
+
+msgid "Error in LDAP plugin."
+msgstr "Erro no plugin LDAP."

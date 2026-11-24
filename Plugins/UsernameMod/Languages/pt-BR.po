@@ -81,3 +81,12 @@ msgstr "Substituir a expressão regular:"
 
 msgid "Require the username to match:"
 msgstr "Exigir que o usuário corresponda a:"
+
+msgid "Unable to modify username during authentication stage."
+msgstr "Não foi possível alterar o nome de usuário na etapa de autenticação."
+
+msgid "Unable to modify username during authorization stage."
+msgstr "Não foi possível alterar o nome de usuário na etapa de autorização."
+
+msgid "Unable to modify username during gateway stage."
+msgstr "Não foi possível alterar o nome de usuário na etapa de gateway."

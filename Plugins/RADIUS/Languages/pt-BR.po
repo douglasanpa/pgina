@@ -107,3 +107,6 @@ msgstr "Informe o NAS Identifier quando a opção estiver ativa."
 
 msgid "Called-Station-ID can not be blank if the option is enabled."
 msgstr "Informe o Called-Station-ID quando a opção estiver ativa."
+
+msgid "Username and password must be provided."
+msgstr "Informe o usuário e a senha."

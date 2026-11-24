@@ -21,7 +21,8 @@ the empty `msgstr` entries with any PO editor or a text editor, and run it again
 - Forms call `FormStyle.Apply(this)` after `InitializeComponent()`, which
   translates every caption, tooltip and column of the form.
 - Texts built in code go through `Language.T("...")` or
-  `Language.Format("... {0}", value)`. Log messages stay in English.
+  `Language.Format("... {0}", value)`. That includes the `Message` of plugin
+  and service results, which the logon screen shows. Log messages stay in English.
 
 ## Language selection
 

@@ -34,6 +34,7 @@ using log4net;
 
 using pGina.Shared.Interfaces;
 using pGina.Shared.Types;
+using pGina.Shared.Localization;
 
 namespace pGina.Plugin.Ldap
 {
@@ -78,7 +79,7 @@ namespace pGina.Plugin.Ldap
             // Get the LdapServer object from the session properties (created in BeginChain)
             LdapServer server = properties.GetTrackedSingle<LdapServer>();
             if (server == null)
-                return new BooleanResult() { Success = false, Message = "Internal error: LdapServer object not available" };
+                return new BooleanResult() { Success = false, Message = Language.T("Internal error: LdapServer object not available") };
 
             try
             {
@@ -102,7 +103,7 @@ namespace pGina.Plugin.Ldap
                         m_logger.ErrorFormat("Server unavailable: {0}, {1}", ldapEx.ServerErrorMessage, e.Message);
                         server.Close();
                         properties.AddTrackedSingle<LdapServer>(null);
-                        return new BooleanResult { Success = false, Message = "Failed to contact LDAP server." };
+                        return new BooleanResult { Success = false, Message = Language.T("Failed to contact LDAP server.") };
                     }
                 }
 
@@ -169,7 +170,7 @@ namespace pGina.Plugin.Ldap
                 return new BooleanResult()
                 {
                     Success = Settings.Store.AuthzAllowOnError,
-                    Message = "LDAP server unavailable."
+                    Message = Language.T("LDAP server unavailable.")
                 };
             }
 
@@ -184,7 +185,7 @@ namespace pGina.Plugin.Ldap
                 return new BooleanResult()
                 {
                     Success = false,
-                    Message = "Deny because LDAP authentication failed, or did not execute."
+                    Message = Language.T("Deny because LDAP authentication failed, or did not execute.")
                 };
             }
 
@@ -214,13 +215,13 @@ namespace pGina.Plugin.Ldap
                             return new BooleanResult()
                             {
                                 Success = true,
-                                Message = string.Format("Allow via rule: \"{0}\"", rule.ToString())
+                                Message = Language.Format("Allow via rule: \"{0}\"", rule.ToString())
                             };
                         else
                             return new BooleanResult()
                             {
                                 Success = false,
-                                Message = string.Format("Deny via rule: \"{0}\"", rule.ToString())
+                                Message = Language.Format("Deny via rule: \"{0}\"", rule.ToString())
                             };
                     }
                 }
@@ -229,7 +230,7 @@ namespace pGina.Plugin.Ldap
                 if ((bool)Settings.Store.AuthzDefault)
                     return new BooleanResult() { Success = true, Message = "" };
                 else
-                    return new BooleanResult() { Success = false, Message = String.Format("You are not allowed to login! No matching rule found! Default rule:{0}", (bool)Settings.Store.AuthzDefault ? "Allow" : "Deny") };
+                    return new BooleanResult() { Success = false, Message = Language.Format("You are not allowed to login! No matching rule found! Default rule:{0}", (bool)Settings.Store.AuthzDefault ? "Allow" : "Deny") };
             }
             catch (Exception e)
             {
@@ -246,7 +247,7 @@ namespace pGina.Plugin.Ldap
                         return new BooleanResult
                         {
                             Success = Settings.Store.AuthzAllowOnError,
-                            Message = "Failed to contact LDAP server."
+                            Message = Language.T("Failed to contact LDAP server.")
                         };
                     }
                     else if (ldapEx.ErrorCode == 49)
@@ -256,7 +257,7 @@ namespace pGina.Plugin.Ldap
                         return new BooleanResult
                         {
                             Success = false,
-                            Message = "Authorization via LDAP failed. Invalid credentials."
+                            Message = Language.T("Authorization via LDAP failed. Invalid credentials.")
                         };
                     }
                 }
@@ -281,7 +282,7 @@ namespace pGina.Plugin.Ldap
                 return new BooleanResult()
                 {
                     Success = true,
-                    Message = "LDAP server not available"
+                    Message = Language.T("LDAP server not available")
                 };
             }
 
@@ -349,7 +350,7 @@ namespace pGina.Plugin.Ldap
                     BooleanResult result = serv.Authenticate(userInfo.Username, userInfo.oldPassword, properties);
                     if (!result.Success)
                     {
-                        return new BooleanResult { Success = false, Message = "Password change failed: Invalid LDAP username or password." };
+                        return new BooleanResult { Success = false, Message = Language.T("Password change failed: Invalid LDAP username or password.") };
                     }
 
                     // Set the password attributes
@@ -371,7 +372,7 @@ namespace pGina.Plugin.Ldap
                             }
                             if (!ADpwd)
                             {
-                                return new BooleanResult { Success = false, Message = "Failed to change password.\n" + pwdmessage };
+                                return new BooleanResult { Success = false, Message = Language.T("Failed to change password.\n") + pwdmessage };
                             }
                             continue;
                         }
@@ -382,7 +383,7 @@ namespace pGina.Plugin.Ldap
 
                             m_logger.DebugFormat("Setting attribute {0} using method {1}", entry.Name, time.Name);
                             if (!serv.SetUserAttribute(userInfo.Username, entry.Name, time.time()))
-                                return new BooleanResult { Success = false, Message = "LDAPplugin failed by setting an attribute\nFor more details please consult the log!" };
+                                return new BooleanResult { Success = false, Message = Language.T("LDAPplugin failed by setting an attribute\nFor more details please consult the log!") };
                         }
                         else
                         {
@@ -390,15 +391,15 @@ namespace pGina.Plugin.Ldap
 
                             m_logger.DebugFormat("Setting attribute {0} using method {1}", entry.Name, hasher.Name);
                             if (!serv.SetUserAttribute(userInfo.Username, entry.Name, hasher.hash(userInfo.Password)))
-                                return new BooleanResult { Success = false, Message = "LDAPplugin failed by setting an attribute\nFor more details please consult the log!" };
+                                return new BooleanResult { Success = false, Message = Language.T("LDAPplugin failed by setting an attribute\nFor more details please consult the log!") };
                         }
                     }
-                    return new BooleanResult { Success = true, Message = "LDAP password successfully changed" };
+                    return new BooleanResult { Success = true, Message = Language.T("LDAP password successfully changed") };
                 }
                 catch (Exception e)
                 {
                     m_logger.ErrorFormat("Exception in ChangePassword: {0}", e);
-                    return new BooleanResult() { Success = false, Message = "Error in LDAP plugin." };
+                    return new BooleanResult() { Success = false, Message = Language.T("Error in LDAP plugin.") };
                 }
             }
         }

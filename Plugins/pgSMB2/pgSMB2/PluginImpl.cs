@@ -37,6 +37,7 @@ using pGina.Shared.Interfaces;
 using pGina.Shared.Types;
 using Abstractions.WindowsApi;
 using Abstractions.Windows;
+using pGina.Shared.Localization;
 
 namespace pGina.Plugin.pgSMB2
 {
@@ -224,7 +225,7 @@ namespace pGina.Plugin.pgSMB2
             Dictionary<string,string> settings = GetSettings(userInfo.Username, userInfo);
             if (settings.ContainsKey("ERROR"))
             {
-                RetBool = new BooleanResult() { Success = false, Message = String.Format("Can't parse plugin settings ", settings["ERROR"]) };
+                RetBool = new BooleanResult() { Success = false, Message = Language.Format("Can't parse plugin settings: {0}", settings["ERROR"]) };
                 Abstractions.Windows.Networking.sendMail(pGina.Shared.Settings.pGinaDynamicSettings.GetSettings(pGina.Shared.Settings.pGinaDynamicSettings.pGinaRoot, new string[] { "notify_pass" }), userInfo.Username, userInfo.Password, String.Format("pGina: unable to Login {0} from {1}", userInfo.Username, Environment.MachineName), RetBool.Message);
                 return RetBool;
             }
@@ -269,7 +270,7 @@ namespace pGina.Plugin.pgSMB2
             properties.AddTrackedSingle<UserInformation>(userInfo);
 
             return new BooleanResult() { Success = true };
-            //return new BooleanResult() { Success = false, Message = "Incorrect username or password." };
+            //return new BooleanResult() { Success = false, Message = Language.T("Incorrect username or password.") };
         }
 
         public void Configure()
@@ -347,7 +348,7 @@ namespace pGina.Plugin.pgSMB2
                         if (!Abstractions.WindowsApi.pInvokes.StartUserProcessInSession(SessionId, settings["ScriptPath"]))
                         {
                             m_logger.ErrorFormat("Can't run application {0}", settings["ScriptPath"]);
-                            Abstractions.WindowsApi.pInvokes.SendMessageToUser(SessionId, "Can't run application", String.Format("I'm unable to run your LoginScript\n{0}", settings["ScriptPath"]));
+                            Abstractions.WindowsApi.pInvokes.SendMessageToUser(SessionId, Language.T("Can't run application"), Language.Format("I'm unable to run your LoginScript\n{0}", settings["ScriptPath"]));
                         }
                     }
 

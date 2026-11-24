@@ -59,3 +59,12 @@ msgstr "A porta precisa ser um número inteiro maior que 0."
 
 msgid "A domain must be entered if \"Append domain to username\" is checked."
 msgstr "Informe um domínio quando \"Acrescentar domínio ao usuário\" estiver marcado."
+
+msgid "Invalid username/password."
+msgstr "Usuário ou senha incorretos."
+
+msgid "Port number is not valid."
+msgstr "O número da porta não é válido."
+
+msgid "Unspecified Error occurred. "
+msgstr "Ocorreu um erro não especificado. "

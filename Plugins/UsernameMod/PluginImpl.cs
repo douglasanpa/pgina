@@ -36,6 +36,7 @@ using pGina.Shared.Interfaces;
 using pGina.Shared.Types;
 using pGina.Shared.Settings;
 using pGina.Plugin.UsernameMod.Rules;
+using pGina.Shared.Localization;
 
 namespace pGina.Plugin.UsernameMod
 {
@@ -133,7 +134,7 @@ namespace pGina.Plugin.UsernameMod
             catch (Exception e)
             {
                 m_logger.ErrorFormat("Error running rules. {0}", e.Message);
-                return new BooleanResult() { Success = false, Message = "Unable to modify username during authentication stage." };
+                return new BooleanResult() { Success = false, Message = Language.T("Unable to modify username during authentication stage.") };
             }
         }
 
@@ -190,7 +191,7 @@ namespace pGina.Plugin.UsernameMod
             catch (Exception e)
             {
                 m_logger.ErrorFormat("Error running rules. {0}", e.Message);
-                return new BooleanResult() { Success = false, Message = "Unable to modify username during authorization stage." };
+                return new BooleanResult() { Success = false, Message = Language.T("Unable to modify username during authorization stage.") };
             }
         }
 
@@ -247,7 +248,7 @@ namespace pGina.Plugin.UsernameMod
             catch (Exception e)
             {
                 m_logger.ErrorFormat("Error running rules. {0}", e.Message);
-                return new BooleanResult() { Success = false, Message = "Unable to modify username during gateway stage." };
+                return new BooleanResult() { Success = false, Message = Language.T("Unable to modify username during gateway stage.") };
             }
         }
 

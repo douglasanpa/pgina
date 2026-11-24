@@ -7,6 +7,7 @@ using System.Diagnostics;
 
 using log4net;
 using pGina.Shared.Interfaces;
+using pGina.Shared.Localization;
 
 namespace pGina.Plugin.Kerberos
 {
@@ -97,12 +98,12 @@ namespace pGina.Plugin.Kerberos
                  * ex: krbtgt/MYREALM.UTAH.EDU
                  * */
                 case -2146893039:
-                    return new pGina.Shared.Types.BooleanResult() { Success = false, Message = "Failed to contact authenticating kerberos authority." };
+                    return new pGina.Shared.Types.BooleanResult() { Success = false, Message = Language.T("Failed to contact authenticating kerberos authority.") };
                 /*
                  * The user name and/or password supplied at login through pGina does not match in the kerberos realm.
                  * */
                 case -2146893044:
-                    return new pGina.Shared.Types.BooleanResult() { Success = false, Message = "Failed due to bad password and/or user name." };
+                    return new pGina.Shared.Types.BooleanResult() { Success = false, Message = Language.T("Failed due to bad password and/or user name.") };
                 /*
                  * The SPN for your kerberos target was incorrect. Format should be <service-name>/REALM where the service is usually krbtgt (kerberos ticket granting ticket) followed by
                  * the realm you are targeting (all capitals) such as MYREALM.UTAH.EDU
@@ -110,14 +111,14 @@ namespace pGina.Plugin.Kerberos
                  * ex: krbtgt/MYREALM.UTAH.EDU
                  * */
                 case -2146893053:
-                    return new pGina.Shared.Types.BooleanResult() { Success = false, Message = "Failed due to bad kerberos Security Principal Name." };
+                    return new pGina.Shared.Types.BooleanResult() { Success = false, Message = Language.T("Failed due to bad kerberos Security Principal Name.") };
                 /*
                  * Success
                  * */
                 case 0:
-                    return new pGina.Shared.Types.BooleanResult() { Success = true, Message = "Success" };
+                    return new pGina.Shared.Types.BooleanResult() { Success = true, Message = Language.T("Success") };
                 default:
-                    return new pGina.Shared.Types.BooleanResult() { Success = false, Message = "Failed to authenticate due to unknown error." + r };
+                    return new pGina.Shared.Types.BooleanResult() { Success = false, Message = Language.T("Failed to authenticate due to unknown error.") + r };
             }
         }
     }

@@ -1,0 +1,16 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: pGina\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Unhandled exception during login: {0}"
+msgstr "Erro não tratado durante o logon: {0}"
+
+msgid "No plugin is set for Authentication"
+msgstr "Nenhum plugin está configurado para a autenticação"
+
+msgid "Failed to authenticate user: {0}"
+msgstr "Não foi possível autenticar o usuário {0}"
