@@ -5,6 +5,7 @@ using System.Diagnostics;
 using pGina.Shared.Interfaces;
 using pGina.Shared.Types;
 using log4net;
+using pGina.Shared.Localization;
 
 namespace pGina.Plugin.HttpAuth
 {
@@ -104,7 +105,7 @@ namespace pGina.Plugin.HttpAuth
             }
             else
             {
-                return new BooleanResult { Success = false, Message = "Current password or username is not valid." };
+                return new BooleanResult { Success = false, Message = Language.T("Current password or username is not valid.") };
             }
 
             return HttpAccessor.getPwChangeResponse(userInfo.Username, userInfo.Password, userInfo.oldPassword);

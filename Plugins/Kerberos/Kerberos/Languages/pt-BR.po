@@ -23,3 +23,18 @@ msgstr "Ajuda"
 
 msgid "KRB5 Realm Configuration"
 msgstr "Configuração do realm KRB5"
+
+msgid "Failed to contact authenticating kerberos authority."
+msgstr "Não foi possível conectar ao servidor de autenticação do Kerberos."
+
+msgid "Failed due to bad password and/or user name."
+msgstr "Falhou: usuário ou senha incorretos."
+
+msgid "Failed due to bad kerberos Security Principal Name."
+msgstr "Falhou: o nome principal (SPN) do Kerberos é inválido."
+
+msgid "Success"
+msgstr "Sucesso"
+
+msgid "Failed to authenticate due to unknown error."
+msgstr "A autenticação falhou por um erro desconhecido."

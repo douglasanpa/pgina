@@ -40,6 +40,7 @@ using log4net;
 using pGina.Shared.Interfaces;
 using pGina.Shared.Types;
 using pGina.Shared.Settings;
+using pGina.Shared.Localization;
 
 
 namespace pGina.Plugin.RADIUS
@@ -110,7 +111,7 @@ namespace pGina.Plugin.RADIUS
             UserInformation userInfo = properties.GetTrackedSingle<UserInformation>();
 
             if(String.IsNullOrEmpty(userInfo.Username) || String.IsNullOrEmpty(userInfo.Password))
-                return new BooleanResult() { Success = false, Message = "Username and password must be provided." };
+                return new BooleanResult() { Success = false, Message = Language.T("Username and password must be provided.") };
 
             try
             {

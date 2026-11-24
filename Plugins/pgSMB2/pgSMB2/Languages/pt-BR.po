@@ -150,3 +150,62 @@ msgstr ""
 
 msgid "Warning NTP server needed"
 msgstr "Atenção: servidor NTP necessário"
+
+msgid "Can't parse plugin settings: {0}"
+msgstr "Não foi possível ler a configuração do plugin: {0}"
+
+msgid "Incorrect username or password."
+msgstr "Usuário ou senha incorretos."
+
+msgid "Can't run application"
+msgstr "Não foi possível executar o programa"
+
+msgid ""
+"I'm unable to run your LoginScript\n"
+"{0}"
+msgstr ""
+"Não foi possível executar o seu script de logon\n"
+"{0}"
+
+msgid "Unable to connect to {0}"
+msgstr "Não foi possível conectar a {0}"
+
+msgid "Unable to add user {0}"
+msgstr "Não foi possível adicionar o usuário {0}"
+
+msgid "Unable to get the Profile {0} from {1}"
+msgstr "Não foi possível obter o perfil {0} de {1}"
+
+msgid "Unable to set ACL for user {0}"
+msgstr "Não foi possível definir as permissões (ACL) do usuário {0}"
+
+msgid ""
+"Unable to get the Roaming Profile from {0}\n"
+"Error: {1}"
+msgstr ""
+"Não foi possível obter o perfil móvel de {0}\n"
+"Erro: {1}"
+
+msgid "Unable to upload the profile {0}"
+msgstr "Não foi possível enviar o perfil {0}"
+
+msgid "Error {0} during profile upload"
+msgstr "Erro {0} ao enviar o perfil"
+
+msgid "Unable to find \"{0}{1}\""
+msgstr "Não foi possível encontrar \"{0}{1}\""
+
+msgid "User directory:{0} size returned:0"
+msgstr "Pasta do usuário: {0}, tamanho retornado: 0"
+
+msgid "User directory:{0} MaxStore:{1} kbyte exceeded:{2} kbyte"
+msgstr "Pasta do usuário: {0}, limite de {1} KB ultrapassado: {2} KB"
+
+msgid "Unable to find the file \"{0}\" in your compress command {1}"
+msgstr "O arquivo \"{0}\" não aparece no comando de compactação {1}"
+
+msgid "Can't find {0}"
+msgstr "Não foi possível encontrar {0}"
+
+msgid "failed to compress the profile"
+msgstr "não foi possível compactar o perfil"

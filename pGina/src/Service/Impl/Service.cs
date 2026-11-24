@@ -50,6 +50,7 @@ using pGina.Shared.Types;
 using Abstractions.Pipes;
 using Abstractions.Logging;
 using Abstractions.Helpers;
+using pGina.Shared.Localization;
 
 namespace pGina.Service.Impl
 {
@@ -301,7 +302,7 @@ namespace pGina.Service.Impl
 
                 if (String.IsNullOrEmpty(sessionDriver.UserInformation.Username))
                 {
-                    return new LoginResponseMessage() { Result = false, Message = String.Format("No Username supplied\n\n'{0}' was entered and parsed to '{1}'", msg.Username, sessionDriver.UserInformation.Username) };
+                    return new LoginResponseMessage() { Result = false, Message = Language.Format("No Username supplied\n\n'{0}' was entered and parsed to '{1}'", msg.Username, sessionDriver.UserInformation.Username) };
                 }
 
                 if (msg.Reason == LoginRequestMessage.LoginReason.Test)
@@ -329,7 +330,7 @@ namespace pGina.Service.Impl
                 }
                 if (thisUserLogoff)
                 {
-                    return new LoginResponseMessage() { Result = false, Message = String.Format("Still logoff work to do for user {0}\nWait a view seconds and retry", sessionDriver.UserInformation.Username) };
+                    return new LoginResponseMessage() { Result = false, Message = Language.Format("Still logoff work to do for user {0}\nWait a few seconds and retry", sessionDriver.UserInformation.Username) };
                 }
 
                 // do the domain logon
@@ -341,7 +342,7 @@ namespace pGina.Service.Impl
                     // if domain was provided by username and it got messed up ...
                     if (String.IsNullOrEmpty(sessionDriver.UserInformation.Domain) && Regex.IsMatch(msg.Username, "\\|@"))
                     {
-                        return new LoginResponseMessage() { Result = false, Message = String.Format("No Domainname supplied\n\n'{0}' was entered and parsed to '{1}'", msg.Username, sessionDriver.UserInformation.Domain) };
+                        return new LoginResponseMessage() { Result = false, Message = Language.Format("No Domainname supplied\n\n'{0}' was entered and parsed to '{1}'", msg.Username, sessionDriver.UserInformation.Domain) };
                     }
 
                     if (Abstractions.WindowsApi.pInvokes.DomainMember(sessionDriver.UserInformation.Domain))
@@ -438,7 +439,7 @@ namespace pGina.Service.Impl
                                 return new LoginResponseMessage()
                                 {
                                     Result = false,
-                                    Message = "Unknown username or bad password",
+                                    Message = Language.T("Unknown username or bad password"),
                                     Username = sessionDriver.UserInformation.Username,
                                     Domain = sessionDriver.UserInformation.Domain,
                                     Password = sessionDriver.UserInformation.Password
@@ -487,13 +488,13 @@ namespace pGina.Service.Impl
                                     {
                                         // that should never ever happen
                                         m_logger.ErrorFormat("User {0} is Locked in Session {1} but the username doesn't match the session information pGina contains. '{0}' vs. '{2}'", sessionDriver.UserInformation.Username, Locked_sessionID, uInfo.Username);
-                                        return new LoginResponseMessage() { Result = false, Message = String.Format("User {0} is Locked in Session {1} but the username doesn't match the session information pGina contains\n\n'{0}' vs '{2}'", sessionDriver.UserInformation.Username, Locked_sessionID, uInfo.Username) };
+                                        return new LoginResponseMessage() { Result = false, Message = Language.Format("User {0} is Locked in Session {1} but the username doesn't match the session information pGina contains\n\n'{0}' vs '{2}'", sessionDriver.UserInformation.Username, Locked_sessionID, uInfo.Username) };
                                     }
                                 }
                                 else
                                 {
                                     m_logger.ErrorFormat("User {0} is Locked in Session {1} but was not authenticated by pGina. Unable to find SessionProperty in m_sessionPropertyCache.Get({1})", sessionDriver.UserInformation.Username, Locked_sessionID);
-                                    return new LoginResponseMessage() { Result = false, Message = String.Format("User {0} is Locked in Session {1} but was not authenticated by pGina\n\nIt is possible that another Credential Provider was used\nor the pGina service has crashed.\n", sessionDriver.UserInformation.Username, Locked_sessionID) };
+                                    return new LoginResponseMessage() { Result = false, Message = Language.Format("User {0} is Locked in Session {1} but was not authenticated by pGina\n\nIt is possible that another Credential Provider was used\nor the pGina service has crashed.\n", sessionDriver.UserInformation.Username, Locked_sessionID) };
                                 }
                             }
                             else
@@ -530,8 +531,8 @@ namespace pGina.Service.Impl
                                             runas_in_session.Add(iUsers.DefaultIfEmpty("").FirstOrDefault(s => s.StartsWith(pair.Key.ToString())));
                                         }
                                     }
-                                    m_logger.DebugFormat("There is a program running as {0} but it was'nt started with pGina. I can't log you in because this would conflict with the current running process. Session in which a process is running:{1}", sessionDriver.UserInformation.Username, String.Join(",", runas_in_session));
-                                    return new LoginResponseMessage() { Result = false, Message = String.Format("There is a program running as {0} but it was'nt started with pGina.\nI can't log you in because this would conflict with the current running process.\n\nSession in which a process is running:\n{1}", sessionDriver.UserInformation.Username, String.Join("\n", runas_in_session)) };
+                                    m_logger.DebugFormat("There is a program running as {0} but it wasn't started with pGina. I can't log you in because this would conflict with the current running process. Session in which a process is running:{1}", sessionDriver.UserInformation.Username, String.Join(",", runas_in_session));
+                                    return new LoginResponseMessage() { Result = false, Message = Language.Format("There is a program running as {0} but it wasn't started with pGina.\nI can't log you in because this would conflict with the current running process.\n\nSession in which a process is running:\n{1}", sessionDriver.UserInformation.Username, String.Join("\n", runas_in_session)) };
                                 }
                             }
                         }
@@ -549,7 +550,7 @@ namespace pGina.Service.Impl
                             return new LoginResponseMessage()
                             {
                                 Result = false,
-                                Message = "Bad password",
+                                Message = Language.T("Bad password"),
                                 Username = sessionDriver.UserInformation.Username,
                                 Domain = sessionDriver.UserInformation.Domain,
                                 Password = sessionDriver.UserInformation.Password
@@ -642,7 +643,7 @@ namespace pGina.Service.Impl
                                 else
                                 {
                                     result.Success = false;
-                                    result.Message = "Password incorrect!";
+                                    result.Message = Language.T("Password incorrect!");
                                 }
                             }
                         }
@@ -669,7 +670,7 @@ namespace pGina.Service.Impl
             catch (Exception e)
             {
                 m_logger.ErrorFormat("Internal error, unexpected exception while handling login request: {0}", e);
-                return new LoginResponseMessage() { Result = false, Message = "Internal error" };
+                return new LoginResponseMessage() { Result = false, Message = Language.T("Internal error") };
             }
         }
 
@@ -1287,7 +1288,7 @@ namespace pGina.Service.Impl
                         }
                         else
                         {
-                            message.Message = String.Format("Remote({0}) Error:{1}\n\n", domainmember, message.Message);
+                            message.Message = Language.Format("Remote({0}) Error:{1}\n\n", domainmember, message.Message);
                         }
                     }
 

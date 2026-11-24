@@ -40,6 +40,7 @@ using log4net;
 using pGina.Shared.Interfaces;
 using pGina.Shared.Types;
 using Abstractions;
+using pGina.Shared.Localization;
 
 namespace pGina.Plugin.LocalMachine
 {
@@ -168,7 +169,7 @@ namespace pGina.Plugin.LocalMachine
             }
             else
             {
-                return new BooleanResult { Success = false, Message = "Current password or username is not valid." };
+                return new BooleanResult { Success = false, Message = Language.T("Current password or username is not valid.") };
             }
 
             using (UserPrincipal user = LocalAccount.GetUserPrincipal(userInfo.Username))
@@ -180,11 +181,11 @@ namespace pGina.Plugin.LocalMachine
                 }
                 else
                 {
-                    return new BooleanResult { Success = false, Message = "Local machine plugin internal error: directory entry not found." };
+                    return new BooleanResult { Success = false, Message = Language.T("Local machine plugin internal error: directory entry not found.") };
                 }
             }
 
-            return new BooleanResult { Success = true, Message = "Local password successfully changed." };
+            return new BooleanResult { Success = true, Message = Language.T("Local password successfully changed.") };
         }
 
         public BooleanResult AuthenticatedUserGateway(SessionProperties properties)
@@ -269,16 +270,16 @@ namespace pGina.Plugin.LocalMachine
             catch (LocalAccount.GroupSyncException e)
             {
                 if (failIfGroupSyncFails)
-                    return new BooleanResult() { Success = false, Message = string.Format("Unable to sync users local group membership: {0}", e.RootException) };
+                    return new BooleanResult() { Success = false, Message = Language.Format("Unable to sync users local group membership: {0}", e.RootException) };
             }
             catch(Exception e)
             {
                 if (e.Message.ToLower().Contains("0x800708c5"))
                 {
-                    return new BooleanResult() { Success = false, Message = string.Format("This Worstation is denying the password of {0}.\nMost likely the password does not meet complexity requirements\n\n{1}", userInfo.Username, e) };
+                    return new BooleanResult() { Success = false, Message = Language.Format("This workstation is denying the password of {0}.\nMost likely the password does not meet complexity requirements\n\n{1}", userInfo.Username, e) };
                 }
 
-                return new BooleanResult() { Success = false, Message = string.Format("Unexpected error while syncing user's info: {0}", e) };
+                return new BooleanResult() { Success = false, Message = Language.Format("Unexpected error while syncing user's info: {0}", e) };
             }
 
             return new BooleanResult() { Success = true };
@@ -411,7 +412,7 @@ namespace pGina.Plugin.LocalMachine
                     return new BooleanResult()
                     {
                         Success = false,
-                        Message = string.Format("Plugin configured to authorize users based on group membership, but not in the gateway list to ensure membership is enforced, denying access")
+                        Message = Language.Format("Plugin configured to authorize users based on group membership, but not in the gateway list to ensure membership is enforced, denying access")
                     };
                 }
 
@@ -428,7 +429,7 @@ namespace pGina.Plugin.LocalMachine
                         return new BooleanResult()
                         {
                             Success = false,
-                            Message = string.Format("Users group list does not include the admin group ({0}), denying access", adminName)
+                            Message = Language.Format("Users group list does not include the admin group ({0}), denying access", adminName)
                         };
                     }
                 }
@@ -454,7 +455,7 @@ namespace pGina.Plugin.LocalMachine
                     return new BooleanResult()
                     {
                         Success = false,
-                        Message = "User is not a member of one of the required groups, denying access"
+                        Message = Language.T("User is not a member of one of the required groups, denying access")
                     };
                 }
 
@@ -589,7 +590,7 @@ namespace pGina.Plugin.LocalMachine
                             if (!Abstractions.WindowsApi.pInvokes.StartUserProcessInSession(SessionId, userInfo.LoginScript))
                             {
                                 m_logger.ErrorFormat("Can't run application {0}", userInfo.LoginScript);
-                                Abstractions.WindowsApi.pInvokes.SendMessageToUser(SessionId, "Can't run application", String.Format("I'm unable to run your LoginScript\n{0}", userInfo.LoginScript));
+                                Abstractions.WindowsApi.pInvokes.SendMessageToUser(SessionId, Language.T("Can't run application"), Language.Format("I'm unable to run your LoginScript\n{0}", userInfo.LoginScript));
                             }
                         }
 
@@ -637,7 +638,7 @@ namespace pGina.Plugin.LocalMachine
 
                     if (userInfo.PasswordEXPcntr.Ticks > 0)
                     {
-                        Abstractions.WindowsApi.pInvokes.SendMessageToUser(SessionId, "Password expiration warning", String.Format("Your password will expire in {0} days {1} hours {2} minutes", userInfo.PasswordEXPcntr.Days, userInfo.PasswordEXPcntr.Hours, userInfo.PasswordEXPcntr.Minutes));
+                        Abstractions.WindowsApi.pInvokes.SendMessageToUser(SessionId, Language.T("Password expiration warning"), Language.Format("Your password will expire in {0} days {1} hours {2} minutes", userInfo.PasswordEXPcntr.Days, userInfo.PasswordEXPcntr.Hours, userInfo.PasswordEXPcntr.Minutes));
                     }
                 }
                 else

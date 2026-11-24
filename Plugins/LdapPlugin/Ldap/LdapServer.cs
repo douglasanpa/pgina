@@ -39,6 +39,7 @@ using System.Text.RegularExpressions;
 using System.Security.Cryptography;
 
 using pGina.Shared.Types;
+using pGina.Shared.Localization;
 
 namespace pGina.Plugin.Ldap
 {
@@ -518,7 +519,7 @@ namespace pGina.Plugin.Ldap
             if (!allowEmpty && string.IsNullOrEmpty(password))
             {
                 m_logger.Info("Authentication failed due to empty password.");
-                return new BooleanResult { Success = false, Rejected = true, Message = "Authentication failed due to empty password." };
+                return new BooleanResult { Success = false, Rejected = true, Message = Language.T("Authentication failed due to empty password.") };
             }
 
             // Get the user's DN
@@ -554,11 +555,11 @@ namespace pGina.Plugin.Ldap
                             m_logger.InfoFormat("Password expired");
                             userInfo.PasswordEXP = true;
                             properties.AddTrackedSingle<UserInformation>(userInfo);
-                            return new BooleanResult { Message = "Password expired", Success = true };
+                            return new BooleanResult { Message = Language.T("Password expired"), Success = true };
                         }
 
                         m_logger.ErrorFormat("LDAP bind failed: invalid credentials.");
-                        return new BooleanResult { Success = false, Rejected = true, Message = "Authentication via LDAP failed. Invalid credentials." };
+                        return new BooleanResult { Success = false, Rejected = true, Message = Language.T("Authentication via LDAP failed. Invalid credentials.") };
                     }
 
                     // Let caller handle other kinds of exceptions
@@ -570,11 +571,11 @@ namespace pGina.Plugin.Ldap
                     if (e.ToString().Contains("pGina.Plugin.Ldap.LdapServer.Bind"))
                     {
                         m_logger.ErrorFormat("The user name or password is incorrect: {0}", e.Message);
-                        return new BooleanResult { Success = false, Rejected = true, Message = "The user name or password is incorrect" };
+                        return new BooleanResult { Success = false, Rejected = true, Message = Language.T("The user name or password is incorrect") };
                     }
 
                     m_logger.ErrorFormat("LDAP plugin failed {0}",e.Message);
-                    return new BooleanResult { Success = false, Message = String.Format("LDAP plugin failed\n{0}",e.Message) };
+                    return new BooleanResult { Success = false, Message = Language.Format("LDAP plugin failed\n{0}",e.Message) };
                 }
 
                 // If we get here, the authentication was successful, we're done!
@@ -586,7 +587,7 @@ namespace pGina.Plugin.Ldap
                     m_logger.InfoFormat("Password expired");
                     userInfo.PasswordEXP = true;
                     properties.AddTrackedSingle<UserInformation>(userInfo);
-                    return new BooleanResult { Message = "Password expired", Success = true };
+                    return new BooleanResult { Message = Language.T("Password expired"), Success = true };
                 }
                 else
                 {
@@ -657,7 +658,7 @@ namespace pGina.Plugin.Ldap
             {
                 // the server answered the search and has no such user
                 m_logger.ErrorFormat("Unable to determine DN for: {0}", uname);
-                return new BooleanResult { Success = false, Rejected = true, Message = "Unable to determine the user's LDAP DN for authentication." };
+                return new BooleanResult { Success = false, Rejected = true, Message = Language.T("Unable to determine the user's LDAP DN for authentication.") };
             }
         }
 
@@ -754,7 +755,7 @@ namespace pGina.Plugin.Ldap
                         if (DateNowSec + 86400 /*one day in future*/ > sambapwdmustchange)
                         {
                             m_logger.InfoFormat("pwd expired");
-                            return new BooleanResultEx { Success = true, Message = "Password expired" };
+                            return new BooleanResultEx { Success = true, Message = Language.T("Password expired") };
                         }
 
                         TimeSpan PWDlasts = new TimeSpan((long)(sambapwdmustchange - DateNowSec) * (long)10000000);
@@ -790,7 +791,7 @@ namespace pGina.Plugin.Ldap
                 if (((int)Abstractions.WindowsApi.pInvokes.structenums.UserFlags.UF_PASSWORD_EXPIRED & msdsuseraccountcontrolcomputed) == (int)Abstractions.WindowsApi.pInvokes.structenums.UserFlags.UF_PASSWORD_EXPIRED)
                 {
                     m_logger.InfoFormat("userAccountControl contain UF_PASSWORD_EXPIRED");
-                    return new BooleanResultEx { Success = true, Message = "Password expired" };
+                    return new BooleanResultEx { Success = true, Message = Language.T("Password expired") };
                 }
 
                 DateTime msdsuserpasswordexpirytimecomputed = DateTime.MaxValue;
@@ -834,7 +835,7 @@ namespace pGina.Plugin.Ldap
                     //m_logger.InfoFormat("PWDlasts:{0:c}", PWDlasts);
                     if (PWDlasts < new TimeSpan(1, 0, 0, 0))
                     {
-                        return new BooleanResultEx { Success = true, Message = "Password expired" };
+                        return new BooleanResultEx { Success = true, Message = Language.T("Password expired") };
                     }
                     if (PWDlasts < new TimeSpan(5, 0, 0, 0))
                     {

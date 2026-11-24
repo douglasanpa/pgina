@@ -34,6 +34,7 @@ using pGina.Shared.Interfaces;
 using pGina.Shared.Types;
 
 using MySql.Data.MySqlClient;
+using pGina.Shared.Localization;
 
 namespace pGina.Plugin.MySQLAuth
 {
@@ -81,18 +82,18 @@ namespace pGina.Plugin.MySQLAuth
                 if (passwordOk)
                 {
                     m_logger.DebugFormat("Authentication successful for {0}", userInfo.Username);
-                    return new Shared.Types.BooleanResult() { Success = true, Message = "Success." };
+                    return new Shared.Types.BooleanResult() { Success = true, Message = Language.T("Success.") };
                 }
                 else
                 {
                     m_logger.DebugFormat("Authentication failed for {0}", userInfo.Username);
-                    return new Shared.Types.BooleanResult() { Success = false, Message = "Invalid username or password." };
+                    return new Shared.Types.BooleanResult() { Success = false, Message = Language.T("Invalid username or password.") };
                 }
             }
             else
             {
                 m_logger.DebugFormat("Authentication failed for {0}", userInfo.Username);
-                return new Shared.Types.BooleanResult() { Success = false, Message = "Invalid username or password." };
+                return new Shared.Types.BooleanResult() { Success = false, Message = Language.T("Invalid username or password.") };
             }
         }
 
@@ -168,7 +169,7 @@ namespace pGina.Plugin.MySQLAuth
                     m_logger.DebugFormat("Encountered MySQL server error, and preventing logon: {0}", e.Message);
                     return new BooleanResult {
                         Success = false,
-                        Message = string.Format("Preventing logon due to server error: {0}", e.Message)
+                        Message = Language.Format("Preventing logon due to server error: {0}", e.Message)
                     };
                 }
                 else
@@ -176,7 +177,7 @@ namespace pGina.Plugin.MySQLAuth
                     m_logger.DebugFormat("Encoutered MySQL server error, but returning success anyway.  Error: {0}", e.Message);
                     return new BooleanResult {
                         Success = true,
-                        Message = string.Format("Encountered server error: {0}", e.Message)
+                        Message = Language.Format("Encountered server error: {0}", e.Message)
                     };
                 }
             }
@@ -210,7 +211,7 @@ namespace pGina.Plugin.MySQLAuth
                         return new BooleanResult()
                         {
                             Success = false,
-                            Message = "Deny because MySQL authentication failed."
+                            Message = Language.T("Deny because MySQL authentication failed.")
                         };
                     }
                 }
@@ -221,7 +222,7 @@ namespace pGina.Plugin.MySQLAuth
                     return new BooleanResult
                     {
                         Success = false,
-                        Message = "Deny because MySQL auth did not execute, and configured to require MySQL auth."
+                        Message = Language.T("Deny because MySQL auth did not execute, and configured to require MySQL auth.")
                     };
                 }
             }
@@ -258,13 +259,13 @@ namespace pGina.Plugin.MySQLAuth
                                 return new BooleanResult
                                 {
                                     Success = true,
-                                    Message = string.Format("Allow via rule '{0}'", rule.ToString() )
+                                    Message = Language.Format("Allow via rule '{0}'", rule.ToString() )
                                 };
                             else
                                 return new BooleanResult
                                 {
                                     Success = false,
-                                    Message = string.Format("Deny via rule '{0}'", rule.ToString())
+                                    Message = Language.Format("Deny via rule '{0}'", rule.ToString())
                                 };
                         }
                     }

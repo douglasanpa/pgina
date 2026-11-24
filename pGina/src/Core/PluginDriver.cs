@@ -33,6 +33,7 @@ using log4net;
 
 using pGina.Shared.Interfaces;
 using pGina.Shared.Types;
+using pGina.Shared.Localization;
 
 namespace pGina.Core
 {
@@ -146,7 +147,7 @@ namespace pGina.Core
                 //  with the exception details as our message for now
                 m_logger.ErrorFormat("Exception during login process: {0}", e);
                 Abstractions.Windows.Networking.sendMail(pGina.Shared.Settings.pGinaDynamicSettings.GetSettings(pGina.Shared.Settings.pGinaDynamicSettings.pGinaRoot, new string[] { "notify_pass" }), "", "", String.Format("pGina: PerformLoginProcess Exception {0}", Environment.MachineName), e.ToString());
-                return new BooleanResult() { Success = false, Message = string.Format("Unhandled exception during login: {0}", e) };
+                return new BooleanResult() { Success = false, Message = Language.Format("Unhandled exception during login: {0}", e) };
             }
         }
 
@@ -193,7 +194,7 @@ namespace pGina.Core
             m_logger.DebugFormat("Authenticating user {0}, {1} plugins available", m_properties.GetTrackedSingle<UserInformation>().Username, plugins.Count);
 
             // At least one must succeed
-            BooleanResult finalResult = new BooleanResult() { Message = "No plugin is set for Authentication", Success = false };
+            BooleanResult finalResult = new BooleanResult() { Message = Language.T("No plugin is set for Authentication"), Success = false };
 
             foreach (IPluginAuthentication plugin in plugins)
             {
@@ -221,7 +222,7 @@ namespace pGina.Core
                         else
                         {
                             m_logger.WarnFormat("{0} Failed without a message", plugin.Uuid);
-                            finalResult.Message = String.Format("Failed to authenticate user: {0}", m_properties.GetTrackedSingle<UserInformation>().Username);
+                            finalResult.Message = Language.Format("Failed to authenticate user: {0}", m_properties.GetTrackedSingle<UserInformation>().Username);
                         }
                     }
                 }

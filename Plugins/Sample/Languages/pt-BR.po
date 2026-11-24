@@ -20,3 +20,9 @@ msgstr "Cancelar"
 
 msgid "Sample Plugin Configuration"
 msgstr "Configuração do plugin de exemplo"
+
+msgid "Your username does not start with a 'p'"
+msgstr "O seu nome de usuário não começa com 'p'"
+
+msgid "Success from the sample plugin"
+msgstr "Sucesso no plugin de exemplo"

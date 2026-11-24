@@ -29,3 +29,12 @@ msgstr "Porta ou serviço do servidor SSH (normalmente 22)"
 
 msgid "SSHAuth Configuration"
 msgstr "Configuração do SSHAuth"
+
+msgid "Invalid SSH port: {0}"
+msgstr "Porta SSH inválida: {0}"
+
+msgid "SSH authentication failed for user {0} ({1})"
+msgstr "A autenticação SSH falhou para o usuário {0} ({1})"
+
+msgid "SSH connection to {0}:{1} failed ({2})"
+msgstr "A conexão SSH com {0}:{1} falhou ({2})"

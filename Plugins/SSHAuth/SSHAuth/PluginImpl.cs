@@ -9,6 +9,7 @@ using Renci.SshNet;
 using Renci.SshNet.Common;
 using pGina.Shared.Interfaces;
 using pGina.Shared.Types;
+using pGina.Shared.Localization;
 
 namespace pGina.Plugin.SSHAuth
 {
@@ -72,7 +73,7 @@ namespace pGina.Plugin.SSHAuth
 
             if (!int.TryParse(sshPort, out port) || port < 1 || port > 65535)
             {
-                return new BooleanResult() { Success = false, Message = String.Format("Invalid SSH port: {0}", sshPort) };
+                return new BooleanResult() { Success = false, Message = Language.Format("Invalid SSH port: {0}", sshPort) };
             }
 
             // Same check as the old native helper: open a session and try password authentication.
@@ -89,12 +90,12 @@ namespace pGina.Plugin.SSHAuth
             }
             catch (SshAuthenticationException e)
             {
-                return new BooleanResult() { Success = false, Message = String.Format("SSH authentication failed for user {0} ({1})", userInfo.Username, e.Message) };
+                return new BooleanResult() { Success = false, Message = Language.Format("SSH authentication failed for user {0} ({1})", userInfo.Username, e.Message) };
             }
             catch (Exception e)
             {
                 m_logger.ErrorFormat("SSH connection to {0}:{1} failed: {2}", sshHost, port, e);
-                return new BooleanResult() { Success = false, Message = String.Format("SSH connection to {0}:{1} failed ({2})", sshHost, port, e.Message) };
+                return new BooleanResult() { Success = false, Message = Language.Format("SSH connection to {0}:{1} failed ({2})", sshHost, port, e.Message) };
             }
         }
     }

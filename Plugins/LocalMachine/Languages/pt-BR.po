@@ -105,3 +105,54 @@ msgstr "Nas contas criadas pelo pGina, a senha local é uma cópia do último lo
 
 msgid "When this is checked, the plugin will attempt to scramble the password of the local account after logout"
 msgstr "Se marcado, o plugin tenta embaralhar a senha da conta local após o logoff"
+
+msgid "Current password or username is not valid."
+msgstr "O usuário ou a senha atual não são válidos."
+
+msgid "Local machine plugin internal error: directory entry not found."
+msgstr "Erro interno do plugin LocalMachine: a entrada do diretório não foi encontrada."
+
+msgid "Local password successfully changed."
+msgstr "A senha local foi trocada."
+
+msgid "Unable to sync users local group membership: {0}"
+msgstr "Não foi possível sincronizar os grupos locais do usuário: {0}"
+
+msgid ""
+"This workstation is denying the password of {0}.\n"
+"Most likely the password does not meet complexity requirements\n"
+"\n"
+"{1}"
+msgstr ""
+"Este computador recusou a senha de {0}.\n"
+"Provavelmente a senha não atende aos requisitos de complexidade\n"
+"\n"
+"{1}"
+
+msgid "Unexpected error while syncing user's info: {0}"
+msgstr "Erro inesperado ao sincronizar os dados do usuário: {0}"
+
+msgid "Plugin configured to authorize users based on group membership, but not in the gateway list to ensure membership is enforced, denying access"
+msgstr "O plugin autoriza pelos grupos do usuário, mas não está na etapa de gateway para garantir esses grupos. Acesso negado."
+
+msgid "Users group list does not include the admin group ({0}), denying access"
+msgstr "Os grupos do usuário não incluem o grupo de administradores ({0}). Acesso negado."
+
+msgid "User is not a member of one of the required groups, denying access"
+msgstr "O usuário não pertence a nenhum dos grupos exigidos. Acesso negado."
+
+msgid "Can't run application"
+msgstr "Não foi possível executar o programa"
+
+msgid ""
+"I'm unable to run your LoginScript\n"
+"{0}"
+msgstr ""
+"Não foi possível executar o seu script de logon\n"
+"{0}"
+
+msgid "Password expiration warning"
+msgstr "Aviso de expiração da senha"
+
+msgid "Your password will expire in {0} days {1} hours {2} minutes"
+msgstr "A sua senha vai expirar em {0} dias, {1} horas e {2} minutos"

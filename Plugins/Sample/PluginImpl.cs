@@ -35,6 +35,7 @@ using log4net;
 using pGina.Shared.Interfaces;
 using pGina.Shared.Types;
 using pGina.Shared.Settings;
+using pGina.Shared.Localization;
 
 namespace pGina.Plugin.Sample
 {
@@ -97,7 +98,7 @@ namespace pGina.Plugin.Sample
                 }
 
                 m_logger.ErrorFormat("Failed to authenticate user: {0}", userInfo.Username);
-                return new BooleanResult() { Success = false, Message = string.Format("Your username does not start with a 'p'") };
+                return new BooleanResult() { Success = false, Message = Language.Format("Your username does not start with a 'p'") };
             }
             catch (Exception e)
             {
@@ -117,7 +118,7 @@ namespace pGina.Plugin.Sample
 
         public BooleanResult ChangePassword(SessionProperties properties, ChangePasswordPluginActivityInfo pluginInfo)
         {
-            return new BooleanResult() { Success = true, Message = "Success from the sample plugin" };
+            return new BooleanResult() { Success = true, Message = Language.T("Success from the sample plugin") };
         }
     }
 }

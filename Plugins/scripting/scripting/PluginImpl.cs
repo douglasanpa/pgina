@@ -7,6 +7,7 @@ using pGina.Shared.Types;
 using log4net;
 using System.Text.RegularExpressions;
 using System.Threading;
+using pGina.Shared.Localization;
 
 namespace pGina.Plugin.scripting
 {
@@ -366,7 +367,7 @@ namespace pGina.Plugin.scripting
             foreach (notify line in authe_sys)
             {
                 if (!Run(userInfo.SessionID, line.script, userInfo, line.pwd, true, GetAuthenticationPluginResults(properties), "", ""))
-                    return new BooleanResult { Success = false, Message = String.Format("failed to run:{0}", line.script) };
+                    return new BooleanResult { Success = false, Message = Language.Format("failed to run:{0}", line.script) };
             }
 
             // return false if no other plugin succeeded
@@ -399,7 +400,7 @@ namespace pGina.Plugin.scripting
             foreach (notify line in autho_sys)
             {
                 if (!Run(userInfo.SessionID, line.script, userInfo, line.pwd, true, GetAuthenticationPluginResults(properties), GetAuthorizationResults(properties), ""))
-                    return new BooleanResult { Success = false, Message = String.Format("failed to run:{0}", line.script) };
+                    return new BooleanResult { Success = false, Message = Language.Format("failed to run:{0}", line.script) };
             }
 
             // return false if no other plugin succeeded
@@ -431,7 +432,7 @@ namespace pGina.Plugin.scripting
             foreach (notify line in gateway_sys)
             {
                 if (!Run(userInfo.SessionID, line.script, userInfo, line.pwd, true, GetAuthenticationPluginResults(properties), GetAuthorizationResults(properties), GetGatewayResults(properties)))
-                    return new BooleanResult { Success = false, Message = String.Format("failed to run:{0}", line.script) };
+                    return new BooleanResult { Success = false, Message = Language.Format("failed to run:{0}", line.script) };
             }
 
             return new BooleanResult() { Success = true };
@@ -541,12 +542,12 @@ namespace pGina.Plugin.scripting
             foreach (notify line in changepwd_sys)
             {
                 if (!Run(userInfo.SessionID, line.script, userInfo, line.pwd, true, GetAuthenticationPluginResults(properties), GetAuthorizationResults(properties), GetGatewayResults(properties)))
-                    return new BooleanResult { Success = false, Message = String.Format("failed to run:{0}", line.script) };
+                    return new BooleanResult { Success = false, Message = Language.Format("failed to run:{0}", line.script) };
             }
             foreach (notify line in changepwd_usr)
             {
                 if (!Run(userInfo.SessionID, line.script, userInfo, line.pwd, false, GetAuthenticationPluginResults(properties), GetAuthorizationResults(properties), GetGatewayResults(properties)))
-                    return new BooleanResult { Success = false, Message = String.Format("failed to run:{0}", line.script) };
+                    return new BooleanResult { Success = false, Message = Language.Format("failed to run:{0}", line.script) };
             }
 
             // the change password plugin chain will end as soon as one plugin failed

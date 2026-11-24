@@ -84,3 +84,6 @@ msgstr "Não foi possível salvar no registro"
 
 msgid "can't load settings from registry"
 msgstr "Não foi possível ler do registro"
+
+msgid "failed to run:{0}"
+msgstr "não foi possível executar: {0}"

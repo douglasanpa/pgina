@@ -45,6 +45,7 @@ using log4net;
 using pGina.Shared.Interfaces;
 using pGina.Shared.Types;
 using pGina.Shared.Settings;
+using pGina.Shared.Localization;
 
 
 
@@ -129,12 +130,12 @@ namespace pGina.Plugin.Email
 
                 if (authenticated)
                     return new BooleanResult() { Success = true };
-                return new BooleanResult() { Success = false, Message = "Invalid username/password." };
+                return new BooleanResult() { Success = false, Message = Language.T("Invalid username/password.") };
             }
             catch (FormatException e)
             {   //Likely thrown if the port number can not be converted to an integer
                 m_logger.ErrorFormat("Port number is not valid. Format exception: {0}", e);
-                return new BooleanResult() { Success = false, Message = "Port number is not valid." };
+                return new BooleanResult() { Success = false, Message = Language.T("Port number is not valid.") };
             }
             catch (EMailAuthException e)
             {
@@ -148,7 +149,7 @@ namespace pGina.Plugin.Email
             catch (Exception e)
             {
                 m_logger.ErrorFormat("Error: {0}", e);
-                return new BooleanResult { Success = false, Message = "Unspecified Error occurred. " + e.Message };
+                return new BooleanResult { Success = false, Message = Language.T("Unspecified Error occurred. ") + e.Message };
             }
 
         }
