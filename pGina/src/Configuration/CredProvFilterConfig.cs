@@ -31,11 +31,78 @@ using System.Text;
 
 using Microsoft.Win32;
 
+using pGina.Shared.Localization;
+
 namespace pGina.Configuration
 {
     class CredProvFilterConfig
     {
         private static readonly string CRED_PROV_KEY = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Authentication\Credential Providers";
+
+        // pGina's own credential provider, never listed: hiding it would leave no way to log on
+        public static readonly Guid PginaProvider = new Guid("d0befefb-3d2c-44da-bbad-3b2d04557246");
+        public static readonly Guid PasswordProvider = new Guid("60b78e88-ead8-445c-9cfd-0b87f74ea6cd");
+
+        // Names people recognize for the Windows providers, in the order they are listed
+        private static readonly KeyValuePair<Guid, string>[] KnownNames =
+        {
+            Known("60b78e88-ead8-445c-9cfd-0b87f74ea6cd", Language.T("Windows password and \"Other user\"")),
+            Known("cb82ea12-9f71-446d-89e1-8d0924e1256e", Language.T("Windows Hello PIN")),
+            Known("bec09223-b018-416d-a0ac-523971b639f5", Language.T("Windows Hello fingerprint or face")),
+            Known("2135f72a-90b5-4ed3-a7f1-8bb705ac276a", Language.T("Picture password")),
+            Known("f8a1793b-7873-4046-b2a7-1f318747f427", Language.T("Security key (FIDO)")),
+            Known("8fd7e19c-3bf7-489b-a72c-846ab3678c96", Language.T("Smart card")),
+            Known("94596c7e-3744-41ce-893e-bbf09122f76a", Language.T("Smart card PIN")),
+            Known("1b283861-754f-4022-ad47-a5eaaa618894", Language.T("Smart card reader selection")),
+            Known("1ee7337f-85ac-45e2-a23c-37c753209769", Language.T("Smart card for apps")),
+            Known("3dd6bec0-8193-4ffe-ae25-e08e39ea4063", Language.T("Network providers")),
+            Known("48b4e58d-2791-456c-9091-d524c6c706f2", Language.T("Companion device")),
+            Known("27fbdb57-b613-4af2-9d7e-4fa7a66c21ad", Language.T("Trusted signal (dynamic lock)")),
+            Known("25cbb996-92ed-457e-b28c-4774084bd562", Language.T("Windows generic provider")),
+            Known("600e7adb-da3e-41a4-9225-3c0399e88c0c", Language.T("CNG credentials (UAC prompts)")),
+        };
+
+        private static KeyValuePair<Guid, string> Known(string uuid, string name)
+        {
+            return new KeyValuePair<Guid, string>(new Guid(uuid), name);
+        }
+
+        public static string FriendlyName(Guid uuid, string registryName)
+        {
+            foreach (KeyValuePair<Guid, string> k in KnownNames)
+                if (k.Key == uuid)
+                    return k.Value;
+            return registryName;
+        }
+
+        private static int SortOrder(Guid uuid)
+        {
+            for (int i = 0; i < KnownNames.Length; i++)
+                if (KnownNames[i].Key == uuid)
+                    return i;
+            return KnownNames.Length;
+        }
+
+        /// <summary>Hides every other provider at logon and unlock, and keeps UAC prompts and password changes as they are.</summary>
+        public static void OnlyPgina(List<CredProv> list)
+        {
+            foreach (CredProv cp in list)
+            {
+                cp.FilterLogon = true;
+                cp.FilterUnlock = true;
+            }
+        }
+
+        public static void WindowsDefault(List<CredProv> list)
+        {
+            foreach (CredProv cp in list)
+            {
+                cp.FilterLogon = false;
+                cp.FilterUnlock = false;
+                cp.FilterChangePass = false;
+                cp.FilterCredUI = false;
+            }
+        }
 
         public static List<CredProv> LoadCredProvsAndFilterSettings()
         {
@@ -103,7 +170,14 @@ namespace pGina.Configuration
                 }
             }
 
-            return result.Values.ToList();
+            result.Remove(PginaProvider);
+            foreach (CredProv cp in result.Values)
+                cp.DisplayName = FriendlyName(cp.Uuid, cp.Name);
+
+            return result.Values
+                .OrderBy(cp => SortOrder(cp.Uuid))
+                .ThenBy(cp => cp.DisplayName, StringComparer.CurrentCultureIgnoreCase)
+                .ToList();
         }
 
         public static void SaveFilterSettings(List<CredProv> list)
@@ -132,6 +206,13 @@ namespace pGina.Configuration
         public bool FilterUnlock { get; set; }
         public bool FilterChangePass { get; set; }
         public bool FilterCredUI { get; set; }
+
+        // What the configuration shows: a ticked box means the provider appears there
+        public string DisplayName { get; set; }
+        public bool ShowLogon { get { return !FilterLogon; } set { FilterLogon = !value; } }
+        public bool ShowUnlock { get { return !FilterUnlock; } set { FilterUnlock = !value; } }
+        public bool ShowChangePass { get { return !FilterChangePass; } set { FilterChangePass = !value; } }
+        public bool ShowCredUI { get { return !FilterCredUI; } set { FilterCredUI = !value; } }
 
         public bool FilterEnabled()
         {
