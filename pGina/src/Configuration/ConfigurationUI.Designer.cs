@@ -44,6 +44,14 @@
             this.languageLbl = new System.Windows.Forms.Label();
             this.m_languageCB = new System.Windows.Forms.ComboBox();
             this.languageNoteLbl = new System.Windows.Forms.Label();
+            this.updateGB = new System.Windows.Forms.GroupBox();
+            this.m_updateStatusLbl = new System.Windows.Forms.Label();
+            this.m_updateNotesLink = new System.Windows.Forms.LinkLabel();
+            this.m_updateCheckBtn = new System.Windows.Forms.Button();
+            this.m_updateInstallBtn = new System.Windows.Forms.Button();
+            this.m_updateCheckCB = new System.Windows.Forms.CheckBox();
+            this.m_autoUpdateCB = new System.Windows.Forms.CheckBox();
+            this.updateGB.SuspendLayout();
             this.m_logonScreenTab = new System.Windows.Forms.TabPage();
             this.lockScreenGB = new System.Windows.Forms.GroupBox();
             this.lockScreenLbl = new System.Windows.Forms.Label();
@@ -245,6 +253,7 @@
             //
             // m_generalConfigTab
             //
+            this.m_generalConfigTab.Controls.Add(this.updateGB);
             this.m_generalConfigTab.Controls.Add(this.languageGB);
             this.m_generalConfigTab.Controls.Add(this.ntpservers_group);
             this.m_generalConfigTab.Controls.Add(this.groupLogon);
@@ -297,6 +306,82 @@
             this.languageNoteLbl.Size = new System.Drawing.Size(300, 13);
             this.languageNoteLbl.TabIndex = 2;
             this.languageNoteLbl.Text = "Used by this window and the logon screen after a restart.";
+            //
+            // updateGB
+            //
+            this.updateGB.Controls.Add(this.m_autoUpdateCB);
+            this.updateGB.Controls.Add(this.m_updateCheckCB);
+            this.updateGB.Controls.Add(this.m_updateInstallBtn);
+            this.updateGB.Controls.Add(this.m_updateCheckBtn);
+            this.updateGB.Controls.Add(this.m_updateNotesLink);
+            this.updateGB.Controls.Add(this.m_updateStatusLbl);
+            this.updateGB.Location = new System.Drawing.Point(17, 333);
+            this.updateGB.Name = "updateGB";
+            this.updateGB.Size = new System.Drawing.Size(749, 128);
+            this.updateGB.TabIndex = 11;
+            this.updateGB.TabStop = false;
+            this.updateGB.Text = "Updates";
+            //
+            // m_updateStatusLbl
+            //
+            this.m_updateStatusLbl.AutoSize = true;
+            this.m_updateStatusLbl.Location = new System.Drawing.Point(16, 24);
+            this.m_updateStatusLbl.Name = "m_updateStatusLbl";
+            this.m_updateStatusLbl.Size = new System.Drawing.Size(120, 13);
+            this.m_updateStatusLbl.TabIndex = 0;
+            //
+            // m_updateNotesLink
+            //
+            this.m_updateNotesLink.AutoSize = true;
+            this.m_updateNotesLink.Location = new System.Drawing.Point(16, 46);
+            this.m_updateNotesLink.Name = "m_updateNotesLink";
+            this.m_updateNotesLink.Size = new System.Drawing.Size(120, 13);
+            this.m_updateNotesLink.TabIndex = 1;
+            this.m_updateNotesLink.TabStop = true;
+            this.m_updateNotesLink.Text = "What's new in this version";
+            this.m_updateNotesLink.Visible = false;
+            this.m_updateNotesLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.m_updateNotesLink_LinkClicked);
+            //
+            // m_updateCheckBtn
+            //
+            this.m_updateCheckBtn.Location = new System.Drawing.Point(493, 19);
+            this.m_updateCheckBtn.Name = "m_updateCheckBtn";
+            this.m_updateCheckBtn.Size = new System.Drawing.Size(120, 23);
+            this.m_updateCheckBtn.TabIndex = 2;
+            this.m_updateCheckBtn.Text = "Check now";
+            this.m_updateCheckBtn.UseVisualStyleBackColor = true;
+            this.m_updateCheckBtn.Click += new System.EventHandler(this.m_updateCheckBtn_Click);
+            //
+            // m_updateInstallBtn
+            //
+            this.m_updateInstallBtn.Enabled = false;
+            this.m_updateInstallBtn.Location = new System.Drawing.Point(619, 19);
+            this.m_updateInstallBtn.Name = "m_updateInstallBtn";
+            this.m_updateInstallBtn.Size = new System.Drawing.Size(120, 23);
+            this.m_updateInstallBtn.TabIndex = 3;
+            this.m_updateInstallBtn.Text = "Download and install";
+            this.m_updateInstallBtn.UseVisualStyleBackColor = true;
+            this.m_updateInstallBtn.Click += new System.EventHandler(this.m_updateInstallBtn_Click);
+            //
+            // m_updateCheckCB
+            //
+            this.m_updateCheckCB.AutoSize = true;
+            this.m_updateCheckCB.Location = new System.Drawing.Point(19, 72);
+            this.m_updateCheckCB.Name = "m_updateCheckCB";
+            this.m_updateCheckCB.Size = new System.Drawing.Size(200, 17);
+            this.m_updateCheckCB.TabIndex = 4;
+            this.m_updateCheckCB.Text = "Check for updates automatically";
+            this.m_updateCheckCB.UseVisualStyleBackColor = true;
+            //
+            // m_autoUpdateCB
+            //
+            this.m_autoUpdateCB.AutoSize = true;
+            this.m_autoUpdateCB.Location = new System.Drawing.Point(19, 97);
+            this.m_autoUpdateCB.Name = "m_autoUpdateCB";
+            this.m_autoUpdateCB.Size = new System.Drawing.Size(400, 17);
+            this.m_autoUpdateCB.TabIndex = 5;
+            this.m_autoUpdateCB.Text = "Install updates automatically (while nobody is logged on; the computer restarts)";
+            this.m_autoUpdateCB.UseVisualStyleBackColor = true;
             //
             // m_logonScreenTab
             //
@@ -1835,6 +1920,8 @@
             this.groupBox12.ResumeLayout(false);
             this.groupBox12.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.m_tileImagePreview)).EndInit();
+            this.updateGB.ResumeLayout(false);
+            this.updateGB.PerformLayout();
             this.languageGB.ResumeLayout(false);
             this.languageGB.PerformLayout();
             this.m_logonScreenTab.ResumeLayout(false);
@@ -1950,6 +2037,13 @@
         private System.Windows.Forms.Label languageLbl;
         private System.Windows.Forms.ComboBox m_languageCB;
         private System.Windows.Forms.Label languageNoteLbl;
+        private System.Windows.Forms.GroupBox updateGB;
+        private System.Windows.Forms.Label m_updateStatusLbl;
+        private System.Windows.Forms.LinkLabel m_updateNotesLink;
+        private System.Windows.Forms.Button m_updateCheckBtn;
+        private System.Windows.Forms.Button m_updateInstallBtn;
+        private System.Windows.Forms.CheckBox m_updateCheckCB;
+        private System.Windows.Forms.CheckBox m_autoUpdateCB;
         private System.Windows.Forms.TabPage m_logonScreenTab;
         private System.Windows.Forms.GroupBox lockScreenGB;
         private System.Windows.Forms.Label lockScreenLbl;

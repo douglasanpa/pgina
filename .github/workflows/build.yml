@@ -52,6 +52,9 @@ jobs:
           ./Installer/make.ps1 @a
           if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           $setup = Get-ChildItem Installer/Output/pGinaSetup-*.exe | Select-Object -First 1
+          # checksum in the sha256sum format; the updater refuses an installer without it
+          $hash = (Get-FileHash $setup.FullName -Algorithm SHA256).Hash.ToLower()
+          [IO.File]::WriteAllText("$($setup.FullName).sha256", "$hash  $($setup.Name)`n")
           "path=$($setup.FullName)" >> $env:GITHUB_OUTPUT
 
       - name: Upload binaries
@@ -67,7 +70,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: pgina-setup-${{ github.sha }}
-          path: ${{ steps.installer.outputs.path }}
+          path: |
+            ${{ steps.installer.outputs.path }}
+            ${{ steps.installer.outputs.path }}.sha256
           if-no-files-found: error
 
       - name: Publish release
@@ -76,5 +81,5 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create $env:GITHUB_REF_NAME "${{ steps.installer.outputs.path }}" `
+          gh release create $env:GITHUB_REF_NAME "${{ steps.installer.outputs.path }}" "${{ steps.installer.outputs.path }}.sha256" `
             --title "pGina.fork $env:GITHUB_REF_NAME" --generate-notes

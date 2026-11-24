@@ -28,6 +28,7 @@
       <Link>Properties\SharedAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Localization\FormStyle.cs" />
+    <Compile Include="Update\Updater.cs" />
     <Compile Include="Localization\Language.cs" />
     <Compile Include="Logging\InProcAppender.cs" />
     <Compile Include="Registration\CredProviderManager.cs" />

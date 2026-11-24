@@ -39,6 +39,10 @@
     <Compile Include="ConfigurationUI.Designer.cs">
       <DependentUpon>ConfigurationUI.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConfigurationUI.Updates.cs">
+      <DependentUpon>ConfigurationUI.cs</DependentUpon>
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="CredProvFilterConfig.cs" />
     <Compile Include="LockScreen.cs" />
     <Compile Include="LogViewWindow.cs">

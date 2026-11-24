@@ -50,6 +50,7 @@ using Abstractions.Pipes;
 using log4net;
 using pGina.Shared.Types;
 using pGina.Shared.Localization;
+using pGina.Shared.Update;
 
 namespace pGina.Configuration
 {
@@ -230,6 +231,8 @@ namespace pGina.Configuration
             foreach (string lang in Language.Supported)
                 m_languageCB.Items.Add(Language.NativeName(lang));
             m_languageCB.SelectedIndex = Array.IndexOf(Language.Supported, Language.Configured) + 1;
+
+            LoadUpdateSettings();
 
             // Lock screen background
             try
@@ -934,6 +937,9 @@ namespace pGina.Configuration
 
             // Service status checkbox
             Settings.Get.ShowServiceStatusInLogonUi = this.logonUiShowServiceStatusCB.Checked;
+
+            Settings.Get.UpdateCheck = m_updateCheckCB.Checked;
+            Settings.Get.AutoUpdate = m_autoUpdateCB.Checked;
 
             // Save unlock setting
             Settings.Get.UseOriginalUsernameInUnlockScenario = chk_originalUsernameUnlock.Checked;

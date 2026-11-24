@@ -81,6 +81,18 @@ namespace pGina.Core
 
             // local accounts that can't be used directly at the logon screen (only as a redirect target, ex: SingleUser plugin)
             s_settings.SetDefault("DenyDirectLocalLogin", new string[] { });
+
+            // updates: UpdateCheck only tells (configuration window, log); AutoUpdate also installs,
+            // while nobody is logged on. The service writes the other values.
+            s_settings.SetDefault("UpdateCheck", true);
+            s_settings.SetDefault("AutoUpdate", false);
+            s_settings.SetDefault("UpdateSource", pGina.Shared.Update.Updater.DefaultSource);
+            s_settings.SetDefault("LatestVersion", "");
+            s_settings.SetDefault("LastUpdateCheck", "");
+            s_settings.SetDefault("StagedUpdate", "");
+            s_settings.SetDefault("StagedUpdateVersion", "");
+            s_settings.SetDefault("StagedUpdateSha256", "");
+            s_settings.SetDefault("LastUpdateAttempt", "");
         }
     }
 }
