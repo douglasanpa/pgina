@@ -27,7 +27,7 @@ namespace pGina.Plugin.Ldap.Test
         private LdapPlugin m_plugin;
         private SessionProperties m_props;
 
-        [TestFixtureSetUp]
+        [OneTimeSetUp]
         public void InitFixture()
         {
             pGina.Shared.Logging.Logging.Init();
@@ -38,7 +38,7 @@ namespace pGina.Plugin.Ldap.Test
             m_plugin.Starting();
         }
 
-        [TestFixtureTearDown]
+        [OneTimeTearDown]
         public void TearDownFixture()
         {
             m_plugin.Stopping();

@@ -1616,7 +1616,7 @@ namespace pGina.Configuration
 
         private void Btn_help(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("http://mutonufoai.github.io/pgina/documentation.html");
+            System.Diagnostics.Process.Start("https://douglasanpa.github.io/pgina/documentation.html");
         }
     }
 }

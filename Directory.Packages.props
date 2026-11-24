@@ -1,0 +1,26 @@
+<Project>
+  <!-- NuGet package versions for every C# project, kept in one place -->
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <!-- transitive dependencies listed below are pinned too -->
+    <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageVersion Include="log4net" Version="3.6.0" />
+    <PackageVersion Include="MySql.Data" Version="26.10.0" />
+    <PackageVersion Include="NUnit" Version="3.14.0" />
+    <PackageVersion Include="SSH.NET" Version="2026.0.1" />
+  </ItemGroup>
+  <!--
+    All plugins are copied to the same Plugins\bin folder and the plugin loader resolves
+    dependencies by file name only, so shared dependencies must have a single version
+    (the newest one any plugin needs).
+  -->
+  <ItemGroup>
+    <PackageVersion Include="BouncyCastle.Cryptography" Version="2.7.0" />
+    <PackageVersion Include="System.Buffers" Version="4.6.1" />
+    <PackageVersion Include="System.Memory" Version="4.6.3" />
+    <PackageVersion Include="System.Numerics.Vectors" Version="4.6.1" />
+    <PackageVersion Include="System.Runtime.CompilerServices.Unsafe" Version="6.1.2" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,15 @@
+<Project>
+  <!-- Common settings for all C# projects (C++ projects are not affected) -->
+  <PropertyGroup Condition="'$(MSBuildProjectExtension)' == '.csproj'">
+    <TargetFramework>net48</TargetFramework>
+    <!-- version and assembly attributes come from AssemblyInfo.cs / SharedAssemblyInfo.cs -->
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <!-- keep the explicit file lists of each project -->
+    <EnableDefaultItems>false</EnableDefaultItems>
+    <!-- keep the original output folders (pGina\src\bin, Plugins\bin) -->
+    <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+    <Platforms>AnyCPU</Platforms>
+    <NuGetAudit>true</NuGetAudit>
+    <NuGetAuditMode>all</NuGetAuditMode>
+  </PropertyGroup>
+</Project>

@@ -19,3 +19,10 @@ Installer/Output
 
 # Installer pre-processor
 Installer/PreprocessedpGina0.iss
+
+# Native plugin intermediate files
+Plugins/Kerberos/authdll/Debug/
+Plugins/Kerberos/authdll/Release/
+
+# C++ build intermediates
+*.vcxproj.FileListAbsolute.txt
