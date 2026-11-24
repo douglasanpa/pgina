@@ -131,7 +131,7 @@
             this.cpOptions = new System.Windows.Forms.TabPage();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.label18 = new System.Windows.Forms.Label();
-            this.dgvCredProvFilter = new System.Windows.Forms.DataGridView();
+            this.clbCredProv = new System.Windows.Forms.CheckedListBox();
             this.btnOnlyPgina = new System.Windows.Forms.Button();
             this.btnWindowsDefault = new System.Windows.Forms.Button();
             this.label17 = new System.Windows.Forms.Label();
@@ -211,7 +211,6 @@
             this.groupBox15.SuspendLayout();
             this.cpOptions.SuspendLayout();
             this.groupBox9.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCredProvFilter)).BeginInit();
             this.m_simTab.SuspendLayout();
             this.groupBox13.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.simFinalResultPB)).BeginInit();
@@ -1289,7 +1288,7 @@
             this.groupBox9.Controls.Add(this.btnWindowsDefault);
             this.groupBox9.Controls.Add(this.btnOnlyPgina);
             this.groupBox9.Controls.Add(this.label18);
-            this.groupBox9.Controls.Add(this.dgvCredProvFilter);
+            this.groupBox9.Controls.Add(this.clbCredProv);
             this.groupBox9.Controls.Add(this.label17);
             this.groupBox9.Controls.Add(this.textBox1);
             this.groupBox9.Location = new System.Drawing.Point(17, 15);
@@ -1325,16 +1324,17 @@
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(444, 30);
             this.label18.TabIndex = 4;
-            this.label18.Text = "Only pGina unticks everything at logon and unlock. UAC prompts and password chang" +
-                "es keep the Windows options.";
+            this.label18.Text = "Only pGina unticks everything. UAC prompts and password changes always keep the W" +
+                "indows options.";
             //
-            // dgvCredProvFilter
+            // clbCredProv
             //
-            this.dgvCredProvFilter.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvCredProvFilter.Location = new System.Drawing.Point(13, 38);
-            this.dgvCredProvFilter.Name = "dgvCredProvFilter";
-            this.dgvCredProvFilter.Size = new System.Drawing.Size(721, 262);
-            this.dgvCredProvFilter.TabIndex = 1;
+            this.clbCredProv.CheckOnClick = true;
+            this.clbCredProv.IntegralHeight = false;
+            this.clbCredProv.Location = new System.Drawing.Point(13, 38);
+            this.clbCredProv.Name = "clbCredProv";
+            this.clbCredProv.Size = new System.Drawing.Size(721, 262);
+            this.clbCredProv.TabIndex = 1;
             //
             // label17
             //
@@ -1343,7 +1343,7 @@
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(240, 13);
             this.label17.TabIndex = 0;
-            this.label17.Text = "Ticked options appear on the Windows screens. Untick what you want to hide. pGina itself is always shown.";
+            this.label17.Text = "Ticked options appear on the logon and unlock screens. Untick what you want to hide. pGina is always shown.";
             //
             // textBox1
             //
@@ -1864,7 +1864,6 @@
             this.cpOptions.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvCredProvFilter)).EndInit();
             this.m_simTab.ResumeLayout(false);
             this.groupBox13.ResumeLayout(false);
             this.groupBox13.PerformLayout();
@@ -2012,7 +2011,7 @@
         private System.Windows.Forms.TextBox simResultLocalGroupsTB;
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.DataGridView dgvCredProvFilter;
+        private System.Windows.Forms.CheckedListBox clbCredProv;
         private System.Windows.Forms.Button btnOnlyPgina;
         private System.Windows.Forms.Button btnWindowsDefault;
         private System.Windows.Forms.Label label18;

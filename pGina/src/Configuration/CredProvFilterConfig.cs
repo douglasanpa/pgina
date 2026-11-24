@@ -60,6 +60,9 @@ namespace pGina.Configuration
             Known("27fbdb57-b613-4af2-9d7e-4fa7a66c21ad", Language.T("Trusted signal (dynamic lock)")),
             Known("25cbb996-92ed-457e-b28c-4774084bd562", Language.T("Windows generic provider")),
             Known("600e7adb-da3e-41a4-9225-3c0399e88c0c", Language.T("CNG credentials (UAC prompts)")),
+            Known("d6886603-9d2f-4eb2-b667-1971041fa96b", Language.T("Windows Hello for Business")),
+            Known("f8a0b131-5f68-486c-8040-7e8fc3c85bb6", Language.T("Microsoft account")),
+            Known("e74e57b0-6c6d-44d5-9cda-fb2df5ed7435", Language.T("Certificate")),
         };
 
         private static KeyValuePair<Guid, string> Known(string uuid, string name)
@@ -81,16 +84,6 @@ namespace pGina.Configuration
                 if (KnownNames[i].Key == uuid)
                     return i;
             return KnownNames.Length;
-        }
-
-        /// <summary>Hides every other provider at logon and unlock, and keeps UAC prompts and password changes as they are.</summary>
-        public static void OnlyPgina(List<CredProv> list)
-        {
-            foreach (CredProv cp in list)
-            {
-                cp.FilterLogon = true;
-                cp.FilterUnlock = true;
-            }
         }
 
         public static void WindowsDefault(List<CredProv> list)
@@ -207,12 +200,19 @@ namespace pGina.Configuration
         public bool FilterChangePass { get; set; }
         public bool FilterCredUI { get; set; }
 
-        // What the configuration shows: a ticked box means the provider appears there
         public string DisplayName { get; set; }
-        public bool ShowLogon { get { return !FilterLogon; } set { FilterLogon = !value; } }
-        public bool ShowUnlock { get { return !FilterUnlock; } set { FilterUnlock = !value; } }
-        public bool ShowChangePass { get { return !FilterChangePass; } set { FilterChangePass = !value; } }
-        public bool ShowCredUI { get { return !FilterCredUI; } set { FilterCredUI = !value; } }
+
+        // What the check list shows: whether the provider appears at logon and unlock
+        public bool Shown
+        {
+            get { return !FilterLogon && !FilterUnlock; }
+            set { FilterLogon = !value; FilterUnlock = !value; }
+        }
+
+        public override string ToString()
+        {
+            return DisplayName ?? Name;
+        }
 
         public bool FilterEnabled()
         {
